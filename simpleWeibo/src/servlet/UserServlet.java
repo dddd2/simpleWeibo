@@ -47,9 +47,10 @@ public class UserServlet extends HttpServlet {
 		if(method.equals("login")) {
 			String phone = request.getParameter("phone");
 			String password = request.getParameter("password");
+			System.out.println(phone + "," + password);
 			
 			User user = this.userService.login(phone, password);
-			
+			System.out.println(user);
 			out.print(JSON.toJSON(user));
 		} else if(method.equals("findUserById")) {
 			String userId = request.getParameter("userId");
@@ -83,6 +84,12 @@ public class UserServlet extends HttpServlet {
 			String userId = request.getParameter("userId");
 			
 			this.userService.cleanAboutMe(Integer.valueOf(userId));
+			
+		} else if(method.equals("creatUser")) {
+			String userStr = request.getParameter("user");
+			
+			User user = JSON.parseObject(userStr, User.class);
+			this.userService.createUser(user);
 			
 		}
 		

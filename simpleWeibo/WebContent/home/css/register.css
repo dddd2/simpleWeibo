@@ -131,18 +131,18 @@
 		  }
 		  /* 控制文本框宽度 */
 		  #r_main .r_form{
-			  width:170px;
-			  height:20px;
-			  text-align:center;
-			  line-height:20px;
-			  margin-top:5px;
-			  font-size:16px;
-			  border:1px solid #39F;
+			    width: 200px;
+			    height: 28px;
+			    text-align: left;
+			    line-height: 20px;
+			    margin-top: 22px;
+			    font-size: 16px;
+			    border: 1px solid #39F;
 			  }
 			/* 控制用户名那列的宽度 */
 		   #r_main .r_wordleft{
 			  width:86px;
-			  height:35px;
+			  height:30px;
 			  text-align:center;
 			  line-height:35px;
 			  }
@@ -159,7 +159,7 @@
 				}
 			/* 设置输入提示DIV */
 			.r_wordright .r_registertip{
-				display:inline;
+				/* display:inline; */
 			}
 			/*隐藏图片框*/
 			#r_img1{

@@ -4,58 +4,162 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.messagedao.IMessageDao">
 	<insert id="createMessage">
-		insert into message (text,date,userId) 
-			values 
-			(
-			#{text},
-			#{date},
-			#{user.userId}
-			)
+		INSERT INTO 
+			message (text,date,userId,loveNum,commentNum,forwardNum,imgs) 
+		VALUES 
+			(#{text}, #{date}, #{user.userId}, #{loveNum},
+			 #{commentNum},#{forwardNum},#{imgs,jdbcType=VARCHAR})
 	</insert>
+	
+	<insert id="loveMessage">
+		INSERT INTO 
+			love (userId, messageId, time)
+		VALUES
+			(#{userId}, #{messageId}, #{time})
+	</insert>
+	
+	<update id="loveThisMessage" parameterType="Integer">
+		UPDATE
+			message
+		SET 
+			loveNum = loveNum + 1
+		WHERE
+			messageId = #{messageId}
+	</update>
+	
+	<update id="commentThisMessage" parameterType="Integer">
+		UPDATE
+			message
+		SET 
+			commentNum = commentNum + 1
+		WHERE
+			messageId = #{messageId}
+	</update>
+	
+	<update id="forwardThisMessage" parameterType="Integer">
+		UPDATE
+			message
+		SET 
+			forwardNum = forwardNum + 1
+		WHERE
+			messageId = #{messageId}
+	</update>
 	
 	<delete id="deleteMessage">
 		delete from message where id = #{messageId}
 	</delete>
 	
 	<resultMap type="entity.Message" id="message">
-		<result property="messageId" column="messageId"/>
-		<result property="text" column="text"/>
-		<result property="date" column="date"/>
+		<result property="messageId" column="m_messageId"/>
+		<result property="text" column="m_text"/>
+		<result property="date" column="m_date"/>
+		<result property="loveNum" column="m_loveNum"/>
+		<result property="commentNum" column="m_commentNum"/>
+		<result property="forwardNum" column="m_forwardNum"/>
+		<result property="imgs" column="m_imgs"/>
 		<association property="user" javaType="entity.User">
-			<result property="userId" column="userId" />
-			<result property="name" column="userName"/>
-			<result property="touxiang" column="touxiang"/>
+			<result property="userId" column="u_userId" />
+			<result property="name" column="u_userName"/>
+			<result property="touxiang" column="u_touxiang"/>
 		</association>
+		<collection property="comments" ofType="entity.Comment">
+			<result property="commentId" column="c_commentId"/>
+			<result property="text" column="c_text"/>
+			<result property="time" column="c_time"/>
+			<association property="user" javaType="entity.User">
+				<result property="userId" column="uu_userId" />
+				<result property="name" column="uu_userName"/>
+				<result property="touxiang" column="uu_touxiang"/>
+			</association>
+		</collection>
 	</resultMap>
 	
 	<select id="findMessageById" parameterType="Integer" resultMap="message">
 		select 
-			messageId, text, date, userId, userName, touxiang
-		FROM message
-		left join user on user.userId = message.userId
+			m.messageId as m_messageId, m.text as m_text, m.date as m_date, 
+			m.imgs as m_imgs,
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang
+		FROM message m
+		left join user u on u.userId = m.userId
 		where
-			userId = #{id}
+			m.messageId = #{id}
 	</select> 
 	
-	<resultMap type="entity.Message" id="userMessageList">
-		<result property="messageId" column="messageId"/>
-		<result property="text" column="text"/>
-		<result property="date" column="date"/>
-	</resultMap>
+	<select id="findAboutMeMessagesByUserId" parameterType="String" resultMap="message">
+		SELECT DISTINCT
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, m.imgs as m_imgs,
+			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
+			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 
+			uu.userId as uu_userId, uu.userName as uu_userName, uu.touxiang as uu_touxiang
+		FROM
+			fans_focus f
+		LEFT JOIN `user` u on u.userId = f.focusPeopleId
+		LEFT JOIN message m on m.userId = u.userId
+		LEFT JOIN `comment` c on c.messageId = m.messageId
+		LEFT JOIN `user` uu on uu.userId = c.userId
+		WHERE
+			f.fansId = #{userId} AND m.text like #{userName}
+		ORDER BY
+			m.date DESC, c.time ASC
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
+	</select>
 	
 	<select id="findMessagesByUserId" parameterType="Integer" resultMap="message">
-		select 
-			messageId, text, date, userId, userName, touxiang
-		FROM message
-		left join user on user.userId = message.userId
+		SELECT 
+			m.messageId as m_messageId, m.text as m_text, m.date as m_date, m.imgs as m_imgs, 
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang
+		FROM message m
+		left join user u on u.userId = m.userId
 		where
-			userId = #{id}
+			m.userId = #{userId}
+		ORDER BY m.date DESC
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
+	
+	<select id="isLoved" resultType="Integer">
+		SELECT
+			id
+		FROM
+			love
+		WHERE
+			messageId = #{messageId}
+		AND userId = #{userId}
+	</select>
+	
+	<select id="findFocusMessagesByUserId" parameterType="Integer" resultMap="message">
+		SELECT DISTINCT
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, m.imgs as m_imgs, 
+			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
+			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 
+			uu.userId as uu_userId, uu.userName as uu_userName, uu.touxiang as uu_touxiang
+		FROM
+			fans_focus f
+		LEFT JOIN `user` u on u.userId = f.focusPeopleId
+		LEFT JOIN message m on m.userId = u.userId
+		LEFT JOIN `comment` c on c.messageId = m.messageId
+		LEFT JOIN `user` uu on uu.userId = c.userId
+		WHERE
+			f.fansId = #{userId} or u.userId = #{userId}
+		ORDER BY
+			 m.date DESC, c.time ASC
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
+ 	</select> 
 	
 	<select id="findAllMessages" resultMap="message">
 		select 
 			messageId, text, date, `user`.userId, userName, touxiang
 		FROM message
 		left join user on user.userId = message.userId
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 </mapper>

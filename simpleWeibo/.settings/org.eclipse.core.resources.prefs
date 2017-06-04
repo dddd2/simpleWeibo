@@ -1,3 +1,17 @@
 eclipse.preferences.version=1
+encoding//WebContent/home/html=UTF-8
+encoding//WebContent/home/html/account.html=UTF-8
+encoding//WebContent/home/html/head.html=UTF-8
+encoding//WebContent/home/html/left.html=UTF-8
+encoding//WebContent/home/html/login.html=UTF-8
+encoding//WebContent/home/html/mainHome.html=UTF-8
+encoding//WebContent/home/html/mainHomssse.html=UTF-8
+encoding//WebContent/home/html/password.html=UTF-8
+encoding//WebContent/home/html/personalPage.html=UTF-8
+encoding//WebContent/home/html/register.html=UTF-8
+encoding//WebContent/home/html/userList.html=UTF-8
+encoding//WebContent/home/js/personalPageCtrl.js=UTF-8
+encoding//WebContent/home/js/registerCtrl.js=UTF-8
 encoding//src/jdbc.properties=UTF-8
 encoding//src/log4j.properties=UTF-8
+encoding//src/service/IUserService.java=UTF-8

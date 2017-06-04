@@ -23,30 +23,34 @@
 	     /* banner部分的具体内容 */
 	    #a_banner .a_n1{
 		    width:210px;
-			margin-top:8px;
-		    height:20px;
-			line-height:20px;
+		    margin-top: 20px;
+		    height:25px;
+			line-height:25px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_n2{
 		    width:370px;
+		    margin-top: 20px;
 		    height:25px;
 			line-height:25px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_n3{
 		    width:370px;
-		    height:20px;
+		    margin-top: 20px;
+		    height:25px;
 			line-height:20px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_n4{
 		    width:210px;
+		    margin-top: 20px;
 		    height:180px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_btn{
 		    width:55px;
+		    margin-top: 20px;
 		    height:30px;
 		    background-color:#0184C9;
 		    border:0px;

@@ -34,73 +34,58 @@
       <div id="r_bannerWord3">已经是灵步微博用户？<a href="login.html">登陆微博</a></div>
     </div>
     <div id="r_main">
-      <form action="CustomerIndex.html" method="post" onsubmit="return checkForm()">
-      <table width="765" border="0" cellpadding="0" cellspacing="0">
+      <form  >
+      <table width="765" border="0" cellpadding="0" cellspacing="0" style="margin-top:20px">
         <tr>
-          <td width="71">&nbsp;</td>
-          <td width="86" align="center" valign="middle" class="r_wordleft">用 &nbsp;户&nbsp; 名</td>
-          <td width="189" align="center" valign="middle"><input name="userID" type="text" class="r_form" id="r_userID" onblur="checkUserId(img1,this)" onfocus="getfocus(this,img1)" /></td>
-          <td width="419" align="left" valign="middle" class="r_wordright"><img name="img1" width="16" height="16" id="r_img1" /><div class="r_registertip" id="r_userIDtip">请输入真实姓名，方便您的朋友与你联系</div></td>
+          <td width="95">&nbsp;</td>
+          <td width="86" align="center" valign="middle" class="r_wordleft" style="padding-top:17px">用 &nbsp;户&nbsp; 名</td>
+          <td width="189" align="center" valign="middle" > <input name="userID" type="text" ng-model="user.name" class="r_form" id="r_userID" ></td>
+          <td width="419" align="left" valign="middle" class="r_wordright"><img name="img1" width="16" height="16" id="r_img1" /><div class="r_registertip" id="r_userIDtip">&nbsp&nbsp请输入真实姓名，方便您的朋友与你联系</div></td>
         </tr>
+        
         <tr>
-          <td>&nbsp;</td>
-          <td align="center" valign="middle" class="r_wordleft">昵 &nbsp; &nbsp;&nbsp;&nbsp;称</td>
-          <td align="center" valign="middle"><input name="userName" type="text" class="r_form" id="r_userName" onfocus="getfocus(this,img2)" onblur="checkUserName(img2,this)" maxlength="20" /></td>
-          <td align="left" valign="middle" class="r_wordright"><img name="img2" width="16" height="16" id="r_img2" /><div class="r_registertip" id="r_userNametip">请输入4到20位数字、字符、中文，一旦注册，不得修改</div></td>
+          <td width="95">&nbsp;</td>
+          <td width="86" align="center" valign="middle" class="r_wordleft" style="padding-top:20px">手 &nbsp;机&nbsp; 号</td>
+          <td width="189" align="center" valign="middle"> <input name="userID" type="text" ng-model="user.phone" class="r_form" id="r_userID" onblur="checkUserId(img1,this)" onfocus="getfocus(this,img1)" /></td>
+          <td width="419" align="left" valign="middle" class="r_wordright"><img name="img1" width="16" height="16" id="r_img1" /><div class="r_registertip" id="r_userIDtip">&nbsp &nbsp请输入真实姓名，方便您的朋友与你联系</div></td>
         </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td align="center" valign="middle" class="r_wordleft">手 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机</td>
-          <td align="center" valign="middle" class="r_a"><input name="userTel" type="text" class="r_form" id="r_userTel" onblur="checkUserTel(img3,this)" onfocus="getfocus(this,img3)" /></td>
-          <td align="left" valign="middle" class="r_wordright"><img name="img3" width="16" height="16" id="r_img3" /><div class="r_registertip" id="r_userTeltip">请输入您的手机号码，之后可以用手机及时发布信息</div></td>
-        </tr>
-        <tr>
+     
+       <!--  <tr>
           <td>&nbsp;</td>
           <td align="center" valign="middle" class="r_wordleft">电子邮箱</td>
           <td align="center" valign="middle"><input name="userMail" type="text" class="r_form" id="r_userMail" onblur="checkUserMail(img4,this)" onfocus="getfocus(this,img4)" /></td>
           <td align="left" valign="middle" class="r_wordright"><img name="img4" width="16" height="16" id="r_img4" /><div class="r_registertip" id="r_userMailtip">找回账户和密码用，如123@163.com</div></td>
         </tr>
+        
         <tr>
-          <td>&nbsp;</td>
-          <td align="center" valign="middle" class="r_wordleft">创建密码</td>
-          <td align="center" valign="middle"><input name="userPass" type="password" class="r_form" id="r_userPass" onfocus="getfocus(this,img5)" onblur="checkUserPass(img5,this)" maxlength="20" /></td>
-          <td align="left" valign="middle" class="r_wordright"><img name="img5" width="16" height="16" id="r_img5" /><div class="r_registertip" id="r_userPasstip">密码由6到20个字母、数字、特殊符号组成，字母区分大小写</div></td>
+          <td width="71">&nbsp;</td>
+          <td width="86" align="center" valign="middle" class="wordleft">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 别</td>
+          <td width="189" align="center" valign="middle"><input name="userID" type="text" class="form" id="userID" onblur="checkUserId(img1,this)" onfocus="getfocus(this,img1)" /></td>
+          <td width="419" align="left" valign="middle" class="wordright"><img name="img1" width="16" height="16" id="img1" /><div class="registertip" id="userIDtip">请输入真实性别，方便与他人交流</div></td>
+        </tr>
+        
+        <tr>
+          <td width="71">&nbsp;</td>
+          <td width="86" align="center" valign="middle" class="wordleft">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 龄</td>
+          <td width="189" align="center" valign="middle"><input name="userID" type="text" class="form" id="userID" onblur="checkUserId(img1,this)" onfocus="getfocus(this,img1)" /></td>
+          <td width="419" align="left" valign="middle" class="wordright"><img name="img1" width="16" height="16" id="img1" /><div class="registertip" id="userIDtip">请输入真实年龄，方便与他人话题讨论</div></td>
+        </tr> -->
+        
+        <tr>
+          <td width="95">&nbsp;</td>
+          <td width="86" align="center" valign="middle" class="r_wordleft" style="padding-top:20px">创建密码</td>
+          <td width="189" align="center" valign="middle"><input name="userPass" type="password" ng-model="user.password" class="r_form" id="r_userPass" onfocus="getfocus(this,img5)" onblur="checkUserPass(img5,this)" maxlength="20" /></td>
+          <td width="489" align="left" valign="middle" class="r_wordright"><img name="img5" width="16" height="16" id="r_img5" /><div class="r_registertip" id="r_userPasstip">&nbsp&nbsp密码由6到20个字母、数字、特殊符号组成，字母区分大小写</div></td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
-          <td align="center" valign="middle" class="r_wordleft">密码确认</td>
-          <td align="center" valign="middle"><input name="userRpass" type="password" class="r_form" id="r_userRpass" onblur="checkUserRpass(img6,this)" onfocus="getfocus(this,img6)" maxlength="20" /></td>
-          <td align="left" valign="middle" class="r_wordright"><img name="img6" width="16" height="16" id="r_img6" /><div class="r_registertip" id="r_userRpasstip">请再次输入密码</div></td>
+          <td width="95">&nbsp;</td>
+          <td width="86" align="center" valign="middle" class="r_wordleft" style="padding-top:20px">密码确认</td>
+          <td width="189" align="center" valign="middle"><input name="userRpass" type="password" ng-model="repassword" class="r_form" id="r_userRpass" onblur="checkUserRpass(img6,this)" onfocus="getfocus(this,img6)" maxlength="20" /></td>
+          <td width="489" align="left" valign="middle" class="r_wordright"><img name="img6" width="16" height="16" id="r_img6" /><div class="r_registertip" id="r_userRpasstip">&nbsp&nbsp请再次输入密码</div></td>
         </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td align="center" valign="middle" class="r_wordleft">所在城市</td>
-          <td colspan="2" valign="middle"><select name="region1" class="r_form1" id="r_region1">
-            </select>
-            <select name="region2" class="r_form4" id="r_region2">
-              </select>
-            <select name="region3" class="r_form4" id="r_region3">
-            </select>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td align="center" valign="middle" class="r_wordleft">出生年月</td>
-          <td align="left" valign="middle"><select name="year" class="r_form2" id="r_year">
-          </select>   <select name="month" class="r_form3" id="r_month">
-          </select>
-          <select name="date" class="r_form3" id="r_date">
-          </select></td>
-          <td align="left" valign="middle" class="r_wordright">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="r_registertip">请选择你的出身年月日</div></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td align="center" valign="middle" class="r_wordleft">验 &nbsp;证 &nbsp;码</td>
-          <td align="center" valign="middle"><input name="verify" type="text" class="r_form" id="r_verify" onblur="checkVertyCode(img7,this)" onfocus="getfocus(this,img7)" maxlength="4" /></td>
-          <td align="left" valign="middle" class="r_verifyword"> <span class="r_wordright">
-          <div id="r_yanzhengma1"><img alt="" name="img7" width="16" height="16" align="absmiddle" id="r_img7" /></div></span>
-          <div id="r_yanzhengma">2356</div>
-          看不清？<a href="javascript:createCode()">换一换</a></td>
-        </tr>
+       
+        
+        
         <tr>
           <td height="35" colspan="4" align="center">
             <input name="checkbox" type="checkbox" id="r_checkbox" onclick="deal(this,button)" />
@@ -108,7 +93,7 @@
           ，并同意<a href="#">《灵步网使用协议》</a></td>
           </tr>
         <tr>
-          <td colspan="4" align="center" valign="middle"><input type="submit" disabled="disabled" name="button" id="r_button" value="立即注册" class="r_button"/></td>
+          <td height="80" colspan="4" align="center" valign="middle"><input type="submit"  ng-click="submit()" name="button" id="r_button" value="立即注册" class="r_button"/></td>
           </tr>
       </table>
     </form>

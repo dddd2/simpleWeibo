@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.userdao.IUserDao">
 	<insert id="insertUser">
-		insert into user (userName,age,sex,email,phone,remark,touxiang) 
+		insert into user (userName,age,sex,email,phone,remark,password,touxiang) 
 			values 
 			(#{name}, 
 			 #{age,jdbcType=NUMERIC},
@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 #{email,jdbcType=VARCHAR},
 			 #{phone,jdbcType=VARCHAR},
 			 #{remark,jdbcType=VARCHAR},
+			 #{password,jdbcType=VARCHAR},
 			 #{touxiang,jdbcType=VARCHAR})
 	</insert>
 	
