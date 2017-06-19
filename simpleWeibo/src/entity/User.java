@@ -1,14 +1,15 @@
 package entity;
 
 public class User {
-	private int userId;
+	private Integer userId;
 	private String name;
 	private String sex;
-	private int age;
+	private Integer age;
 	private String email;
 	private String phone;
 	private String remark;//个人简介
-	private String touxiang;
+	private String touxiang;//头像
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,7 +23,7 @@ public class User {
 	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	public String getName() {
@@ -40,7 +41,7 @@ public class User {
 	public int getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getEmail() {
