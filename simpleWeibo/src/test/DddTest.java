@@ -1,5 +1,6 @@
 package test;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,19 +8,25 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import dao.commentdao.ICommentDao;
+import dao.messagedao.IMessageDao;
 import dao.userdao.IUserDao;
+import entity.Message;
 import entity.User;
 import util.MyBatisUtil;
 
 public class DddTest {
 	private SqlSession sqlSession;
 	private IUserDao dao;
-
+//	private ICommentDao commentDao;
+	private IMessageDao messageDao;
 	@Before
 	public void before() {
 		sqlSession = MyBatisUtil.getSqlSession();
 		
 		dao = sqlSession.getMapper(IUserDao.class);
+//		commentDao = sqlSession.getMapper(ICommentDao.class);
+		messageDao = sqlSession.getMapper(IMessageDao.class);
 	}
 	
 	@After
@@ -53,5 +60,16 @@ public class DddTest {
 	public void test4() {
 		List<User> users = dao.findAllUsers();
 		System.out.println(users);
+	}
+	@Test
+	public void test5() {
+		Message message = new Message();
+		message.setText("ssss");
+		message.setDate(new Date());
+		User user = new User();
+		user.setUserId(7);
+		message.setUser(user);
+		messageDao.createMessage(message);
+		sqlSession.commit();
 	}
 }

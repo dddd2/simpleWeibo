@@ -1,4 +1,7 @@
 package entity;
+
+import java.util.List;
+
 /**
  * 评论
  * @author 刘洋
@@ -6,24 +9,33 @@ package entity;
  */
 public class Comment {
 	private int commentId;
-	private int messageId;
-	private int userId;
+	private Message message;
+	private User user;
+	private List<Comment> commentList;
+	public Comment() {
+	}
 	public int getCommentId() {
 		return commentId;
 	}
 	public void setCommentId(int commentId) {
 		this.commentId = commentId;
 	}
-	public int getMessageId() {
-		return messageId;
+	public Message getMessage() {
+		return message;
 	}
-	public void setMessageId(int messageId) {
-		this.messageId = messageId;
+	public void setMessage(Message message) {
+		this.message = message;
 	}
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
 	}
 }		

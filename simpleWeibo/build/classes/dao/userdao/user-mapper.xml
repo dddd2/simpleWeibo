@@ -32,11 +32,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from user where id = #{userId}
 	</delete>
 	
-	<select id="findUserById" parameterType="Integer" resultType="entity.User">
+	<resultMap type="entity.User" id="user">
+		<result property="userId" column="userId"/>
+		<result property="age" column="age"/>
+		<result property="sex" column="sex"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="remark" column="remark"/>
+		<result property="touxiang" column="touxiang"/>
+		<result property="fansNum" column="fansNum"/>
+		<result property="focusPeopleNum" column="focusPeopleNum"/>
+	</resultMap>
+	
+	<select id="findUserById" parameterType="Integer" resultMap="user">
 		select 
-			userId, userName as name, age, sex, email, phone, remark, touxiang
-		from 
-			user
+			userId, userName as name, age, sex, email, phone, remark, touxiang,
+			count(f.fansId) as fansNum, count(ff.focusPeopleId) as focusPeopleNum
+		FROM`user`
+		LEFT JOIN fans_focus f ON userId = f.fansId
+		LEFT JOIN fans_focus ff ON userId = ff.focusPeopleId
 		where
 			userId = #{id}
 	</select> 

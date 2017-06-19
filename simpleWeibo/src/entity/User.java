@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Set;
+
 public class User {
 	private Integer userId;
 	private String name;
@@ -9,6 +11,10 @@ public class User {
 	private String phone;
 	private String remark;//个人简介
 	private String touxiang;//头像
+	private Integer fansNum;
+	private Integer focusPeopleNum;
+	private Set<User> fans;//粉丝
+	private Set<User> focusPeople; //关注人
 	
 	public User() {
 		super();
@@ -61,5 +67,35 @@ public class User {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public Integer getFansNum() {
+		return fansNum;
+	}
+	public void setFansNum(Integer fansNum) {
+		this.fansNum = fansNum;
+	}
+	public Integer getFocusPeopleNum() {
+		return focusPeopleNum;
+	}
+	public void setFocusPeopleNum(Integer focusPeopleNum) {
+		this.focusPeopleNum = focusPeopleNum;
+	}
+	public Set<User> getFocusPeople() {
+		return focusPeople;
+	}
+	public void setFocusPeople(Set<User> focusPeople) {
+		this.focusPeople = focusPeople;
+	}
+	public Set<User> getFans() {
+		return fans;
+	}
+	public void setFans(Set<User> fans) {
+		this.fans = fans;
+	}
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", sex=" + sex + ", age=" + age + ", email=" + email
+				+ ", phone=" + phone + ", remark=" + remark + ", touxiang=" + touxiang + ", fansNum=" + fansNum
+				+ ", focusPeopleNum=" + focusPeopleNum + ", fans=" + fans + ", focusPeople=" + focusPeople + "]";
 	}
 }

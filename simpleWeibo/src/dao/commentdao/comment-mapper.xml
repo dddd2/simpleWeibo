@@ -2,17 +2,12 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.userdao.IUserDao">
-	<insert id="insertUser">
-		insert into user (userName,age,sex,email,phone,remark,touxiang) 
+<mapper namespace="dao.commentdao.ICommentDao">
+	<insert id="createComment">
+		insert into comment (text,Date,userId) 
 			values 
-			(#{name}, 
-			 #{age,jdbcType=NUMERIC},
-			 #{sex,jdbcType=VARCHAR},
-			 #{email,jdbcType=VARCHAR},
-			 #{phone,jdbcType=VARCHAR},
-			 #{remark,jdbcType=VARCHAR},
-			 #{touxiang,jdbcType=VARCHAR})
+			(
+			)
 	</insert>
 	
 	<update id="updateUser">

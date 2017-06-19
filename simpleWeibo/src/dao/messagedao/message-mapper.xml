@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.messagedao.IMessageDao">
+	<insert id="createMessage">
+		insert into message (text,date,userId) 
+			values 
+			(
+			#{text},
+			#{date},
+			#{user.userId}
+			)
+	</insert>
+	
+	<delete id="deleteMessage">
+		delete from message where id = #{messageId}
+	</delete>
+	
+	<resultMap type="entity.Message" id="message">
+		<result property="messageId" column="messageId"/>
+		<result property="text" column="text"/>
+		<result property="date" column="date"/>
+		<association property="user" javaType="entity.User">
+			<result property="userName" column="userName"/>
+		</association>
+	</resultMap>
+	
+	<select id="findMessageById" parameterType="Integer" resultMap="message">
+		select 
+			text, date, userId, userName
+		FROM message
+		left join user on user.userId = message.userId
+		where
+			userId = #{id}
+	</select> 
+	
+	<resultMap type="entity.User" id="userList">
+		<result property="userId" column="userId"/>
+		<result property="age" column="age"/>
+		<result property="sex" column="sex"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="remark" column="remark"/>
+		<result property="touxiang" column="touxiang"/>
+	</resultMap>
+	
+	<select id="findMessagesByUserId" parameterType="Integer" resultMap="userMessageList">
+		select * from message where userId = #{userId}
+	</select>
+</mapper>

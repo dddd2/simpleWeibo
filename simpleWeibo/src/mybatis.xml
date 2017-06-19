@@ -6,6 +6,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<properties resource="jdbc.properties"/>
 	<typeAliases>
 		<package name="dao.userdao"/>
+		<package name="dao.messagedao"/>
+		<package name="dao.commentdao"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -20,5 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<mappers>
 		<mapper resource="dao/userdao/user-mapper.xml"/>
+		<mapper resource="dao/messagedao/message-mapper.xml"/>
+		<mapper resource="dao/commentdao/comment-mapper.xml"/>
 	</mappers>
 </configuration>
