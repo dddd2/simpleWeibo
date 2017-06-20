@@ -40,7 +40,7 @@ public class User {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 	public void setUserId(Integer userId) {
@@ -58,7 +58,7 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 	public void setAge(Integer age) {

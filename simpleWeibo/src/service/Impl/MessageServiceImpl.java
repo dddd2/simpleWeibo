@@ -7,10 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import dao.messagedao.IMessageDao;
 import dao.userdao.IUserDao;
 import entity.Message;
+import service.IMessageService;
 import service.ITouristService;
 import util.MyBatisUtil;
 
-public class MessageServiceImpl implements IMessageDao{
+public class MessageServiceImpl implements IMessageService{
 	private static IMessageDao messageDao;
 	private static SqlSession sqlSession;
 	
@@ -40,6 +41,12 @@ public class MessageServiceImpl implements IMessageDao{
 	public List<Message> findMessagesByUserId(Integer userId) {
 		// TODO Auto-generated method stub
 		return messageDao.findMessagesByUserId(userId);
+	}
+
+	@Override
+	public List<Message> findAllMessages() {
+		// TODO Auto-generated method stub
+		return messageDao.findAllMessages();
 	}
 
 }

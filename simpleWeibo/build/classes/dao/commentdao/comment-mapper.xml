@@ -3,51 +3,47 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.commentdao.ICommentDao">
-	<insert id="createComment">
-		insert into comment (text,Date,userId) 
+	<insert id="createCommentForMessage">
+		insert into comment (text, messageId, userId, puserId, time) 
 			values 
 			(
+			#{text},
+			#{message.messageId},
+			#{user.userId},
+			#{puser.userId, jdbcType=NUMERIC},
+			#{time}
 			)
 	</insert>
 	
-	<update id="updateUser">
-		update user 
-			set 
-			userName = #{name}, 
-			age = #{age,jdbcType=NUMERIC},
-			sex = #{sex,jdbcType=VARCHAR}, 
-			email = #{email,jdbcType=VARCHAR}, 
-			phone = #{phone,jdbcType=VARCHAR}, 
-			remark = #{remark,jdbcType=VARCHAR}, 
-			touxiang = #{touxiang,jdbcType=VARCHAR} 
-			where userId = #{userId}
-	</update>
-	
-	<delete id="deleteUser">
-		delete from user where id = #{userId}
+	<delete id="deleteComment" parameterType="Integer">
+		delete from comment where id = #{comment}
 	</delete>
 	
-	<resultMap type="entity.User" id="user">
-		<result property="userId" column="userId"/>
-		<result property="age" column="age"/>
-		<result property="sex" column="sex"/>
-		<result property="email" column="email"/>
-		<result property="phone" column="phone"/>
-		<result property="remark" column="remark"/>
-		<result property="touxiang" column="touxiang"/>
-		<result property="fansNum" column="fansNum"/>
-		<result property="focusPeopleNum" column="focusPeopleNum"/>
+	<resultMap type="entity.Comment" id="comment">
+		<result property="commentId" column="commentId"/>
+		<result property="text" column="text"/>
+		<result property="time" column="time"/>
+		<association property="user" javaType="entity.User">
+			<result property="name" column="username"/>
+		</association>
+		<association property="puser" javaType="entity.User">
+			<result property="name" column="pusername"/>
+		</association>
 	</resultMap>
 	
-	<select id="findUserById" parameterType="Integer" resultMap="user">
-		select 
-			userId, userName as name, age, sex, email, phone, remark, touxiang,
-			count(f.fansId) as fansNum, count(ff.focusPeopleId) as focusPeopleNum
-		FROM`user`
-		LEFT JOIN fans_focus f ON userId = f.fansId
-		LEFT JOIN fans_focus ff ON userId = ff.focusPeopleId
-		where
-			userId = #{id}
+	<select id="findCommentById" parameterType="Integer" resultMap="comment">
+		SELECT
+			commentId,
+			text,
+			time,
+			`user`.userName AS username,
+			puser.username AS pusername
+		FROM
+			comment
+		LEFT JOIN `user` user ON user.userId = `comment`.userId
+		LEFT JOIN `user` puser ON puser.userId = comment.puserId
+		WHERE
+			commentId = #{id}
 	</select> 
 	
 	<resultMap type="entity.User" id="userList">
@@ -60,7 +56,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="touxiang" column="touxiang"/>
 	</resultMap>
 	
-	<select id="findAllUsers" resultMap="userList">
-		select * from user
+	<select id="findCommentsByUserId" resultMap="comment">
+		SELECT
+			commentId,
+			text,
+			time,
+			`user`.userName AS username,
+			puser.username AS pusername
+		FROM
+			comment
+		LEFT JOIN `user` user ON user.userId = `comment`.userId
+		LEFT JOIN `user` puser ON puser.userId = comment.puserId
+		where comment.userId = #{userId}
+		limit #{currentPage}, #{pageSize}
+	</select>
+	
+	<select id="findCommentsByMessageId" resultMap="comment">
+		SELECT
+			commentId,
+			text,
+			time,
+			`user`.userName AS username,
+			puser.username AS pusername
+		FROM
+			comment
+		LEFT JOIN `user` user ON user.userId = `comment`.userId
+		LEFT JOIN `user` puser ON puser.userId = comment.puserId
+		where comment.messageId = #{messageId}
+		limit #{currentPage}, #{pageSize}
 	</select>
 </mapper>

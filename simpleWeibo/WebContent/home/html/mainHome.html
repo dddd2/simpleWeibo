@@ -1,0 +1,12 @@
+<body>
+	<div class='form' ng-repeat="message in messages">	
+		<div class="message">
+			<div class="touxiang">
+				<img class="touxiang_radius" alt="" src="../images/default.jpg" width="50px" height="50px" ng-if="!message.user.touxiang">
+			</div>
+			<div class="user_info"><a>{{message.user.name}}</a></div>
+			<div class="user_info">{{message.date.time|date:'yyyy-MM-dd HH:mm:ss'}}</div>		
+			<div class="message_text">{{message.text}}</div>
+		</div>
+	</div>
+</body>

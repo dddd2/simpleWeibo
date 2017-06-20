@@ -22,13 +22,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="text" column="text"/>
 		<result property="date" column="date"/>
 		<association property="user" javaType="entity.User">
-			<result property="userName" column="userName"/>
+			<result property="userId" column="userId" />
+			<result property="name" column="userName"/>
+			<result property="touxiang" column="touxiang"/>
 		</association>
 	</resultMap>
 	
 	<select id="findMessageById" parameterType="Integer" resultMap="message">
 		select 
-			messageId, text, date, userId, userName
+			messageId, text, date, userId, userName, touxiang
 		FROM message
 		left join user on user.userId = message.userId
 		where
@@ -41,7 +43,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="date" column="date"/>
 	</resultMap>
 	
-	<select id="findMessagesByUserId" parameterType="Integer" resultMap="userMessageList">
-		select * from message where userId = #{userId}
+	<select id="findMessagesByUserId" parameterType="Integer" resultMap="message">
+		select 
+			messageId, text, date, userId, userName, touxiang
+		FROM message
+		left join user on user.userId = message.userId
+		where
+			userId = #{id}
+	</select>
+	
+	<select id="findAllMessages" resultMap="message">
+		select 
+			messageId, text, date, `user`.userId, userName, touxiang
+		FROM message
+		left join user on user.userId = message.userId
 	</select>
 </mapper>
