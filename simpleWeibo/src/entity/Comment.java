@@ -1,6 +1,6 @@
 package entity;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * 评论
@@ -9,10 +9,11 @@ import java.util.List;
  */
 public class Comment {
 	private int commentId;
-	private String text;
-	private Message message;
-	private User user;
-	private List<Comment> commentList;
+	private String text; //内容
+	private Message message;  //被评论微博
+	private User user;  //评论人
+	private User puser; //被评论人
+	private Date time;//时间
 	public Comment() {
 	}
 	public int getCommentId() {
@@ -39,10 +40,21 @@ public class Comment {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<Comment> getCommentList() {
-		return commentList;
+	public User getPuser() {
+		return puser;
 	}
-	public void setCommentList(List<Comment> commentList) {
-		this.commentList = commentList;
+	public void setPuser(User puser) {
+		this.puser = puser;
+	}
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
+	}
+	@Override
+	public String toString() {
+		return "Comment [commentId=" + commentId + ", text=" + text + ", message=" + message + ", user=" + user
+				+ ", puser=" + puser + ", time=" + time + "]";
 	}
 }		

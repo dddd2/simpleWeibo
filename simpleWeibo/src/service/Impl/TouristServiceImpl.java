@@ -16,10 +16,6 @@ public class TouristServiceImpl implements ITouristService {
 		userdao = sqlSession.getMapper(IUserDao.class);
 	}
 	
-	public void TouristServiceImpl(){
-		
-	}
-	
 	public void register(User user) {
 		userdao.insertUser(user);
 		sqlSession.commit();
