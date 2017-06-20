@@ -1,12 +1,7 @@
 package service.Impl;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import dao.userdao.IUserDao;
 import entity.User;
 import service.IUserService;
@@ -15,7 +10,6 @@ import util.MyBatisUtil;
 public class UserServiceImpl implements IUserService {
 	private static SqlSession sqlSession;
 	private static IUserDao userdao;
-	public static String className = "java1.User";
 
 	static {
 		sqlSession = MyBatisUtil.getSqlSession();
