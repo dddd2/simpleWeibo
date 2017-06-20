@@ -12,6 +12,7 @@ public class User {
 	private String remark;//个人简介
 	private String touxiang;//头像
 	private Integer fansNum;
+	private String password;
 	private Integer focusPeopleNum;
 	private Set<User> fans;//粉丝
 	private Set<User> focusPeople; //关注人
@@ -26,7 +27,13 @@ public class User {
 	public void setTouxiang(String touxiang) {
 		this.touxiang = touxiang;
 	}
-	public Integer getUserId() {
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(Integer userId) {
