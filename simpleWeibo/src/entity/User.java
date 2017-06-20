@@ -9,11 +9,12 @@ public class User {
 	private Integer age;
 	private String email;
 	private String phone;
+	private String type;//人员类型
 	private String remark;//个人简介
 	private String touxiang;//头像
-	private Integer fansNum;
+	private Integer fansNum;//粉丝数
 	private String password;
-	private Integer focusPeopleNum;
+	private Integer focusPeopleNum;//关注人数
 	private Set<User> fans;//粉丝
 	private Set<User> focusPeople; //关注人
 	
@@ -32,6 +33,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public int getUserId() {
 		return userId;
