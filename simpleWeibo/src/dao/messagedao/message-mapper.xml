@@ -28,21 +28,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findMessageById" parameterType="Integer" resultMap="message">
 		select 
-			text, date, userId, userName
+			messageId, text, date, userId, userName
 		FROM message
 		left join user on user.userId = message.userId
 		where
 			userId = #{id}
 	</select> 
 	
-	<resultMap type="entity.User" id="userList">
-		<result property="userId" column="userId"/>
-		<result property="age" column="age"/>
-		<result property="sex" column="sex"/>
-		<result property="email" column="email"/>
-		<result property="phone" column="phone"/>
-		<result property="remark" column="remark"/>
-		<result property="touxiang" column="touxiang"/>
+	<resultMap type="entity.Message" id="userMessageList">
+		<result property="messageId" column="messageId"/>
+		<result property="text" column="text"/>
+		<result property="date" column="date"/>
 	</resultMap>
 	
 	<select id="findMessagesByUserId" parameterType="Integer" resultMap="userMessageList">

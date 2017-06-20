@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Comment {
 	private int commentId;
+	private String text;
 	private Message message;
 	private User user;
 	private List<Comment> commentList;
@@ -19,6 +20,12 @@ public class Comment {
 	}
 	public void setCommentId(int commentId) {
 		this.commentId = commentId;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
 	}
 	public Message getMessage() {
 		return message;

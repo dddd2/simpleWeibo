@@ -26,7 +26,7 @@ public class User {
 	public void setTouxiang(String touxiang) {
 		this.touxiang = touxiang;
 	}
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 	public void setUserId(Integer userId) {
