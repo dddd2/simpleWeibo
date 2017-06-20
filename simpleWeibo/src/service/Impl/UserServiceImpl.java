@@ -1,40 +1,54 @@
 package service.Impl;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import dao.userdao.IUserDao;
 import entity.User;
 import service.IUserService;
+import util.MyBatisUtil;
 
 public class UserServiceImpl implements IUserService {
+	private static SqlSession sqlSession;
+	private static IUserDao userdao;
+	public static String className = "java1.User";
 
-	@Override
-	public void createUser() {
+	static {
+		sqlSession = MyBatisUtil.getSqlSession();
+		userdao = sqlSession.getMapper(IUserDao.class);
+	}
+	
+	public void createUser(User user) {
 		// TODO Auto-generated method stub
-
+		TouristServiceImpl NewUser = new TouristServiceImpl();
+		NewUser.register(user);
 	}
 
-	@Override
-	public void updateUser() {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-
+		userdao.updateUser(user);
+		sqlSession.commit();
+		
 	}
 
-	@Override
-	public void deleteUser() {
+	public void deleteUser(User user) {
 		// TODO Auto-generated method stub
-
+		userdao.deleteUser(user);
+		sqlSession.commit();
 	}
 
-	@Override
-	public User findUserById() {
+	public User findUserById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userdao.findUserById(id);
 	}
 
-	@Override
 	public List<User> findUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		return userdao.findAllUsers();
 	}
-
+	
 }
