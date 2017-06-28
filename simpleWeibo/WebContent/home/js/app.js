@@ -1,70 +1,59 @@
-var app = angular.module('app', ['ui.router']);
-app.config(function($stateProvider, $urlRouterProvider){
-	$urlRouterProvider.otherwise('mainHome');
-	$stateProvider
+define(["angular", "angularAMD", "angular-ui-router", "ng-file-upload"], function (angular, angularAMD) {        
+
+	var app = angular.module("app", ["ui.router","ngFileUpload"]);
 	
-	.state('mainHome', {
-		url: '/mainHome',
-		views : {
-			'head':{
-				templateUrl:'./html/head.html',
-			},
-			'main':{
-				templateUrl:'./html/mainHome.html',
-				controller:'mainHomeCtrl',
+	app.factory('locals',['$window',function($window){
+	      return{        //存储单个属性
+	          set :function(key,value){
+	            $window.localStorage[key]=value;
+	          },        //读取单个属性
+	          get:function(key,defaultValue){
+	            return  $window.localStorage[key] || defaultValue;
+	          },        //存储对象，以JSON格式存储
+	          setObject:function(key,value){
+	            $window.localStorage[key]=JSON.stringify(value);
+	          },        //读取对象
+	          getObject: function (key) {
+	            return JSON.parse($window.localStorage[key] || '{}');
+	          }
+
+	        }
+	    }]);
+	
+	app.config(function($stateProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('/login');
+		$stateProvider
+		
+		.state('login',angularAMD.route({
+			url: '/login',
+			views: {
+				'main': angularAMD.route({
+					templateUrl: function(params){return   './html/login.html'},
+					controller:'loginCtrl',
+				})
 			}
-		}
+		}))
+		
+		.state('personalPage',angularAMD.route({
+			url: '/personalPage/:id',
+			views: {
+				'main': angularAMD.route({
+					templateUrl: function(params){return   './html/personalPage.html'},
+					controller:'personalPageCtrl',
+				})
+			}
+		}))
+		
+		.state('mainHome',angularAMD.route({
+			url: '/mainHome',
+			views: {
+				'main': angularAMD.route({
+					templateUrl: function(params){return   './html/mainHome.html'},
+					controller:'mainHomeCtrl',
+				})
+			}
+		}))
 	})
 	
-	
+	return angularAMD.bootstrap(app);
 });
-app.controller('mainHomeCtrl',['$scope', '$stateParams', '$http', '$state',
-                                 function($scope, $stateParams, $http, $state) 
-{
-	$scope.currentPage = 1;
-	$scope.pageSize = 20;
-	$scope.messages = [];
-	
-	$scope.init = function() {
-		$scope.findAllMessages();
-	}
-	
-	$scope.findAllMessages = function() {
-		var url = "http://localhost:8080/simpleWeibo/MessageServlet"
-		$http.post(url,{currentPage:$scope.currentPage,pageSize:$scope.pageSize,method:"findAllMessages"},
-			{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-            	transformRequest: function(obj) {    
-            		var str = [];    
-            		for (var p in obj) {    
-            			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-            		}    
-            		return str.join("&");    
-            	}
-			})
-		.success(function(data) {
-			$scope.messages = data;
-		})
-		.error(function(error){
-		});
-	}
-	
-	$scope.init();
-}]);
-
-app.controller('formCtrl',['$scope', '$stateParams', '$http', '$state',
-                       function($scope, $stateParams, $http, $state) {
-	
-}]);
-
-app.controller('listCtrl',['$scope', '$stateParams', '$http', '$state',
-                            function($scope, $stateParams, $http, $state) {
-	
-}]);
-
-app.controller('leftCtrl',['$scope', '$stateParams', '$http', '$state',
-                       function($scope, $stateParams, $http, $state) {
-	
-}])
-			
-

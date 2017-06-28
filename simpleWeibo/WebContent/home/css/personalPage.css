@@ -1,0 +1,734 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 总容器 container */
+#p_container{
+	width:765px;
+	height:auto;
+	margin:0px auto;
+	background:#E9F4FA;
+}
+	/* 回到顶部 */
+	#p_backtop {
+		position:fixed;
+		bottom: 0px;
+		right:0px;
+	}
+	/* 回到顶部样式 */
+	#p_backtop a {
+		width: 60px;
+		display: block;
+		text-align: center;
+		font-size:11px;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: #bbb;
+		/* 背景颜色过渡 */
+		-webkit-transition: 1s;
+		-moz-transition: 1s;
+		transition: 1s;
+	}
+	#p_backtop a:hover {
+		color: #000;
+	}
+	/* 回到顶部按钮(span) */
+	#p_backtop span {
+		width: 60px;
+		height: 60px;
+		display: block;
+		margin-bottom: 7px;
+		background: #p_C1E6F5 url(../images/up-arrow.png) no-repeat center center;
+		/* 圆角 */
+		-webkit-border-radius: 15px;
+		-moz-border-radius: 15px;
+		border-radius: 15px;
+		/* 背景颜色过渡 */
+		-webkit-transition: 1s;
+		-moz-transition: 1s;
+		transition: 1s;
+	}
+	#p_backtop a:hover span {
+		background-color: #B8DDEB;
+	}
+
+	/* 上面topDIV */
+	#p_top{
+		width:765px;
+		height:80px;
+		position:relative;
+	}
+	
+	/* top部分的LogoDIV */
+	#p_topLogo{
+		width:200px;
+		height:80px;	
+	}
+		/* topLogo部分的icoDIV */
+		#p_topLogoIco{
+			width:72px;
+			height:72px;
+			margin-top:4px;
+			float:left;
+		}
+		/* topLogo部分的wordDIV */
+		#p_topLogoWord{
+			width:128px;
+			height:60px;
+			float:left;
+			margin-top:12px;
+		}
+			/* topLogo下的img */
+			#p_topLogo img{
+				border:none;
+			}
+	/* top部分的文字导航 */
+	#p_topWordMenu{
+		width:330px;
+		height:30px;
+		position:absolute;
+		top:33px;
+		left:430px;
+	}
+		/* top部分的ul */
+		#p_topWordMenu ul{
+			margin:0px;
+			padding:0px;
+			list-style:none;
+		}
+			/* top部分的li */
+			#p_topWordMenu ul li{
+				display:inline;
+				/*float:left;*/
+				margin:0px 8px;
+			}
+			/* top部分的文字链接 */
+			#p_topWordMenu a:link{
+				text-decoration:none;
+			}
+			#p_topWordMenu a:visited{
+				text-decoration:none;
+			}
+			#p_topWordMenu a:hover{
+				color:#FFF;
+				text-decoration:none;
+			}
+	
+	/* 内容总容器 mainDIV */
+	#p_main{
+		border:0px;
+		padding:0px;
+		margin:0px auto;
+		width:765px;
+		height:auto;
+	}
+		/* 左侧mainBannerDIV */
+		#p_mainBanner{
+			border:0px;
+			padding:0px;
+			margin:0px;
+			height:auto;
+			width:565px;
+			min-height:1045px;
+			float:left;
+			background-color:#FFF;
+			padding-bottom:10px;
+		}
+		  #p_mainBannerTop{
+			  width:562px;
+			  height:217px;
+			  padding:0px;
+			  margin:0px;
+			  position:relative;
+			  background-color:#FFF;
+			  }	
+			  /* 表情 */
+			  #p_biaoqing{
+					position:absolute;
+					top:200px;
+					left:135px;
+					z-index:2;
+					background-color: #FFFFFF;
+					visibility:hidden;
+			  }
+			/*id=mainBannerTopIssue 发布框*/
+			#p_mainBannerTopIssue{
+				height:191px;
+				width:521px;
+				margin:0px;
+				padding:0px;
+				left:20px;
+				top:26px;
+				position:absolute;
+				}
+				/*id=mainBannerTopIssuePoint开始提示*/
+				#p_mainBannerTopIssuePoint{
+					width:521px;
+					margin:0px;
+					padding:0px;
+					height:37px;
+					padding:0px;
+					margin:0px;
+					font-size:16px;
+					}
+				/*id=mainBannerTopIssueFrom大表框*/	
+				#p_mainBannerTopIssueForm{
+					width:521px;
+					height:149px;
+					padding:0px;
+					margin:0px;
+					}
+				  /*mainBannerTopIssueFrame*/	
+				  #p_mainBannerTopIssueFrame{
+					  width:521px;
+					  height:90px;
+					  padding:0px;
+					  margin:0px;
+					  position:relative;
+					  }
+					  /*mainBannerTopIssueFrame里的类*/	
+					  #p_mainBannerTopIssueFrame .p_Size{
+						  width:521px;
+						  height:90px;
+						  padding:0px;
+						  margin:0px;
+						  }
+					/*可以插入链接*/		  
+				  #p_mainBannerTopIssueInsert{
+					  width:521px;
+					  height:29px;
+					  }	
+					  /*4个小div*/
+					  #p_mainBannerTopIssueInsert1{
+	                      width:14px;
+	                      height:15px;
+						  background-image:url(../images/Insert1.gif);
+						  background-repeat:no-repeat;
+						  float:left;
+						  margin-left:5px;
+						  margin-top:5px;
+					  }
+					 /* 插入图片 */
+					  #p_mainBannerTopIssueInsert2{
+	                      height:15px;
+	                      width:55px;
+						  float:left;
+						  line-height:15px;
+						   margin-top:5px;
+					  }
+					 /* 插入视频 */
+					  #p_mainBannerTopIssueInsert3{
+						   height:15px;
+						   width:12px;
+						   background-image:url(../images/Insert2.gif);
+						   background-repeat:no-repeat;
+						   float:left;
+						   margin-left:5px;
+						   margin-top:5px;
+						  }
+						  /* 插入视频 */
+					  #p_mainBannerTopIssueInsert4{
+	                       height:15px;
+	                       width:49px;
+						   float:left;
+						   line-height:15px;
+						    margin-top:5px;
+							margin-left:5px;
+						  }
+						  /* 插入表情 */
+						  #p_mainBannerTopIssueInsert5{
+							  margin-left:5px;
+							  width:17px;
+							  height:16px;
+							  background-image:url(../images/biaoqing/biaoqing_bg.gif);
+							  margin-top:5px;
+							  float:left;
+						  }
+						  /* 插入表情 */
+						  #p_mainBannerTopIssueInsert6{
+							  margin-left:5px;
+							  margin-top:5px;
+							  float:left;
+						  }
+					  
+				 /*确认发布*/	 
+				  #p_mainBannerTopIssueSure{
+					  width:521px;
+					  height:30px;
+					  margin:0px;
+					  padding:0px;
+					  position:relative;
+					  text-align:right;
+					  }
+					  /*发布按钮*/
+					  #p_button1{
+						  width:81px;
+						  height:30px;
+					  }
+		#p_mainBannerTitle{
+			width:562px;
+			padding:0px;
+			margin:0px;
+			height:56px;
+			position:relative;
+			}
+			/*首页提示与隐藏*/
+		    #p_mainBannerTitleWord{
+			    width:32px;
+			    height:15px;
+			    font-size:15px;
+			    padding:0px;
+			    margin:0px;
+			    position:absolute;
+				top:29px;
+				left:20px;
+			    }	
+			/*首页提示与隐藏*/	
+			#p_mainBannerTitleWord2{
+				width:80px;
+				height:20px;
+				padding:0px;
+				margin:0px;
+				left:473px;
+				top:32px;
+				position:absolute;
+				display:none;
+				}		
+	      /*不同人的微博内容*/
+	      #p_mainBannerContent{
+				  width:480px;
+				  height:auto;
+				  margin:0px auto;
+				  margin-top:10px;
+				  border-top:1px #dddddd solid;
+				  position:relative;
+			  }
+			  /* 状态DIV设置 */
+			 #p_mainBannerContent .p_stateShow{
+				width:480px;
+				height:auto;
+				padding-top:5px;
+				margin:0px auto;
+				border-bottom:1px #ccc dotted;
+				padding-bottom:5px;
+			}
+			/* 回复DIV设置 */
+			#p_mainBannerContent .p_stateRshow{
+				width:410px;
+				height:auto;
+				padding-top:5px;
+				margin:0px auto;
+				border-bottom:1px #ccc dotted;
+				padding-bottom:5px;
+			}
+			
+		/* 状态展示中的头像设置 */
+		#p_mainBannerContent img{
+			margin-top:3px;
+			border:2px solid #ccc;
+		}
+		/* 状态展示中的链接设置*/
+		#p_mainBannerContent td a:link{
+			color:#005dc3;
+			text-decoration:none;
+			font-weight:bold;
+		}
+		/* 状态中链接的样式 */
+		#p_mainBannerContent td a:hover{
+			color:#005dc3;
+			text-decoration:underline;
+			font-weight:bold;			
+		}
+		#p_mainBannerContent td a:visited{
+			color:#005dc3;
+			text-decoration:none;
+			font-weight:bold;			
+		}
+		/* 状态展示里面的图片显示 */
+		
+		/* 状态展示时间框设置 */
+		#p_mainBannerContent .p_stateShowtime{
+			margin-top:5px;
+			color:#999999;
+			margin-left:70px;
+			display:inline;
+		}
+			/* 回复框时间提示 */
+			#p_mainBannerContent .p_stateRshowtime{
+				margin-top:5px;
+				color:#999999;
+				margin-left:70px;
+				display:inline;
+			}
+			/* 每个状态的回复窗口 */
+			#p_mainBannerContent .p_huifu{
+				width:410px;
+				margin-left:70px;
+				padding-top:2px;
+				border-top:1px #dddddd dotted;
+			}
+			/* 限定table里面的长数字或者英文自动换行 */
+			#p_mainBannerContent .p_stateTable{
+				table-layout:fixed;
+				word-wrap:break-word;
+			}
+			/* 状态展示中文字部分 */
+			#p_mainBannerContent .p_stateShowWord{
+				width:450px;
+			}
+			/* 状态展示中的回复部分 */
+			#p_mainBannerContent .p_stateRshowWord{
+				width:380px;
+			}
+			
+			/* 回复状态里面的图片设置 */
+			#p_mainBannerContent .p_stateRshowWord img{
+				border:none;
+			}
+			/* 状态里面的图片设置 */
+			#p_mainBannerContent .p_stateShowWord img{
+				border:none;
+			}
+			/* 状态里面的图片DIV  */
+			#p_mainBannerContent .p_stateImgShow{
+				padding-left:70px;
+			}
+			/*  状态回复里面的图片DIV */
+			#p_mainBannerContent .p_stateRimgShow{
+				padding-left:70px;
+			}
+			/* 状态里面的操作DIV */
+			#p_mainBannerContent .p_stateOp{
+				float:right;
+				text-align:right;
+				visibility:hidden;
+				color:#969696;
+			}
+			/* 状态里面的操作链接 */			
+			.p_stateOp a{
+				margin:0px 10px;
+				cursor:hand;
+			}
+			a.p_opState:link{
+				color:#969696;
+				text-decoration:none;
+			}
+		    a.p_opState:hover{
+				color:#0CF;
+				text-decoration:underline;
+			}
+			a.p_opState:visited{
+				color:#969696;
+				text-decoration:none;
+			}
+			    
+/* 回复栏DIV样式 */
+.p_textright{	
+	float:right;
+	width:auto;
+	height:auto;
+}
+
+						 
+		/* 右侧mainRightDiv */
+		#p_mainRight{
+			padding:0px;
+			margin:0px;
+			border:0px;
+			width:200px;
+			height:auto;
+			float:right;
+			background-color:#E9F4FA;
+			padding-bottom:10px;
+		}			
+			/* 右侧内部第一行容器 mainRightPostionFirstLine DIV */ 
+			#p_mainRightPostionFirstLine{
+				width:200px;
+				height:117px;
+				background-color:#E9F4FA;
+				border-bottom:1px solid #A6D3E3;
+			}
+				/* 右侧第一行图标 mainRightFirstLineIcon DIV*/
+				#p_mainRightPostionFirstLineIcon{
+					width:48px;
+					padding:0px;
+					margin-top:10px;
+					margin-left:15px;
+					border:0px;
+					height:48px;
+					float:left;
+				}
+				/* 右侧第一行标题 mainRightFirstLineWord1 DIV*/
+				#p_mainRightPostionFirstLineWord1{
+					width:120px;
+					height:40px;
+					border:0px;
+					padding:0px;
+					float:right;
+					margin-top:10px;
+				}
+				/* 右侧第一行标题 mainRightFirstLineWord2 DIV*/
+				#p_mainRightPostionFirstLineWord2{
+	clear:both;
+	width:180px;
+	height:40px;
+	border:0px;
+	padding:0px;
+	margin-top:10px;
+				}				
+				/*  mainRightFirstLineWord2 ul格式 */
+				#p_mainRightPostionFirstLineWord2 ul{
+					list-style:none;
+					margin:0px;
+					padding:0px;
+				}
+				/*  mainRightFirstLineWord2 li格式 */
+				#p_mainRightPostionFirstLineWord2 ul li{
+	margin:0px 15px;
+	float:left;
+				}					
+			/* 右侧内部第二行容器 mainRightPostionSecondLine DIV */ 
+			#p_mainRightPostionSecondLine{
+				width:200px;
+				padding:0px;
+				margin:0px;
+				border:0px;
+				height:184px;
+				background-color:#E9F4FA;				
+				border-bottom:1px solid #A6D3E3;
+			}
+				/*  右侧第二行内容 mainRightPositionSecondLineContent DIV*/
+				#p_mainRightPositionSecondLineContent{
+					margin-top:10px;
+					margin-left:15px;
+					padding:0px;
+					border:0px;
+					width:170px;
+					height:auto;
+				}
+				/*  右侧第二行内容 mainRightPositionSecondLineContent字体格式3 */
+				#p_mainRightPositionSecondLineContent font.p_style3{
+					font-size:15px;
+					color:#005DC3;
+				}
+			/* 右侧内部第三行容器 mainRightPostionThirdLine DIV */ 
+			#p_mainRightPostionThirdLine{
+				width:200px;
+				padding:0px;
+				margin:0px;
+				border:0px;
+				height:90px;
+				background-color:#E9F4FA;
+				border-bottom:1px solid #A6D3E3;
+			}
+				/* 右侧第三行内容mainRightPositionThirdLineContent DIV*/
+				#p_mainRightPositionThirdLineContent{
+					margin-left:15px;
+					margin-top:10px;
+					padding:0px;
+					border:0px;
+					width:170px;
+					height:30px;
+				}
+			/* 右侧内部第四行容器 mainRightPostionFourthLine DIV */ 
+			#p_mainRightPostionFouthLine{
+				width:200px;
+				padding:0px;
+				margin:0px;
+				border:0px;
+				height:318px;
+				background-color:#E9F4FA;
+				border-bottom:1px solid #A6D3E3;					
+			}	
+				/* 右侧第四行内容mainRightPositionThirdLineContent DIV */
+				#p_mainRightPositionFourthLineContent{
+					margin-left:15px;
+					margin-top:10px;
+					padding:0px;
+					border:0px;
+					width:170px;
+					height:25px;
+				}
+					#p_textfield1{
+						width:120px;
+						height:20px;
+					}
+					/* 右侧第四行 ul 样式 */
+					#p_ul2{
+						list-style:none;
+						margin:0px;
+						padding-left:15px;
+						
+					}
+			/* 右侧内部第五行容器 mainRightPostionFifthLine DIV */ 
+			#p_mainRightPostionFifthLine{
+				width:200px;
+				padding:0px;
+				margin:0px;
+				border:0px;
+				height:44px;
+				background-color:#E9F4FA;
+				border-bottom:1px solid #A6D3E3;					
+			}
+				#p_mainRightPositionFifthLineContent{
+					margin-top:10px;
+					margin-left:15px;
+					
+				}
+			/* 右侧内部第六行容器 mainRightPostionSixthLine DIV */ 
+			#p_mainRightPostionSixthLine{
+				width:200px;
+				padding:0px;
+				margin:0px;
+				border:0px;
+				height:130px;
+				background-color:#E9F4FA;
+				border-bottom:1px solid #A6D3E3;					
+			}
+				#p_mainRightPositionSixthLineContent{
+					margin-top:10px;
+					margin-left:15px;
+				}
+				#p_mainRightPostionSixthLine ul{
+					list-style:none;
+					padding:0px;
+					margin:10px 0px 0px 10px;
+				}
+				#p_mainRightPostionSixthLine ul li{
+					float:left;
+					margin:0px 5px;
+				}
+			/* 右侧内部第七行容器 mainRightPostionSeventhLine DIV */ 
+				
+			#p_mainRightPostionSeventhLine{
+				width:200px;
+				padding:0px;
+				margin:0px;
+				border:0px;
+				background-color:#E9F4FA;
+				/*padding-bottom:20px;*/
+			}
+				#p_mainRightPositionSevenLineContent{
+					padding:0px;
+					border:0px;
+					height:auto;
+					width:170px;
+					margin-top:10px;
+					margin-left:15px;
+					padding-bottom:20px;
+				}
+/* 超链接无下划线样式 */
+.p_a1{
+	text-decoration:none;
+}
+/* 超链接无下划线颜色为#999999 */
+.p_a3{
+	text-decoration:none;
+	color:#999999;
+}
+/*  Word字体格式1 */
+font.p_style1{
+	font-weight:700;
+	color:#555555;
+	font-size:16px;
+}
+/*  Word字体格式2 */
+font.p_style2{
+	color:#005DC3;
+}
+/*  Word字体格式3 */
+font.p_style4{
+	color:#000;
+	font-size:14px;
+}
+/* 右侧行线样式 */
+hr.p_h1{
+	border-top:1px dotted #79BDD1;
+	height:1px; 
+	border-bottom-style:none;
+}
+/* 回复DIV 样式 */
+#p_recieve{
+	visibility:hidden;
+	background-attachment:scroll;
+	width:540px;
+	height:195px;
+	position:absolute;
+	z-index:2;
+	background-color:#474747;
+	color:#000000;
+	top: 52px;
+	left: -31px;	
+}
+	/* 回复DIV */
+	#p_ff{
+		margin-top:10px;
+		margin-left:5px;
+	}
+	/* 白色区域 */
+	#p_wt{
+		height:120px;
+		width:528px;
+		margin-top:41px;
+		margin-left:6px;
+		margin-bottom:11px;
+		background-color:#FEFEFE;
+	}
+	/* 回复输入框样式 */
+	#p_ta1{
+		text-align:left;
+		margin-left:50px;
+		margin-top:14px;
+		width:450px;
+		height:60px;
+	}
+	/* 提交按钮 */
+	#p_sub1{
+		border:0px;
+		background-color:#1A90CE;
+		width:80px;
+		height:33px;
+		border-right:1px solid #196DC8;
+		
+	}
+  
+    /* footer部分*/
+	#p_footer{
+		width:765px;
+		height:50px;
+		margin:0px auto;
+		background-color:#C1E6F5;
+		clear:both;
+	}
+	/* footer链接部分*/
+	#p_footerLink{
+		width:600px;
+		height:30px;
+		margin:0px auto;
+		position:relative;
+		line-height:30px;
+		color:#444444;
+	}
+		/* footer部分的链接 */
+		#p_footerLink ul{
+			list-style:none;
+			padding:0px;
+			margin:0px;
+		}
+		#p_footerLink li{
+			/*float:left;*/
+			display:inline;
+			margin:0px 10px;
+		}
+	/* footer部分的版权信息 */
+	#p_footerCopy{
+		width:250px;
+		height:20px;
+		color:#444444;
+		line-height:20px;
+		margin:0px auto;
+		text-align:center;
+	}
+.p_a2{
+	color:#444444;
+	text-decoration:none;
+}
