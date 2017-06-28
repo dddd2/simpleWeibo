@@ -10,5 +10,5 @@ public interface IUserDao {
 	public void deleteUser(User user);
 	public User findUserById(Integer id);
 	public List<User> findAllUsers();
-	
+	public User findUserByPhone(String phone);
 }

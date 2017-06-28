@@ -16,30 +16,52 @@ public class UserServiceImpl implements IUserService {
 		userdao = sqlSession.getMapper(IUserDao.class);
 	}
 	
+	@Override
 	public void createUser(User user) {
 		// TODO Auto-generated method stub
 		TouristServiceImpl NewUser = new TouristServiceImpl();
 		NewUser.register(user);
 	}
-
+	
+	@Override
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		userdao.updateUser(user);
 		sqlSession.commit();
 		
 	}
-
+	
+	@Override
 	public void deleteUser(User user) {
 		// TODO Auto-generated method stub
 		userdao.deleteUser(user);
 		sqlSession.commit();
 	}
-
+	
+	@Override
 	public User findUserById(Integer id) {
 		// TODO Auto-generated method stub
 		return userdao.findUserById(id);
 	}
-
+	
+	@Override
+	public User findUserByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return userdao.findUserByPhone(phone);
+	}
+	
+	@Override
+	public User login(String phone, String password) {
+		User user = userdao.findUserByPhone(phone);
+		
+		if(password.equals(user.getPassword())) {
+			return user;
+		}
+		
+		return null;
+	}
+	
+	@Override
 	public List<User> findUsers() {
 		// TODO Auto-generated method stub
 		return userdao.findAllUsers();

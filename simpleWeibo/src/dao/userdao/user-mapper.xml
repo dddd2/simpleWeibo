@@ -41,18 +41,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="remark" column="remark"/>
 		<result property="touxiang" column="touxiang"/>
 		<result property="fansNum" column="fansNum"/>
+		<result property="password" column="password"/>
 		<result property="focusPeopleNum" column="focusPeopleNum"/>
 	</resultMap>
 	
 	<select id="findUserById" parameterType="Integer" resultMap="user">
-		select 
-			userId, userName as name, age, sex, email, phone, remark, touxiang,
-			count(f.fansId) as fansNum, count(ff.focusPeopleId) as focusPeopleNum
-		FROM`user`
-		LEFT JOIN fans_focus f ON userId = f.fansId
-		LEFT JOIN fans_focus ff ON userId = ff.focusPeopleId
+		SELECT
+			u.userId,u.userName,u.age,u.sex,u.email,
+			u.phone,u.remark,u.touxiang,u.messageNum,u.fansNum,
+			u.focusPeopleNum
+		FROM
+			`user` u
+		WHERE
+			u.userId = #{id}
+	</select> 
+	
+	<select id="findUserByPhone" parameterType="String" resultMap="user">
+		SELECT
+			u.userId,u.userName,u.age,u.sex,u.email,u.password,
+			u.phone,u.remark,u.touxiang,u.messageNum,u.fansNum,
+			u.focusPeopleNum
+		FROM
+			`user` u
 		where
-			userId = #{id}
+			phone = #{phone}
 	</select> 
 	
 	<resultMap type="entity.User" id="userList">
