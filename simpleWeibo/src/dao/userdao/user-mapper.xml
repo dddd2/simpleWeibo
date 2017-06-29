@@ -103,5 +103,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findAllUsers" resultMap="userList">
 		select * from user
+		limit #{currentPage}, #{pageSize}
 	</select>
 </mapper>

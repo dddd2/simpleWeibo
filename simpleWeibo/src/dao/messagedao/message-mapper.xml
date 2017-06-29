@@ -32,17 +32,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<resultMap type="entity.Message" id="message">
-		<result property="messageId" column="messageId"/>
-		<result property="text" column="text"/>
-		<result property="date" column="date"/>
-		<result property="loveNum" column="loveNum"/>
-		<result property="commentNum" column="commentNum"/>
-		<result property="forwardNum" column="forwardNum"/>
+		<result property="messageId" column="m_messageId"/>
+		<result property="text" column="m_text"/>
+		<result property="date" column="m_date"/>
+		<result property="loveNum" column="m_loveNum"/>
+		<result property="commentNum" column="m_commentNum"/>
+		<result property="forwardNum" column="m_forwardNum"/>
 		<association property="user" javaType="entity.User">
-			<result property="userId" column="userId" />
-			<result property="name" column="userName"/>
-			<result property="touxiang" column="touxiang"/>
+			<result property="userId" column="u_userId" />
+			<result property="name" column="u_userName"/>
+			<result property="touxiang" column="u_touxiang"/>
 		</association>
+		<collection property="comments" ofType="entity.Comment">
+			<result property="commentId" column="c_commentId"/>
+			<result property="text" column="c_text"/>
+			<result property="time" column="c_time"/>
+			<association property="user" javaType="entity.User">
+				<result property="userId" column="uu_userId" />
+				<result property="name" column="uu_userName"/>
+				<result property="touxiang" column="uu_touxiang"/>
+			</association>
+		</collection>
 	</resultMap>
 	
 	<select id="findMessageById" parameterType="Integer" resultMap="message">
@@ -59,8 +69,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findMessagesByUserId" parameterType="Integer" resultMap="message">
 		select 
-			m.messageId, m.text, m.date, 
-			u.userId, u.userName, u.touxiang
+			m.messageId as m_messageId, m.text as m_text, m.date as m_date,
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang
 		FROM message m
 		left join user u on u.userId = m.userId
 		where
@@ -81,13 +91,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findFocusMessagesByUserId" parameterType="Integer" resultMap="message">
 		SELECT DISTINCT
-			m.text, m.date, m.messageId, 
-			m.loveNum, m.commentNum, m.forwardNum,  
-			u.userId, u.userName, u.touxiang
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, 
+			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
+			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 
+			uu.userId as uu_userId, uu.userName as uu_userName, uu.touxiang as uu_touxiang
 		FROM
 			fans_focus f
 		LEFT JOIN `user` u on u.userId = f.focusPeopleId
 		LEFT JOIN message m on m.userId = u.userId
+		LEFT JOIN `comment` c on c.messageId = m.messageId
+		LEFT JOIN `user` uu on uu.userId = c.userId
 		WHERE
 			f.fansId = #{userId} or u.userId = #{userId}
 		ORDER BY m.date DESC

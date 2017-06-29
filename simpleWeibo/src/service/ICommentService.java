@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import entity.Comment;
 
 public interface ICommentService {
-	public void createCommentForMessage(Comment comment);
+	public Integer createCommentForMessage(Integer messageId, 
+			Integer userId, String text);
 	public void deleteComment(Integer id);
 	public Comment findCommentById(Integer id);
 	public List<Comment> findCommentsByUserId(

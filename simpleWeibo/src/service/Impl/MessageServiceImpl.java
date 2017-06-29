@@ -38,7 +38,6 @@ public class MessageServiceImpl implements IMessageService{
 	
 	@Override
 	public void deleteMessage(Integer messageId) {
-		// TODO Auto-generated method stub
 		messageDao.deleteMessage(messageId);
 		sqlSession.commit();
 	}
