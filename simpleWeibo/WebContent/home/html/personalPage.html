@@ -1,5 +1,4 @@
 ﻿<!-- 总容器 container开 始-->
-<div>
 <div id="p_container">
 	    <!-- topDIV 开始 -->
   <div id="p_top">
@@ -26,7 +25,7 @@
                 <li><a href="setting.html">设置</a></li>
                 <li><a href="#">手机</a></li>
                 <li><a href="#">帮助</a></li>
-                <li><a href="index.html">退出</a></li>
+                <li ng-if="localUser"><a href="index.html">退出</a></li>
             </ul>
         </div>
         <!-- top部分的文字导航结束 -->
@@ -184,26 +183,40 @@
                     </div>
                   </div>
                 </div>
-                 <!--个人展示结束-->
-                    <div id="p_recieve">
-                        <div id="p_ff" style="float:left;"><font style="font-size:16px; color:#FDFDFD">&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;&nbsp;复</font></div>
-                        <div id="p_left" style="float:right; margin-top:10px; color:#FFF; margin-right:10px;">您还有可以输入<font id="p_counter2" color="#ffffff">140</font>字！&nbsp;&nbsp;&nbsp;<img src="images/hongcha1.gif" alt="" width="14" height="13" align="absmiddle" title="" onclick="windowClose()" /></div><br />
-                        <div id="p_wt">
-                        <form action="" method="get">
-                          <textarea name="ta" cols="" rows="" id="p_ta1" style="overflow:hidden;border:1px #0CF solid;">
-                            </textarea>
-                          <br />
-                            <div style="float:right; margin-right:25px; margin-top:7px; text-align:right;">
-                                <!--&nbsp;&nbsp;<input type="checkbox" name="引用原微博" value="复选框"/>&nbsp;&nbsp;引用原微博-->
-                                <input name="" type="button" value=" 回 复 " id="p_sub1" onclick="submitRstate()" />
-                            </div>
-                        </form>           
-                        </div> 
-                        <!-- 回复DIV 结束 -->
-                  </div>
-                
+                <!--个人展示结束-->
+                <div class="p_comments">
+                	<div class="p_comment" >
+	                	<div class="p_comment_touxiang">
+	                		<img alt="" src="../images/default.jpg" height="25" width="25">
+	                	</div>
+	                	<div class="p_comment_main">
+	                		<a class="p_comment_name">张三</a>:
+		                	<span class="p_comment_text">不错不错</span>
+		                	<span class="p_comment_time">2016-05-21 :12:10:02</span>
+		                	<a class="p_comment_func">回复</a>
+	                	</div>
+                	</div>
+                	<div class="p_comment" >
+	                	<div class="p_comment_touxiang">
+	                		<img alt="" src="../images/default.jpg" height="25" width="25">
+	                	</div>
+	                	<div class="p_comment_main">
+	                		<a class="p_comment_name">张三</a>:
+		                	<span class="p_comment_text">不错不错</span>
+		                	<span class="p_comment_time">2016-05-21 :12:10:02</span>
+		                	<a class="p_comment_func">回复</a>
+	                	</div>
+                	</div>
+                </div>
+                <div class="p_comment_box">
+                	<textarea rows="3" cols="65" ng-model="message.comment"></textarea>
+                	<button id="p_button10" style="background-color:#3295E6; border:none" 
+                			ng-click="submitComment(message)" >
+                            	回复
+                    </button>
+                </div>
             </div>
-      </div>
+      		</div>
       <!-- 左侧mainBanner DIV 结束-->
       <!-- 右侧mainRight DIV开始 -->
   <div id="p_mainRight">

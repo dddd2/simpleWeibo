@@ -762,3 +762,37 @@ hr.p_h1{
 	padding-left: 5px;
     padding-right: 5px;
 }
+
+.p_comments {
+    width: 481px;
+    height:auto;
+    margin-bottom:5px;
+}
+
+.p_comment_touxiang {
+	padding-left:3px;
+}
+
+.p_comment_main {
+	position: relative;
+    top: -25px;
+    left: 40px;
+}
+
+.p_comment_name {
+	color: #39F;
+}
+
+.p_comment_time {
+	color:#ccc;
+}
+
+.p_comment_func {
+	color: rgba(30, 30, 187, 0.84);
+}
+
+#p_button10 {
+	margin-left: 420px;
+    width: 60px;
+    height: 30px;
+}

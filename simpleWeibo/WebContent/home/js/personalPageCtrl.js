@@ -63,6 +63,32 @@ angular.module('personalPage',[])
 				});
 		}
 		
+		$scope.submitComment = function (message) {
+			var url = "http://localhost:8080/simpleWeibo/servlet/CommentServlet"
+				$http.post(url,{	
+									method:"submitComment", 
+									userId:$scope.userId,
+									comment:message.comment,
+									messageId:message.messageId,
+									puserId:message.user.userId
+							   },{
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
+		    	transformRequest: function(obj) {    
+		    		var str = [];    
+		    		for (var p in obj) {    
+		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
+		    		}    
+		    		return str.join("&");    
+		    	}
+			  })
+				.success(function(data) {
+					alert(data);
+				})
+				.error(function(error){
+					alert(error);
+				});
+		}
+		
 		$scope.findFocusMessagesByUserId = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/MessageServlet"
 				$http.post(url,{	
