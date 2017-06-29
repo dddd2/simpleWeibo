@@ -43,18 +43,16 @@
                     <!--id=mainBannerTopIssuePoint 提示-->
                     <div id="p_mainBannerTopIssuePoint">正在发生的事情
                     </div>
-                    <div style="float:right;">您还可以输入<font id="p_counter1">140</font>字！
-                    </div>
-                    <form action="" method="post" id="p_">
+                    <form name="xxform" role='form' novalidate id="">
                       <div id="p_mainBannerTopIssueForm">
                             <!--id="p_mainBannerTopIssueFrame-->
                             <div id="p_mainBannerTopIssueFrame">
-                              <textarea name="textfield1" rows="4" class="p_Size" id="p_textfield2"  style="overflow:hidden;border:1px #0CF solid;" ></textarea>
-        </div>
-                            <!--id="p_mainBannerTopIssueInsert 插入链接-->
-                        <div id="p_mainBannerTopIssueInsert">
-                            <!--4个小div-->
-                        </div>
+                              <textarea ng-model="newMessage" maxlength="200" required="required" name="textfield1" rows="4" class="p_Size" id="p_textfield2"  style="overflow:hidden;border:1px #0CF solid;" ></textarea>
+       						</div>
+       						 
+	                        <div id="p_mainBannerTopIssueInsert">
+	                            <!--4个小div-->
+	                        </div>
                           <!--确认发布-->
                         <div id="p_mainBannerTopIssueSure">
                           <div id="p_mainBannerTopIssueSure2"> <a href="file" class="p_a1">
@@ -67,7 +65,9 @@
                               <div id="p_mainBannerTopIssueInsert5"></div>
                               <div id="p_mainBannerTopIssueInsert6">插入表情</div>
                             </a>
-                            <input type="button" name="button1" id="p_button1" value="发布" style="background-color:#3295E6; border:none" onclick="submitState()" />
+                            <button type="submit" name="button1" id="p_button1" style="background-color:#3295E6; border:none" ng-disabled="xxform.$invalid" ng-click="createMessage()" >
+                            	发表
+                            </button>
                           </div>
                         </div>
                         </div>
@@ -163,21 +163,26 @@
                 </div>
             </div> 
             <!--不同人的内容-->
-            <div id="p_mainBannerContent">
+            <div id="p_mainBannerContent" ng-repeat="message in messages"> 
             	<!--个人展示-->
             	<div class="p_stateShow" >
                   <div class="p_stateShowWord">
-                    <table width="450" border="0" cellpadding="0" cellspacing="0" class="p_stateTable">
-                      <tr>
-                        <td width="70" align="center" valign="top"><a href="#"><img src="images/face/16.jpg" alt="" width="48" height="48" /></a></td>
-                        <td width="380" ><a href="#">乡下妹</a><img src="images/1.gif" align="absmiddle" style="border:none;" />【视频：超模的儿子每月需要30万元生活费？】- 超模琳达·伊万格丽斯塔为四岁的儿子向他的父亲、法国亿万富翁弗朗索瓦-亨利·皮诺特索要每月4.6万美元的抚养费。在视频中，《华尔街日报》的Robert Frank和Kelsey Hubbard讨论了富豪家庭在孩子身上的花销。 </td>
-                      </tr>
-                    </table>
+                    <div class="p_user_touxiang">
+                    	<img alt="" src="../images/default.jpg" height="50" width="50" ng-if="!message.user.touxiang">
+                    </div>
+                    <div class="p_user_info">
+                    	<a class="p_user_info_name">{{message.user.name}}</a>
+                    	<span class="p_user_info_time">{{message.date|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                    </div>
+                    <div class="p_message">
+                    	{{message.text}}
+                    </div>
+                    <div class="p_function">
+                    	<a class="p_function_f">转发({{message.forwardNum}})</a>
+                    	<a class="p_function_f">回复({{message.commentNum}})</a>
+                    	<a class="p_function_f" ng-click="loveMessage(message)">赞({{message.loveNum}})</a>
+                    </div>
                   </div>
-                   <div class="p_stateImgShow"><img src="images/state1.jpg" /></div>            
-                  <div class="p_stateShowtime"> 07月31日 08:02 </div>
-                  <div class="p_stateOp"><a class="p_opState" >回复</a><a class="p_opState">转发</a><a class="p_opState" >删除</a></div>
-                  <div class="p_huifu"></div>
                 </div>
                  <!--个人展示结束-->
                     <div id="p_recieve">
@@ -185,7 +190,7 @@
                         <div id="p_left" style="float:right; margin-top:10px; color:#FFF; margin-right:10px;">您还有可以输入<font id="p_counter2" color="#ffffff">140</font>字！&nbsp;&nbsp;&nbsp;<img src="images/hongcha1.gif" alt="" width="14" height="13" align="absmiddle" title="" onclick="windowClose()" /></div><br />
                         <div id="p_wt">
                         <form action="" method="get">
-                          <textarea name="ta" cols="" rows="" id="p_ta1" onkeyup="calNum(this,counter2,1)" style="overflow:hidden;border:1px #0CF solid;">
+                          <textarea name="ta" cols="" rows="" id="p_ta1" style="overflow:hidden;border:1px #0CF solid;">
                             </textarea>
                           <br />
                             <div style="float:right; margin-right:25px; margin-top:7px; text-align:right;">
@@ -210,22 +215,26 @@
                             <!-- 右侧mainRightPostionFirstLineIcon DIV 开始 -->
                             <div style="height:58px;">
                             <div id="p_mainRightPostionFirstLineIcon">
-                            	<a href="MyWB.html"><img src="images/MainRightFirstLineTitle.gif" alt="" width="48" height="48" align="absmiddle" title="" border="0" /></a>
+                            	<a >
+                            		<img src="../images/default.jpg" ng-if="!user.touxiang" alt="" width="48" height="48" align="absmiddle" title="" border="0" />
+                            	</a>
                             </div>
                             <!-- 右侧mainRightPostionFirstLineIcon DIV 结束 -->
                             <!-- 右侧mainRightPostionFirstLineWord1 DIV 开始 -->
                             <div id="p_mainRightPostionFirstLineWord1">                 
-                            &nbsp;<font color="#005DC3" ><b><a href="MyWB.html" class="p_a1">DarkDemon</a></b></font><br />
-                            &nbsp;天津&nbsp;&nbsp;河西区
+                            	&nbsp;
+                            	<font color="#005DC3" ><b>
+                            		<a  class="p_a1">{{user.name}}</a></b>
+                            	</font><br />
                             </div>
                             </div>
                             <!-- 右侧mainRightPostionFirstLineWord1 DIV 结束 -->
                         	<!-- 右侧mainRightPostionFirstLineWord2 DIV 开始 -->
                           <div id="p_mainRightPostionFirstLineWord2">
                                 <ul>
-                                	<a href="MyWB.html" class="p_a1"><li><font class="p_style1">2</font><br /><font class="p_style2">微博</font></li></a>
-   								    <a href="friend.html" class="p_a1"><li><font class="p_style1">12</font><br /><font class="p_style2">关注</font></li></a>
-   								    <a href="focusonyou.html" class="p_a1"><li><font class="p_style1">23</font><br /><font class="p_style2">粉丝</font></li></a>
+                                	<a href="MyWB.html" class="p_a1"><li><font class="p_style1">{{user.messageNum}}</font><br /><font class="p_style2">微博</font></li></a>
+   								    <a href="friend.html" class="p_a1"><li><font class="p_style1">{{user.focusPeopleNum}}</font><br /><font class="p_style2">关注</font></li></a>
+   								    <a href="focusonyou.html" class="p_a1"><li><font class="p_style1">{{user.fansNum}}</font><br /><font class="p_style2">粉丝</font></li></a>
                                 </ul>
                            </div>
                            <!-- 右侧mainRightPostionFirstLineWord2 DIV 结束 -->                    
@@ -243,11 +252,7 @@
                                 <hr color="#79BDD1" zize="2" style="" />
                                 <a href="#" class="p_a1"><font class="p_style3">@我的</font></a>
                                 <hr class="p_h1">
-                                <a href="#" class="p_a1"><font class="p_style3">我的私信</font></a>
-                                <hr class="p_h1">
                                 <a href="#" class="p_a1"><font class="p_style3">转发</font></a>
-                                <hr class="p_h1">
-                                <a href="#" class="p_a1"><font class="p_style3">我的收藏</font></a>
                             </div>
                             <!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
                         </div>
@@ -255,88 +260,35 @@
                     </td>
                 </tr>
                 <tr>
-                  <td>  
-                        <!-- 右侧mainRightPostionThirdLine DIV 开始 -->
-                        <div id="p_mainRightPostionThirdLine">
-                            <!-- 右侧mainRightPositionThirdLineContent DIV 开始 -->
-                            <div id="p_mainRightPositionThirdLineContent">
-                            <p><a href="#" onclick="" class="p_a1"><font class="p_style4">你可能感兴趣的人</font>
-                            <img src="images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a></p>
-                            <br />
-                            <div id="p_d32" style="float:right"><a href="#" class="p_a1">查看更多</a></div>
-                            </div>                    	
-                            <!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->	
-                        </div>
-                        <!-- 右侧mainRightPostionThirdLine DIV 开始 -->
-                  </td>
-                </tr>
-                <tr>
-                    <td>
-                        <!-- 右侧mainRightPostionFourthLine DIV 开始 -->
-                        <div id="p_mainRightPostionFouthLine">
-                        	<!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->	
-                        	<div id="p_mainRightPositionFourthLineContent">
-                            <form action="" method="get">
-                              <input type="text" name="textfield" id="p_textfield1"/>
-                              <a href="#"><img src="images/search.gif" alt="" width="27" height="25" align="middle" title="" border="0"/></a>
-                            </form>
-                            <a href="#" onclick="" class="p_a1"><font class="p_style4">热门话题</font>
-                            <img src="images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a>
-                            <ul id="p_ul2" style="line-height:25px;">
-                            	<a href="#" class="p_a1"><li><font class="p_style2">动车(49585)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">高铁(48704)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">遇难者(10616)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">发言人(12875)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">铁道部(24488)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">暴雨(8914)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">伊伊(921</font>)</li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">变形金刚(2908)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">味千拉面(450)</font></li></a>
-                                <a href="#" class="p_a1"><li><font class="p_style2">第三届网络原创歌曲大赛(27)</font></li></a>
-                            </ul>
-                            </div>
-                            <!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->	
-                        </div>
-                        <!-- 右侧mainRightPostionFoutrhLine DIV 结束 -->
-                    </td>
-                </tr>
-                <tr>
-                    <td> <!-- 右侧mainRightPostionFifthLine DIV 开始 -->
-                    <div id="p_mainRightPostionFifthLine">
-                    	<div id="p_mainRightPositionFifthLineContent">
-                        	<a href="#"  class="p_a1"><font class="p_style4">我关注的话题</font>
-                            <img src="images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a>
-                        </div>
-                    </div>
-                    <!-- 右侧mainRightPostionFifthLine DIV 结束 -->
-                    </td>
-                </tr>
-                <tr>
                     <td><!-- 右侧mainRightPostionSixthLine DIV 开始 -->
                     <div id="p_mainRightPostionSixthLine">
                     	<div id="p_mainRightPositionSixthLineContent">
-                        	<a href="#" onclick="" class="p_a1"><font class="p_style4">我关注的</font>
-                            <img src="images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a>
+                        	<a href="#" onclick="" class="p_a1"><font class="p_style4">我关注的人</font>
                         </div>
-                        <ul>
-                        	<a href="#" class="p_a1"><li><img src="images/WBXM.gif" border="0" /><br /><font class="p_style2">微博小秘</font></li></a>
-                            <a href="#" class="p_a1"><li><img src="images/AXXR.gif" border="0" /><br /><font class="p_style2">&nbsp;&nbsp;转&nbsp;&nbsp;发</font></li></a>
-                            <a href="#" class="p_a1"><li><img src="images/LBXR.gif" border="0" /><br /><font class="p_style2">微博新人</font></li></a>
+                        <ul ng-repeat ="focusPeople in focusPeoples">
+                        	<a href="#" class="p_a1"><li>
+                        		<img src="../images/default.jpg" height="50" width="50" ng-if="!focusPeople.touxiang" border="0" /><br />
+                        		<font class="p_style2">{{focusPeople.name}}</font>
+                        	</li></a>
                         </ul>
                     </div>
                     <!-- 右侧mainRightPostionSixthLine DIV 结束 -->
                     </td>
                 </tr>
                 <tr>
-                    <td><!-- 右侧mainRightPostionSeventhLine DIV 开始 -->
-                    <div id="p_mainRightPostionSeventhLine">
-                        <div id="p_mainRightPositionSevenLineContent">
-                        灵步微博的成长，离不开你们。<br />
-                        <font class="p_style2"><a href="#" class="p_a1">有意见要提（点击） </a><br /><br />
-                        <a href="#" class="p_a1" onclick="set()" >不良信息举报中心</a></font> 
+                    <td><!-- 右侧mainRightPostionSixthLine DIV 开始 -->
+                    <div id="p_mainRightPostionSixthLine">
+                    	<div id="p_mainRightPositionSixthLineContent">
+                        	<a href="#" onclick="" class="p_a1"><font class="p_style4">关注我的人</font>
                         </div>
+                        <ul ng-repeat="fan in fans">
+                        	<a href="#" class="p_a1"><li>
+                        		<img src="../images/default.jpg" height="50" width="50" ng-if="!fan.touxiang" border="0" /><br />
+                        		<font class="p_style2">{{fan.name}}</font>
+                        	</li></a>
+                        </ul>
                     </div>
-                    <!-- 右侧mainRightPostionSeventhLine DIV 结束 -->
+                    <!-- 右侧mainRightPostionSixthLine DIV 结束 -->
                     </td>
                 </tr>
           </table>
@@ -371,4 +323,3 @@
     
 </div>
 <!--总容器 container结束-->
- <p id="p_backtop"><a id="p_backtop1" href="#totop"><span></span>回到顶部</a></p>

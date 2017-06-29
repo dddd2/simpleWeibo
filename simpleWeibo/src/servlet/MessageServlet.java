@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 
 import entity.Message;
 import net.sf.json.JSONArray;
@@ -37,6 +38,7 @@ public class MessageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/x-www-form-urlencoded;charset=UTF-8");
 		response.addHeader("Access-Control-Allow-Origin", "*"); 
 		response.setCharacterEncoding("utf-8");
@@ -47,7 +49,9 @@ public class MessageServlet extends HttpServlet {
 			String currentPage = request.getParameter("currentPage");
 			String pageSize = request.getParameter("pageSize");
 			
-			List<Message> list = messageService.findAllMessages();
+			List<Message> list = this.messageService.findAllMessages(
+					Integer.valueOf(currentPage),
+					Integer.valueOf(pageSize));
 	
 			for (Message message : list) {
 				System.out.println(message);
@@ -55,6 +59,33 @@ public class MessageServlet extends HttpServlet {
 			JSONArray resultList = JSONArray.fromObject(list);
 			
 			out.print(resultList);
+		} else if(method.equals("createMessage")) {
+			String newMessage = request.getParameter("newMessage");
+			String userId = request.getParameter("userId");
+			
+			Integer messageId = this.messageService.createMessage(newMessage, userId);
+			
+			out.print(messageId != 0);
+		} else if(method.equals("findFocusMessagesByUserId")) {
+			String userId = request.getParameter("userId");
+			String currentPage = request.getParameter("currentPage");
+			String pageSize = request.getParameter("pageSize");
+			
+			List<Message> list = this.messageService.findFocusMessagesByUserId(
+					Integer.valueOf(userId),
+					Integer.valueOf(currentPage),
+					Integer.valueOf(pageSize));
+			
+			out.print(JSON.toJSON(list));
+		} else if(method.equals("loveMessage")) {
+			String userId = request.getParameter("userId");
+			String messageStr = request.getParameter("message");
+			
+			Message message = JSON.parseObject(messageStr, Message.class);
+			
+			Integer result = this.messageService.loveMessage(message, Integer.valueOf(userId));
+			
+			out.print(result);
 		}
 		
 		out.close();

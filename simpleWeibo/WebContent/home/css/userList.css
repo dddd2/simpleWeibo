@@ -1,0 +1,216 @@
+@charset "utf-8";
+/* CSS Document */
+/* 页面整体 */
+#u_container{
+	width:765px;
+	height:auto;
+	margin:0px auto;
+	}
+/* 上面topDIV */
+#u_top{
+	width:765px;
+	height:80px;
+	position:relative;
+}
+	/* top部分的LogoDIV */
+	#u_topLogo{
+		width:200px;
+		height:80px;	
+	}
+		/* topLogo部分的icoDIV */
+		#u_topLogoIco{
+			width:72px;
+			height:72px;
+			margin-top:4px;
+			float:left;
+		}
+		/* topLogo部分的wordDIV */
+		#u_topLogoWord{
+			width:128px;
+			height:60px;
+			float:left;
+			margin-top:12px;
+		}
+			/* topLogo下的img */
+			#u_topLogo img{
+				border:none;
+			}
+	/* top部分的文字导航 */
+	#u_topWordMenu{
+		width:330px;
+		height:30px;
+		position:absolute;
+		top:33px;
+		left:430px;
+	}
+		/* top部分的ul */
+		#u_topWordMenu ul{
+			margin:0px;
+			padding:0px;
+			list-style:none;
+		}
+			/* top部分的li */
+			#u_topWordMenu ul li{
+				display:inline;
+				/*float:left;*/
+				margin:0px 8px;
+			}
+			/* top部分的文字链接 */
+			#u_topWordMenu a:link{
+				text-decoration:none;
+			}
+			#u_topWordMenu a:visited{
+				text-decoration:none;
+			}
+			#u_topWordMenu a:hover{
+				color:#FFF;
+				text-decoration:none;
+			}
+	
+	
+	
+	/* 页面主体 */
+	#u_banner{
+		width:765px;
+		height:447px;
+		float:left;
+		border:#cccccc;
+		border-style:solid;
+		border-width:1px;
+		}
+		/* 页面主体表格 */
+		#u_tb1{
+			width:565px;
+			height:447px;
+			background-color:#FFF;
+			float:left;
+			}
+		  /* 表壳左、右边的间距 */
+		  #u_tb1 .u_td1{
+			  width:21px;
+			  height:447px;
+			  }
+		  /* 表格中头像控制 */
+		  #u_tb1 .u_td2{
+			  width:67px;
+			  text-align:center;
+			  border-bottom-color:#cccccc;
+			  border-bottom-width:2px;
+			  border-bottom-style:dotted;
+			  }
+			  
+		  /* 表格中状态的控制 */
+		  #u_tb1 .u_td3{
+			  width:436px;
+			  height:41px;
+			  padding-left:10px;
+			  padding-top:0px;
+			  border-bottom-color:#cccccc;
+			  border-bottom-width:2px;
+			  border-bottom-style:dotted;
+			  }
+			 #u_tb1 .u_height{
+				 border-bottom-color:#FFF;
+				 border-bottom-style:none;
+				 border-bottom-width:0px;
+				 }
+		/* banner右边的表格 */
+	   #u_tb2{
+			width:200px;
+			height:447px;
+			float:right;
+			background-color:#e9f4fa;
+			}
+			
+			#u_form2{
+				margin-left:100px;
+				float:right;
+			}
+			#u_search{
+				height:20px;
+			}
+			
+		/* 表格2中字的颜色和控制 */
+		 #u_tb1 .u_font1{
+			 font-size:16px;
+			 font-family:微软雅黑;
+			 color:#005dc3;
+			 font-weight:bold;
+			 }
+		  #u_tb1 .u_font2{
+			  font-size:12px;
+			  font-family:微软雅黑;
+			  color:#000;
+			  }
+		  #u_tb2 .u_form3{
+			  text-align:center;
+			  margin-top:10px;
+			  width:150px;
+			  }
+		   #u_tb2 img{
+			   margin-left:0px;
+			   margin-top:0px;
+			   }
+			#u_tb2 .u_img{
+				margin-left:10px;
+				margin-top:2px;
+				}
+			#u_search1{
+				margin-left:10px;
+				}
+				/* 已关注部分 */
+          #u_focus1{
+			    width:107px;
+			    height:30px;
+			    float:right;
+			    margin-right:20px;
+			  }
+		   #u_focus2{
+			   width:107px;
+			   height:30px;
+			   float:right;
+			   margin-right:20px;
+			  }
+		   #u_focus3{
+			   width:107px;
+			   height:30px;
+			   float:right;
+			   margin-right:20px;
+			}	
+	/* footer部分*/
+	#u_footer{
+		width:765px;
+		height:50px;
+		border:1px solid #ccc;
+	    float:left;
+	}
+	
+	/* footer链接部分*/
+	#u_footerLink{
+		width:600px;
+		height:30px;
+		margin:0px auto;
+		/*position:relative;*/
+	
+		line-height:30px;
+	}
+		/* footer部分的链接 */
+		#u_footerLink ul{
+			list-style:none;
+			padding:0px;
+			margin:0px;
+		}
+		#u_footerLink li{
+			/*float:left;*/
+			display:inline;
+			margin:0px 10px;
+		}
+	    /* footer部分的版权信息 */
+	    #u_footerCopy{
+		    width:250px;
+		    height:20px;
+		    color:#5c4444;
+		    line-height:20px;
+		    margin:0px auto;
+		    text-align:center;
+	  }

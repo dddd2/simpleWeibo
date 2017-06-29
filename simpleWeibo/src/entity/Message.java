@@ -3,7 +3,7 @@ package entity;
 import java.util.Date;
 
 public class Message {
-	private int messageId;
+	private Integer messageId;
 	private User user;
 	private String text;
 	private Date date;
@@ -40,10 +40,10 @@ public class Message {
 	public void setForwardNum(Integer forwardNum) {
 		this.forwardNum = forwardNum;
 	}
-	public int getMessageId() {
+	public Integer getMessageId() {
 		return messageId;
 	}
-	public void setMessageId(int messageId) {
+	public void setMessageId(Integer messageId) {
 		this.messageId = messageId;
 	}
 	public User getUser() {

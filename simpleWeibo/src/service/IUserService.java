@@ -12,4 +12,6 @@ public interface IUserService {
 	public List<User> findUsers();
 	public User login(String phone, String password);
 	public User findUserByPhone(String phone);
+	public List<User> findFansByUserId(Integer userId, Integer currentPage, Integer pageSize);
+	public List<User> findFocusPeoplesByUserId(Integer userId, Integer currentPage, Integer pageSize);
 }

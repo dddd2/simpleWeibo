@@ -45,11 +45,31 @@ define(["angular", "angularAMD", "angular-ui-router", "ng-file-upload"], functio
 		}))
 		
 		.state('mainHome',angularAMD.route({
-			url: '/mainHome',
+			url: '/mainHome/:id',
 			views: {
 				'main': angularAMD.route({
 					templateUrl: function(params){return   './html/mainHome.html'},
 					controller:'mainHomeCtrl',
+				})
+			}
+		}))
+		
+		.state('account',angularAMD.route({
+			url: '/account/:id',
+			views: {
+				'main': angularAMD.route({
+					templateUrl: function(params){return   './html/account.html'},
+					controller:'accountCtrl',
+				})
+			}
+		}))
+		
+		.state('userList',angularAMD.route({
+			url: '/userList/:type/:id',
+			views: {
+				'main': angularAMD.route({
+					templateUrl: function(params){return   './html/userList.html'},
+					controller:'userListCtrl',
 				})
 			}
 		}))

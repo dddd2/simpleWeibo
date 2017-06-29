@@ -25,7 +25,7 @@ angular.module('login',[])
 			.success(function(data) {
 				$scope.user = eval(data);
 
-				locals.setObject("currentUser", JSON.stringify($scope.user));
+				locals.setObject("localUser", $scope.user);
 				$state.go('personalPage',{id:$scope.user.userId});
 			})
 			.error(function(error){

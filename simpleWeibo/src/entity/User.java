@@ -15,12 +15,22 @@ public class User {
 	private Integer fansNum;//粉丝数
 	private String password;
 	private Integer focusPeopleNum;//关注人数
+	private Integer messageNum;//微博数
 	private Set<User> fans;//粉丝
 	private Set<User> focusPeople; //关注人
 	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public User(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getMessageNum() {
+		return messageNum;
+	}
+	public void setMessageNum(Integer messageNum) {
+		this.messageNum = messageNum;
 	}
 	public String getTouxiang() {
 		return touxiang;

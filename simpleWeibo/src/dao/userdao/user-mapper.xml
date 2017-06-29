@@ -34,12 +34,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<resultMap type="entity.User" id="user">
 		<result property="userId" column="userId"/>
+		<result property="name" column="userName"/>
 		<result property="age" column="age"/>
 		<result property="sex" column="sex"/>
 		<result property="email" column="email"/>
 		<result property="phone" column="phone"/>
 		<result property="remark" column="remark"/>
 		<result property="touxiang" column="touxiang"/>
+		<result property="messageNum" column="messageNum"/>
 		<result property="fansNum" column="fansNum"/>
 		<result property="password" column="password"/>
 		<result property="focusPeopleNum" column="focusPeopleNum"/>
@@ -76,6 +78,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="remark" column="remark"/>
 		<result property="touxiang" column="touxiang"/>
 	</resultMap>
+	
+	<select id="findFansByUserId" resultMap="user">
+		SELECT 
+			u.userId, u.userName, u.touxiang
+		FROM
+			fans_focus f
+		LEFT JOIN `user` u on f.fansId = u.userId
+		WHERE
+			f.focusPeopleId = #{userId}
+		LIMIT #{currentPage}, #{pageSize}
+	</select>
+	
+	<select id="findFocusPeoplesByUserId" resultMap="user">
+		SELECT 
+			u.userId, u.userName, u.touxiang
+		FROM
+			fans_focus f
+		LEFT JOIN `user` u on f.focusPeopleId = u.userId
+		WHERE
+			f.fansId = #{userId}
+		LIMIT #{currentPage}, #{pageSize}
+	</select>
 	
 	<select id="findAllUsers" resultMap="userList">
 		select * from user

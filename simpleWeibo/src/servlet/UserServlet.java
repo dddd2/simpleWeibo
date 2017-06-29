@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,7 +49,36 @@ public class UserServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			
 			User user = this.userService.login(phone, password);
+			
 			out.print(JSON.toJSON(user));
+		} else if(method.equals("findUserById")) {
+			String userId = request.getParameter("userId");
+			
+			User user = this.userService.findUserById(Integer.valueOf(userId));
+			
+			out.print(JSON.toJSON(user));
+		} else if(method.equals("findFansByUserId")) {
+			String currentPage = request.getParameter("currentPage");
+			String pageSize = request.getParameter("pageSize");
+			String userId = request.getParameter("userId");
+			
+			List<User> list = this.userService.findFansByUserId(
+						Integer.valueOf(userId), 
+						Integer.valueOf(currentPage), 
+						Integer.valueOf(pageSize));
+			
+			out.print(JSON.toJSON(list));
+		} else if(method.equals("findFocusPeoplesByUserId")) {
+			String currentPage = request.getParameter("currentPage");
+			String pageSize = request.getParameter("pageSize");
+			String userId = request.getParameter("userId");
+			
+			List<User> list = this.userService.findFocusPeoplesByUserId(
+						Integer.valueOf(userId), 
+						Integer.valueOf(currentPage), 
+						Integer.valueOf(pageSize));
+			
+			out.print(JSON.toJSON(list));
 		}
 		
 		out.close();

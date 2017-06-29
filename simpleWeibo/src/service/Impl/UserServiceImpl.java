@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import dao.userdao.IUserDao;
 import entity.User;
+import service.ITouristService;
 import service.IUserService;
 import util.MyBatisUtil;
 
@@ -18,14 +19,12 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public void createUser(User user) {
-		// TODO Auto-generated method stub
-		TouristServiceImpl NewUser = new TouristServiceImpl();
+		ITouristService NewUser = new TouristServiceImpl();
 		NewUser.register(user);
 	}
 	
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
 		userdao.updateUser(user);
 		sqlSession.commit();
 		
@@ -33,20 +32,17 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public void deleteUser(User user) {
-		// TODO Auto-generated method stub
 		userdao.deleteUser(user);
 		sqlSession.commit();
 	}
 	
 	@Override
 	public User findUserById(Integer id) {
-		// TODO Auto-generated method stub
 		return userdao.findUserById(id);
 	}
 	
 	@Override
 	public User findUserByPhone(String phone) {
-		// TODO Auto-generated method stub
 		return userdao.findUserByPhone(phone);
 	}
 	
@@ -63,8 +59,19 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public List<User> findUsers() {
-		// TODO Auto-generated method stub
 		return userdao.findAllUsers();
+	}
+
+	@Override
+	public List<User> findFansByUserId(Integer userId, Integer currentPage, Integer pageSize) {
+		currentPage = (currentPage - 1) * pageSize;
+		return userdao.findFansByUserId(userId, currentPage, pageSize);
+	}
+
+	@Override
+	public List<User> findFocusPeoplesByUserId(Integer userId, Integer currentPage, Integer pageSize) {
+		currentPage = (currentPage - 1) * pageSize;
+		return userdao.findFocusPeoplesByUserId(userId, currentPage, pageSize);
 	}
 	
 }
