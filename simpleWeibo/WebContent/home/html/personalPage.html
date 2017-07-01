@@ -36,42 +36,44 @@
         <!-- 左侧mainBannerDIV 开始 -->
     <div id="p_mainBanner">
         	<!-- mainBannerTop DIV 开始 -->
-      <div id="p_mainBannerTop">
+      <div id="p_mainBannerTop" ng-if="mainHome">
             <!--id=mainBannerTopIssue 发布框-->
-        <div id="p_mainBannerTopIssue">
-                    <!--id=mainBannerTopIssuePoint 提示-->
-                    <div id="p_mainBannerTopIssuePoint">正在发生的事情
+	      <div id="p_mainBannerTopIssue">
+	          <!--id=mainBannerTopIssuePoint 提示-->
+	          <div id="p_mainBannerTopIssuePoint">正在发生的事情
+	          </div>
+	          <form name="xxform" role='form' novalidate id="">
+                 <div id="p_mainBannerTopIssueForm">
+                    <!--id="p_mainBannerTopIssueFrame-->
+                    <div id="p_mainBannerTopIssueFrame">
+                    <textarea ng-model="newMessage" maxlength="200" required="required" 
+                    			name="textfield1" rows="4" class="p_Size" id="p_textfield2"  
+                    			style="overflow:hidden;border:1px #0CF solid;" ></textarea>
+					</div>
+  						 
+                    <div id="p_mainBannerTopIssueInsert">
+                        <!--4个小div-->
                     </div>
-                    <form name="xxform" role='form' novalidate id="">
-                      <div id="p_mainBannerTopIssueForm">
-                            <!--id="p_mainBannerTopIssueFrame-->
-                            <div id="p_mainBannerTopIssueFrame">
-                              <textarea ng-model="newMessage" maxlength="200" required="required" name="textfield1" rows="4" class="p_Size" id="p_textfield2"  style="overflow:hidden;border:1px #0CF solid;" ></textarea>
-       						</div>
-       						 
-	                        <div id="p_mainBannerTopIssueInsert">
-	                            <!--4个小div-->
-	                        </div>
-                          <!--确认发布-->
-                        <div id="p_mainBannerTopIssueSure">
-                          <div id="p_mainBannerTopIssueSure2"> <a href="file" class="p_a1">
-                            <div id="p_mainBannerTopIssueInsert1"></div>
-                            <div id="p_mainBannerTopIssueInsert2">插入图片 </div>
-                            </a>
-                            <div id="p_mainBannerTopIssueInsert3"></div>
-                            <div id="p_mainBannerTopIssueInsert4">插入视频 </div>
-                            <a href="javascript:biaoQingXianShi()" class="p_a1">
-                              <div id="p_mainBannerTopIssueInsert5"></div>
-                              <div id="p_mainBannerTopIssueInsert6">插入表情</div>
-                            </a>
-                            <button type="submit" name="button1" id="p_button1" style="background-color:#3295E6; border:none" ng-disabled="xxform.$invalid" ng-click="createMessage()" >
-                            	发表
-                            </button>
-                          </div>
-                        </div>
-                        </div>
-                    </form> 
-          </div>
+                     <!--确认发布-->
+                   <div id="p_mainBannerTopIssueSure">
+                     <div id="p_mainBannerTopIssueSure2"> 
+                     	<a class="p_a1">
+                        <div id="p_mainBannerTopIssueInsert2">插入图片 </div>
+                       </a>
+                       <a class="p_a1">
+                         <div id="p_mainBannerTopIssueInsert6">插入表情</div>
+                       </a>
+                       <a class="p_a1" ng-click="show()">
+                       	<div id="p_mainBannerTopIssueInsert4">@好友</div>
+                       </a>
+                       <button type="submit" name="button1" id="p_button1" style="background-color:#3295E6; border:none" ng-disabled="xxform.$invalid" ng-click="createMessage()" >
+                       	发表
+                       </button>
+                     </div>
+                   </div>
+                   </div>
+               </form> 
+	      </div>
           <!-- 表情DIV -->
           <div id="p_biaoqing">
           	<table width="200" border="1" cellspacing="0" cellpadding="0">
@@ -153,70 +155,104 @@
             <!--id="p_mainBannerTitle 首页-->
             <div id="p_mainBannerTitle">
                 <!--id="p_mainBannerTitleWord"-->
-                <div id="p_mainBannerTitleWord"><b>首页</b>
-                </div>
-                <!--首页提示与隐藏-->
-                <div id="p_mainBannerTitleWord2">
-                        <input type="checkbox" name="checkbox" id="p_checkbox" />
-                        隐藏图片 
+                <div id="p_mainBannerTitleWord">
+                	<b ng-if="mainHome">首页</b>
+                	<b ng-if="!mainHome" width="50px">@我的</b>
                 </div>
             </div> 
             <!--不同人的内容-->
-            <div id="p_mainBannerContent" ng-repeat="message in messages"> 
+            <div id="p_mainBannerContent" ng-if="mainHome" ng-repeat="message in messages"> 
             	<!--个人展示-->
-            	<div class="p_stateShow" >
-                  <div class="p_stateShowWord">
-                    <div class="p_user_touxiang">
-                    	<img alt="" src="../images/default.jpg" height="50" width="50" ng-if="!message.user.touxiang">
-                    </div>
-                    <div class="p_user_info">
-                    	<a class="p_user_info_name">{{message.user.name}}</a>
-                    	<span class="p_user_info_time">{{message.date|date:'yyyy-MM-dd HH:mm:ss'}}</span>
-                    </div>
-                    <div class="p_message">
-                    	{{message.text}}
-                    </div>
-                    <div class="p_function">
-                    	<a class="p_function_f">转发({{message.forwardNum}})</a>
-                    	<a class="p_function_f">回复({{message.commentNum}})</a>
-                    	<a class="p_function_f" ng-click="loveMessage(message)">赞({{message.loveNum}})</a>
-                    </div>
-                  </div>
+            	<div class="p_stateShow" ng-if="message.messageId">
+	                <div class="p_stateShowWord">
+		                <div class="p_user_touxiang">
+		                	<img alt="" src="../images/default.jpg" height="50" width="50" ng-if="!message.user.touxiang">
+		                </div>
+		                <div class="p_user_info">
+		                	<a class="p_user_info_name">{{message.user.name}}</a>
+		                	<span class="p_user_info_time">{{message.date|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+		                </div>
+		                <div class="p_message" ng-bind-html="message.text |trustHtml"></div>
+		                <!-- <div class="p_message_imgs">
+			                <img alt="" src="../images/default.jpg" width="120" height="120" ng-if="!message.user.touxiang">
+		                </div> -->
+		                <div class="p_function">
+		                	<a class="p_function_f">转发({{message.forwardNum}})</a>
+		                	<a class="p_function_f">回复({{message.commentNum}})</a>
+		                	<a class="p_function_f" ng-click="loveMessage(message)">赞({{message.loveNum}})</a>
+		                </div>
+	                </div>
                 </div>
                 <!--个人展示结束-->
-                <div class="p_comments">
-                	<div class="p_comment" >
+                <div class="p_comments" >
+                	<div class="p_comment" ng-repeat="comment in message.comments">
 	                	<div class="p_comment_touxiang">
 	                		<img alt="" src="../images/default.jpg" height="25" width="25">
 	                	</div>
 	                	<div class="p_comment_main">
-	                		<a class="p_comment_name">张三</a>:
-		                	<span class="p_comment_text">不错不错</span>
-		                	<span class="p_comment_time">2016-05-21 :12:10:02</span>
-		                	<a class="p_comment_func">回复</a>
-	                	</div>
-                	</div>
-                	<div class="p_comment" >
-	                	<div class="p_comment_touxiang">
-	                		<img alt="" src="../images/default.jpg" height="25" width="25">
-	                	</div>
-	                	<div class="p_comment_main">
-	                		<a class="p_comment_name">张三</a>:
-		                	<span class="p_comment_text">不错不错</span>
-		                	<span class="p_comment_time">2016-05-21 :12:10:02</span>
-		                	<a class="p_comment_func">回复</a>
+	                		<a class="p_comment_name">{{comment.user.name}}</a>:
+		                	<span class="p_comment_text">{{comment.text}}</span>
+		                	<span class="p_comment_time">{{comment.time|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+		                	<a class="p_comment_func" ng-click="commentTo(message, comment.user.name)">回复</a>
 	                	</div>
                 	</div>
                 </div>
-                <div class="p_comment_box">
-                	<textarea rows="3" cols="65" ng-model="message.comment"></textarea>
-                	<button id="p_button10" style="background-color:#3295E6; border:none" 
-                			ng-click="submitComment(message)" >
-                            	回复
-                    </button>
+                <div ng-if="message.messageId" class="p_comment_box">
+                	<textarea class="p_comment_textarea" rows="2" cols="81" ng-model="message.comment"></textarea>
+                	<div style="padding-bottom:3px">
+                		<!-- <a ng-click="show()">@@@</a> -->
+	                	<button id="p_button10" style="background-color:#3295E6; border:none" 
+	                			ng-click="submitComment(message)" >
+	                            	回复
+	                    </button>
+                	</div>
                 </div>
             </div>
-      		</div>
+            <div id="p_mainBannerContent" ng-if="!mainHome" ng-repeat="message in aboutMeMessages"> 
+            	<!--个人展示-->
+            	<div class="p_stateShow" ng-if="message.messageId">
+	                <div class="p_stateShowWord">
+		                <div class="p_user_touxiang">
+		                	<img alt="" src="../images/default.jpg" height="50" width="50" ng-if="!message.user.touxiang">
+		                </div>
+		                <div class="p_user_info">
+		                	<a class="p_user_info_name">{{message.user.name}}</a>
+		                	<span class="p_user_info_time">{{message.date|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+		                </div>
+		                <div class="p_message" ng-bind-html="message.text |trustHtml"></div>
+		                <div class="p_function">
+		                	<a class="p_function_f">转发({{message.forwardNum}})</a>
+		                	<a class="p_function_f">回复({{message.commentNum}})</a>
+		                	<a class="p_function_f" ng-click="loveMessage(message)">赞({{message.loveNum}})</a>
+		                </div>
+	                </div>
+                </div>
+                <!--个人展示结束-->
+                <div class="p_comments" >
+                	<div class="p_comment" ng-repeat="comment in message.comments">
+	                	<div class="p_comment_touxiang">
+	                		<img alt="" src="../images/default.jpg" height="25" width="25">
+	                	</div>
+	                	<div class="p_comment_main">
+	                		<a class="p_comment_name">{{comment.user.name}}</a>:
+		                	<span class="p_comment_text">{{comment.text}}</span>
+		                	<span class="p_comment_time">{{comment.time|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+		                	<a class="p_comment_func" ng-click="commentTo(message, comment.user.name)">回复</a>
+	                	</div>
+                	</div>
+                </div>
+                <div ng-if="message.messageId" class="p_comment_box">
+                	<textarea class="p_comment_textarea" rows="2" cols="81" ng-model="message.comment"></textarea>
+                	<div style="padding-bottom:3px">
+                		<!-- <a ng-click="show()">@@@</a> -->
+	                	<button id="p_button10" style="background-color:#3295E6; border:none" 
+	                			ng-click="submitComment(message)" >
+	                            	回复
+	                    </button>
+                	</div>
+                </div>
+            </div>
+	</div>
       <!-- 左侧mainBanner DIV 结束-->
       <!-- 右侧mainRight DIV开始 -->
   <div id="p_mainRight">
@@ -261,11 +297,22 @@
                         <div id="p_mainRightPostionSecondLine">
                             <!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
                             <div id="p_mainRightPositionSecondLineContent">
-                                <a href="#" class="p_a1"><font style="font-size:16px;font-weight:700; color:#000;">首页</font></a><br />
-                                <hr color="#79BDD1" zize="2" style="" />
-                                <a href="#" class="p_a1"><font class="p_style3">@我的</font></a>
-                                <hr class="p_h1">
-                                <a href="#" class="p_a1"><font class="p_style3">转发</font></a>
+                                <a ng-click="changeToMainHome()" class="p_a1">
+                                	<font ng-class="{true:'isSelectLabel',false:'p_style3'}[mainHome]">首页</font>
+                                </a><br />
+                                <hr class="p_h1"/>
+                                <a ng-click="changeToAboutMe()" ng-if="mainHome" class="p_a1"><font class="p_style3">
+                                	@我的
+                                	<span class="p_aboutMe" ng-if="user.aboutMe != 0">
+                                		+{{user.aboutMe}}
+                                	</span>
+                                </font></a>
+                                <a ng-click="changeToAboutMe()" ng-if="!mainHome" class="p_a1">
+                                	<font class="isSelectLabel">
+                                	@我的
+                                </font></a>
+                               <!--  <hr class="p_h1">
+                                <a href="#" class="p_a1"><font class="p_style3">转发</font></a> -->
                             </div>
                             <!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
                         </div>
@@ -278,7 +325,7 @@
                     	<div id="p_mainRightPositionSixthLineContent">
                         	<a href="#" onclick="" class="p_a1"><font class="p_style4">我关注的人</font>
                         </div>
-                        <ul ng-repeat ="focusPeople in focusPeoples">
+                        <ul ng-repeat ="focusPeople in focusPeoples|limitTo:3">
                         	<a href="#" class="p_a1"><li>
                         		<img src="../images/default.jpg" height="50" width="50" ng-if="!focusPeople.touxiang" border="0" /><br />
                         		<font class="p_style2">{{focusPeople.name}}</font>
@@ -327,12 +374,39 @@
   	  </div>
     	<!-- footer网站链接部分结束 -->
         <!-- footer网站版权信息 -->
-  <div id="p_footerCopy">
+  		<div id="p_footerCopy">
         	Copyright&copy;2011-2012 灵步小组 版权所有
         </div>
         <!-- footer网站版权信息结束 -->
     </div>
     <!-- footer部分结束 -->
     
+  	<!--  模态框   -->
+    <div class="modal fade bs-example-modal-sm" id="crewmodal" role="dialog">
+	    <div class="modal-dialog modal-sm">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                <h4 class="modal-title">请选择要@的好友</h4>
+	            </div>
+	            <div class="modal-body">
+	            	<div class="checkbox" ng-repeat="user in focusPeoples">
+					    <label>
+					      	<!-- <input type="checkbox"> -->
+					      	<input type="checkbox" id={{user.userId}} name="{{user.name}}" 
+					      		   ng-checked="isSelected(user.userId)" ng-click="updateSelection($event,user.userId)">
+					      	<img alt="" height="25" width="25" src="../images/default.jpg">
+					      	<span class="p_user_name">{{user.name}}</span>
+					    </label>
+				    </div>
+	            	
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary" ng-click="addAboutFriend()">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </div>
 <!--总容器 container结束-->

@@ -50,6 +50,9 @@ public interface IMessageService {
 	public List<Message> findFocusMessagesByUserId(
 			Integer userId, Integer currentPage, Integer pageSize);
 	
+	
+	public List<Message> findAboutMeMessagesByUserId(
+			Integer userId, String userName, Integer currentPage, Integer pageSize);
 	/**
 	 * 点赞微博
 	 * @param message
@@ -57,4 +60,7 @@ public interface IMessageService {
 	 * @return
 	 */
 	public Integer loveMessage(Message message, Integer userId);
+	
+	public void commentThisMessage(Integer messageId);
+	
 }

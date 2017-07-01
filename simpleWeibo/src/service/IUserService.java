@@ -53,7 +53,8 @@ public interface IUserService {
 	 * @param pageSize
 	 * @return
 	 */
-	public List<User> findFansByUserId(Integer userId, Integer currentPage, Integer pageSize);
+	public List<User> findFansByUserId(Integer userId, 
+			Integer currentPage, Integer pageSize);
 	/**
 	 * 根据用户id查找关注人
 	 * @param userId
@@ -61,5 +62,12 @@ public interface IUserService {
 	 * @param pageSize
 	 * @return
 	 */
-	public List<User> findFocusPeoplesByUserId(Integer userId, Integer currentPage, Integer pageSize);
+	public List<User> findFocusPeoplesByUserId(Integer userId, 
+			Integer currentPage, Integer pageSize);
+	
+	public void haveNewAboutMe(Integer userId);
+	
+	public void cleanAboutMe(Integer userId);
+	
+	public User findUserByName(String name);
 }

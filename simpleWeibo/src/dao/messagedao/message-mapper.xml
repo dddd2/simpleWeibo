@@ -27,6 +27,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			messageId = #{messageId}
 	</update>
 	
+	<update id="commentThisMessage" parameterType="Integer">
+		UPDATE
+			message
+		SET 
+			commentNum = commentNum + 1
+		WHERE
+			messageId = #{messageId}
+	</update>
+	
+	<update id="forwardThisMessage" parameterType="Integer">
+		UPDATE
+			message
+		SET 
+			forwardNum = forwardNum + 1
+		WHERE
+			messageId = #{messageId}
+	</update>
+	
 	<delete id="deleteMessage">
 		delete from message where id = #{messageId}
 	</delete>
@@ -65,10 +83,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			m.userId = #{id}
 	</select> 
 	
-	
+	<select id="findAboutMeMessagesByUserId" parameterType="String" resultMap="message">
+		SELECT DISTINCT
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, 
+			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
+			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 
+			uu.userId as uu_userId, uu.userName as uu_userName, uu.touxiang as uu_touxiang
+		FROM
+			fans_focus f
+		LEFT JOIN `user` u on u.userId = f.focusPeopleId
+		LEFT JOIN message m on m.userId = u.userId
+		LEFT JOIN `comment` c on c.messageId = m.messageId
+		LEFT JOIN `user` uu on uu.userId = c.userId
+		WHERE
+			f.fansId = #{userId} AND m.text like #{userName}
+		ORDER BY
+			m.date DESC, c.time ASC
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
+	</select>
 	
 	<select id="findMessagesByUserId" parameterType="Integer" resultMap="message">
-		select 
+		SELECT 
 			m.messageId as m_messageId, m.text as m_text, m.date as m_date,
 			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang
 		FROM message m
@@ -76,7 +114,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 			m.userId = #{userId}
 		ORDER BY m.date DESC
-		LIMIT #{currentPage}, #{pageSize}
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 	
 	<select id="isLoved" resultType="Integer">
@@ -104,8 +144,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN `user` uu on uu.userId = c.userId
 		WHERE
 			f.fansId = #{userId} or u.userId = #{userId}
-		ORDER BY m.date DESC
-		LIMIT #{currentPage}, #{pageSize}
+		ORDER BY
+			 m.date DESC, c.time ASC
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
  	</select> 
 	
 	<select id="findAllMessages" resultMap="message">
@@ -113,6 +156,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			messageId, text, date, `user`.userId, userName, touxiang
 		FROM message
 		left join user on user.userId = message.userId
-		limit #{currentPage}, #{pageSize}
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 </mapper>

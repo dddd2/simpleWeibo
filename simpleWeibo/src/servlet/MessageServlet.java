@@ -68,11 +68,17 @@ public class MessageServlet extends HttpServlet {
 			String userId = request.getParameter("userId");
 			String currentPage = request.getParameter("currentPage");
 			String pageSize = request.getParameter("pageSize");
+			List<Message> list = null;
 			
-			List<Message> list = this.messageService.findFocusMessagesByUserId(
-					Integer.valueOf(userId),
-					Integer.valueOf(currentPage),
-					Integer.valueOf(pageSize));
+			if(currentPage == null && pageSize == null) {
+				list = this.messageService.findFocusMessagesByUserId(
+						Integer.valueOf(userId), null, null);
+			} else {
+				list = this.messageService.findFocusMessagesByUserId(
+						Integer.valueOf(userId),
+						Integer.valueOf(currentPage),
+						Integer.valueOf(pageSize));
+			}
 			
 			out.print(JSON.toJSON(list));
 		} else if(method.equals("loveMessage")) {
@@ -84,6 +90,24 @@ public class MessageServlet extends HttpServlet {
 			Integer result = this.messageService.loveMessage(message, Integer.valueOf(userId));
 			
 			out.print(result);
+		} else if(method.equals("findAboutMeMessagesByUserId")) {
+			String userId = request.getParameter("userId");
+			String currentPage = request.getParameter("currentPage");
+			String pageSize = request.getParameter("pageSize");
+			String userName = request.getParameter("userName");
+			List<Message> list = null;
+			
+			if(currentPage == null && pageSize == null) {
+				list = this.messageService.findAboutMeMessagesByUserId(
+						Integer.valueOf(userId), userName, null, null);
+			} else {
+				list = this.messageService.findAboutMeMessagesByUserId(
+						Integer.valueOf(userId), userName,
+						Integer.valueOf(currentPage),
+						Integer.valueOf(pageSize));
+			}
+			
+			out.print(JSON.toJSON(list));
 		}
 		
 		out.close();

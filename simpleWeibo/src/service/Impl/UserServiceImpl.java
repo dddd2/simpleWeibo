@@ -58,11 +58,6 @@ public class UserServiceImpl implements IUserService {
 	}
 	
 	@Override
-	public List<User> findUsers() {
-		return userdao.findAllUsers();
-	}
-
-	@Override
 	public List<User> findFansByUserId(Integer userId, Integer currentPage, Integer pageSize) {
 		currentPage = (currentPage - 1) * pageSize;
 		return userdao.findFansByUserId(userId, currentPage, pageSize);
@@ -72,6 +67,32 @@ public class UserServiceImpl implements IUserService {
 	public List<User> findFocusPeoplesByUserId(Integer userId, Integer currentPage, Integer pageSize) {
 		currentPage = (currentPage - 1) * pageSize;
 		return userdao.findFocusPeoplesByUserId(userId, currentPage, pageSize);
+	}
+
+	@Override
+	public List<User> findUsers(Integer currentPage, Integer pageSize) {
+		currentPage = (currentPage - 1) * pageSize;
+		
+		return userdao.findAllUsers(currentPage, pageSize);
+	}
+
+	@Override
+	public void haveNewAboutMe(Integer userId) {
+		userdao.haveNewAboutMe(userId);
+		
+		sqlSession.commit();
+	}
+
+	@Override
+	public void cleanAboutMe(Integer userId) {
+		userdao.cleanAboutMe(userId);
+		
+		sqlSession.commit();
+	}
+
+	@Override
+	public User findUserByName(String name) {
+		return userdao.findUserByName(name);
 	}
 	
 }

@@ -10,11 +10,18 @@ import entity.Comment;
 import entity.Message;
 import entity.User;
 import service.ICommentService;
+import service.IMessageService;
+import service.IUserService;
 import util.MyBatisUtil;
 
 public class CommentServiceImpl implements ICommentService{
 	private static ICommentDao commentDao;
+	
 	private static SqlSession sqlSession;
+	
+	private IUserService userService = new UserServiceImpl();
+	
+	private IMessageService messageService = new MessageServiceImpl();
 	
 	static {
 		sqlSession = MyBatisUtil.getSqlSession();
@@ -22,15 +29,26 @@ public class CommentServiceImpl implements ICommentService{
 	}
 
 	@Override
-	public Integer createCommentForMessage(Integer messageId, Integer userId, String text) {
+	public Integer createCommentForMessage(Integer messageId, Integer userId, String puserName, String text) {
 		Comment comment = new Comment();
 		comment.setMessage(new Message(messageId));
 		comment.setUser(new User(userId));
 		comment.setText(text);
 		comment.setTime(new Date());
 		
+		if(!puserName.equals("undefined")) {
+			User puser = this.userService.findUserByName(puserName);
+			comment.setPuser(puser);
+			
+			userService.haveNewAboutMe(puser.getUserId());
+		}
+		
 		Integer result = commentDao.createCommentForMessage(comment);
 		sqlSession.commit();	
+		
+		if(result != null) {
+			messageService .commentThisMessage(Integer.valueOf(messageId));
+		}
 		
 		return result;
 	}

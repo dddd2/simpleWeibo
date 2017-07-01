@@ -63,4 +63,10 @@ public interface IUserDao {
 			@Param("userId")Integer userId,
 			@Param("currentPage")Integer currentPage,
 			@Param("pageSize")Integer pageSize);
+	
+	public User findUserByName(String name);
+	
+	public void haveNewAboutMe(Integer userId);
+	
+	public void cleanAboutMe(Integer userId);
 }

@@ -15,6 +15,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 #{touxiang,jdbcType=VARCHAR})
 	</insert>
 	
+	<update id="haveNewAboutMe" parameterType="Integer">
+		UPDATE `user`
+		SET aboutMe = aboutMe + 1
+		WHERE userId = #{userId}
+	</update>
+	
+	<update id="cleanAboutMe" parameterType="Integer">
+		UPDATE `user`
+		SET aboutMe = 0
+		WHERE userId = #{userId}
+	</update>
+	
 	<update id="updateUser">
 		update user 
 			set 
@@ -44,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="messageNum" column="messageNum"/>
 		<result property="fansNum" column="fansNum"/>
 		<result property="password" column="password"/>
+		<result property="aboutMe" column="aboutMe"/>
 		<result property="focusPeopleNum" column="focusPeopleNum"/>
 	</resultMap>
 	
@@ -51,12 +64,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 			u.userId,u.userName,u.age,u.sex,u.email,
 			u.phone,u.remark,u.touxiang,u.messageNum,u.fansNum,
-			u.focusPeopleNum
+			u.focusPeopleNum,u.aboutMe
 		FROM
 			`user` u
 		WHERE
 			u.userId = #{id}
 	</select> 
+	
+	<select id="findUserByName" parameterType="String" resultMap="user">
+		SELECT
+			u.userId,u.userName
+		FROM
+			`user` u
+		where
+			userName = #{name}
+	</select>
 	
 	<select id="findUserByPhone" parameterType="String" resultMap="user">
 		SELECT
@@ -87,7 +109,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN `user` u on f.fansId = u.userId
 		WHERE
 			f.focusPeopleId = #{userId}
-		LIMIT #{currentPage}, #{pageSize}
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 	
 	<select id="findFocusPeoplesByUserId" resultMap="user">
@@ -98,11 +122,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN `user` u on f.focusPeopleId = u.userId
 		WHERE
 			f.fansId = #{userId}
-		LIMIT #{currentPage}, #{pageSize}
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 	
 	<select id="findAllUsers" resultMap="userList">
-		select * from user
-		limit #{currentPage}, #{pageSize}
+		select 
+			* 
+		from 
+			`user`
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 </mapper>

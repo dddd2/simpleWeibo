@@ -9,6 +9,7 @@ public class User {
 	private Integer age;
 	private String email;
 	private String phone;
+	private Integer aboutMe;
 	private String type;//人员类型
 	private String remark;//个人简介
 	private String touxiang;//头像
@@ -25,6 +26,12 @@ public class User {
 	}
 	public User(Integer userId) {
 		this.userId = userId;
+	}
+	public Integer getAboutMe() {
+		return aboutMe;
+	}
+	public void setAboutMe(Integer aboutMe) {
+		this.aboutMe = aboutMe;
 	}
 	public Integer getMessageNum() {
 		return messageNum;
@@ -119,8 +126,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", name=" + name + ", sex=" + sex + ", age=" + age + ", email=" + email
-				+ ", phone=" + phone + ", type=" + type + ", remark=" + remark + ", touxiang=" + touxiang + ", fansNum="
-				+ fansNum + ", password=" + password + ", focusPeopleNum=" + focusPeopleNum + ", fans=" + fans
-				+ ", focusPeople=" + focusPeople + "]";
+				+ ", phone=" + phone + ", aboutMe=" + aboutMe + ", type=" + type + ", remark=" + remark + ", touxiang="
+				+ touxiang + ", fansNum=" + fansNum + ", password=" + password + ", focusPeopleNum=" + focusPeopleNum
+				+ ", messageNum=" + messageNum + ", fans=" + fans + ", focusPeople=" + focusPeople + "]";
 	}
 }

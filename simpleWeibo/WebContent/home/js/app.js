@@ -1,6 +1,14 @@
-define(["angular", "angularAMD", "angular-ui-router", "ng-file-upload"], function (angular, angularAMD) {        
+define(["angular", "angularAMD", "angular-ui-router", "ng-file-upload", 'jquery', 
+		'angular-sanitize','bootstrap'], 
+		function (angular,angularAMD) {        
 
 	var app = angular.module("app", ["ui.router","ngFileUpload"]);
+	
+	app.filter('trustHtml', function($sce){
+		return function (input) {
+	        return $sce.trustAsHtml(input);
+	     }
+	});
 	
 	app.factory('locals',['$window',function($window){
 	      return{        //存储单个属性
@@ -70,6 +78,26 @@ define(["angular", "angularAMD", "angular-ui-router", "ng-file-upload"], functio
 				'main': angularAMD.route({
 					templateUrl: function(params){return   './html/userList.html'},
 					controller:'userListCtrl',
+				})
+			}
+		}))
+		
+		.state('register',angularAMD.route({
+			url: '/register',
+			views: {
+				'main': angularAMD.route({
+					templateUrl: function(params){return   './html/register.html'},
+					controller:'registerCtrl',
+				})
+			}
+		}))
+		
+		.state('test',angularAMD.route({
+			url: '/test',
+			views: {
+				'main': angularAMD.route({
+					templateUrl: function(params){return   './html/test.html'},
+					controller:'testCtrl',
 				})
 			}
 		}))

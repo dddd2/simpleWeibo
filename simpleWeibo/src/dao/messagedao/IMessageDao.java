@@ -57,11 +57,28 @@ public interface IMessageDao {
 			@Param("userId")Integer userId,
 			@Param("currentPage")Integer currentPage,
 			@Param("pageSize")Integer pageSize);
+	
+	
+	public List<Message> findAboutMeMessagesByUserId(
+			@Param("userId")Integer userId,
+			@Param("userName")String userName,
+			@Param("currentPage")Integer currentPage,
+			@Param("pageSize")Integer pageSize);
 	/**
-	 * 点赞
+	 * 点赞+1
 	 * @param messageId
 	 */
 	public void loveThisMessage(Integer messageId);
+	/**
+	 * 评论+1
+	 * @param messageId
+	 */
+	public void commentThisMessage(Integer messageId);
+	/**
+	 * 转发+1
+	 * @param messageId
+	 */
+	public void forwardThisMessage(Integer messageId);
 	/***
 	 * 点赞
 	 * @param userId

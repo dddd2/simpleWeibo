@@ -1,6 +1,8 @@
 package entity;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Message {
@@ -23,7 +25,7 @@ public class Message {
 	public Set<Comment> getComments() {
 		return comments;
 	}
-	public void setComments(Set<Comment> comments) {
+	public void setComments(LinkedHashSet<Comment> comments) {
 		this.comments = comments;
 	}
 	public Message getParentMessage() {

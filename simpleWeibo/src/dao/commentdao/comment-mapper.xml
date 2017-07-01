@@ -68,7 +68,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN `user` user ON user.userId = `comment`.userId
 		LEFT JOIN `user` puser ON puser.userId = comment.puserId
 		where comment.userId = #{userId}
-		limit #{currentPage}, #{pageSize}
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 	
 	<select id="findCommentsByMessageId" resultMap="comment">
@@ -82,7 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			comment
 		LEFT JOIN `user` user ON user.userId = `comment`.userId
 		LEFT JOIN `user` puser ON puser.userId = comment.puserId
-		where comment.messageId = #{messageId}
-		limit #{currentPage}, #{pageSize}
+		WHERE comment.messageId = #{messageId}
+		<if test="currentPage != null and pageSize != null">
+			LIMIT #{currentPage}, #{pageSize}
+		</if>
 	</select>
 </mapper>

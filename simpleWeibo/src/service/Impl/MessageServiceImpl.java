@@ -9,11 +9,13 @@ import dao.messagedao.IMessageDao;
 import entity.Message;
 import entity.User;
 import service.IMessageService;
+import service.IUserService;
 import util.MyBatisUtil;
 
 public class MessageServiceImpl implements IMessageService{
 	private static IMessageDao messageDao;
 	private static SqlSession sqlSession;
+	private IUserService userService = new UserServiceImpl();
 	
 	static {
 		sqlSession = MyBatisUtil.getSqlSession();
@@ -29,6 +31,14 @@ public class MessageServiceImpl implements IMessageService{
 		message.setLoveNum(0);
 		message.setCommentNum(0);
 		message.setForwardNum(0);
+		
+		String[] arrs = newMessage.split(" ");
+		for (String arr : arrs) {
+			if(arr.charAt(0) == '@') {
+				User user = this.userService.findUserByName(arr.substring(1));
+				this.userService.haveNewAboutMe(user.getUserId());
+			}
+		}
 		
 		Integer messageId = messageDao.createMessage(message);
 		sqlSession.commit();
@@ -63,11 +73,24 @@ public class MessageServiceImpl implements IMessageService{
 
 	@Override
 	public List<Message> findFocusMessagesByUserId(Integer userId, Integer currentPage, Integer pageSize) {
-		currentPage = (currentPage - 1) * pageSize;
-		
+		if (currentPage != null) {
+			currentPage = (currentPage - 1) * pageSize;
+		}
 		return messageDao.findFocusMessagesByUserId(userId, currentPage, pageSize);
 	}
 
+	@Override
+	public List<Message> findAboutMeMessagesByUserId(Integer userId, String userName, Integer currentPage,
+			Integer pageSize) {
+		if (currentPage != null) {
+			currentPage = (currentPage - 1) * pageSize;
+		}
+		
+		userName = "%@" + userName + "%";
+		
+		return messageDao.findAboutMeMessagesByUserId(userId, userName, currentPage, pageSize);
+	}
+	
 	@Override
 	public Integer loveMessage(Message message, Integer userId) {
 		Integer messageId = message.getMessageId();
@@ -80,6 +103,13 @@ public class MessageServiceImpl implements IMessageService{
 			return id;
 		}
 		return 0;
+	}
+
+	@Override
+	public void commentThisMessage(Integer messageId) {
+		messageDao.commentThisMessage(messageId);
+		
+		sqlSession.commit();
 	}
 
 }

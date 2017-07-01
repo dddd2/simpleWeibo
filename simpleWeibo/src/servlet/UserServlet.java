@@ -79,6 +79,11 @@ public class UserServlet extends HttpServlet {
 						Integer.valueOf(pageSize));
 			
 			out.print(JSON.toJSON(list));
+		} else if(method.equals("cleanAboutMe")) {
+			String userId = request.getParameter("userId");
+			
+			this.userService.cleanAboutMe(Integer.valueOf(userId));
+			
 		}
 		
 		out.close();

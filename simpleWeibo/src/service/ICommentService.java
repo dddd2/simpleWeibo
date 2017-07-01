@@ -8,7 +8,7 @@ import entity.Comment;
 
 public interface ICommentService {
 	public Integer createCommentForMessage(Integer messageId, 
-			Integer userId, String text);
+			Integer userId, String puserName, String text);
 	public void deleteComment(Integer id);
 	public Comment findCommentById(Integer id);
 	public List<Comment> findCommentsByUserId(
