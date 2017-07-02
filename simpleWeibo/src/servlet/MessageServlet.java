@@ -1,7 +1,11 @@
 package servlet;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,11 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import entity.Message;
 import net.sf.json.JSONArray;
 import service.IMessageService;
 import service.Impl.MessageServiceImpl;
+import sun.misc.BASE64Decoder;
 
 /**
  * Servlet implementation class MessageServlet
@@ -60,7 +66,20 @@ public class MessageServlet extends HttpServlet {
 		} else if(method.equals("createMessage")) {
 			String newMessage = request.getParameter("newMessage");
 			String userId = request.getParameter("userId");
-			
+			String imgs = request.getParameter("imgs");
+			String keywords = request.getParameter("keywords");
+			System.out.println(imgs);
+//			JSONObject imgsObj = JSONObject.parseObject(imgs);
+			JSONObject imgsObj = JSON.parseObject(imgs);
+			System.out.println(imgsObj);
+			System.out.println(keywords);
+			String[] keys = keywords.split(",");
+			for(String key : keys) {
+				String text = (String)((JSONObject)imgsObj.get(key)).get("imgSrc");
+				System.out.println(text);
+				
+				GenerateImage(text);
+			}
 			Integer messageId = this.messageService.createMessage(newMessage, userId);
 			
 			out.print(messageId != 0);
@@ -121,4 +140,34 @@ public class MessageServlet extends HttpServlet {
 		this.doGet(request, response);
 	}
 
+	  /** 
+     * @Title: GenerateImage 
+     * @Description: TODO(base64字符串转化成图片) 
+     * @param imgStr 
+     * @return 
+     */  
+    public static boolean GenerateImage(String imgStr) {  
+    	System.out.println(imgStr);
+        if (imgStr == null) // 图像数据为空  
+            return false;  
+        BASE64Decoder decoder = new BASE64Decoder();  
+        try {  
+            // Base64解码  
+            byte[] b = decoder.decodeBuffer(imgStr);  
+            for (int i = 0; i < b.length; ++i) {  
+                if (b[i] < 0) {// 调整异常数据  
+                    b[i] += 256;  
+                }  
+            }  
+            // 生成jpeg图片  
+            String imgFilePath = "d://" + new Date().getTime() + ".jpg";  
+            OutputStream out = new FileOutputStream(imgFilePath);  
+            out.write(b);  
+            out.flush();  
+            out.close();  
+            return true;  
+        } catch (Exception e) {  
+            return false;  
+        }  
+    }  
 }

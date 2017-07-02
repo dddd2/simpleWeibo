@@ -1,6 +1,5 @@
 package test;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -60,8 +59,8 @@ public class DddTest {
 	}
 	@Test
 	public void test4() {
-		List<User> users = dao.findAllUsers();
-		System.out.println(users);
+//		List<User> users = dao.findAllUsers();
+//		System.out.println(users);
 	}
 	@Test
 	public void test5() {
@@ -109,6 +108,29 @@ public class DddTest {
 	}
 	@Test
 	public void test10() {
-		messageDao.findMessagesByUserId(7);
+		List<Message> list = messageDao.findFocusMessagesByUserId(11, 0, 20);
+		for(Message message : list) {
+			System.out.println(message);
+		}
+		
+		commentDao.createCommentForMessage(new Comment());
+		sqlSession.commit();
+		List<Message> list1 = messageDao.findFocusMessagesByUserId(11, 0, 20);
+		for(Message message : list1) {
+			System.out.println(message);
+		}
+	}
+	@Test
+	public void test11() {
+		User user = dao.findUserByName("管理员");
+		System.out.println(user);
+	}
+	
+	@Test
+	public void test12() {
+		List<User> list = dao.findAllUsers(null, null);
+		for (User user : list) {
+			System.out.println(user);
+		}
 	}
 }

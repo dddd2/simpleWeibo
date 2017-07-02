@@ -135,7 +135,7 @@
 		}
 		  #p_mainBannerTop{
 			  width:562px;
-			  height:217px;
+			  height:247px;
 			  padding:0px;
 			  margin:0px;
 			  position:relative;
@@ -258,6 +258,7 @@
 					  padding:0px;
 					  position:relative;
 					  text-align:right;
+					  margin-top:5px;
 					  }
 					  /*发布按钮*/
 					  #p_button1{
@@ -835,4 +836,16 @@ hr.p_h1{
     padding-left: 60px;
     padding-right: 60px;
     padding-top: 10px;
+}
+
+.p_picture_box {
+	opacity: 0;
+    width: 50px;
+    height: 13px;
+    position: absolute;
+    top:4px;
+}
+
+.p_smImgs {
+	float:left;
 }

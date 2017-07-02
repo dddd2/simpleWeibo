@@ -34,9 +34,11 @@ public class MessageServiceImpl implements IMessageService{
 		
 		String[] arrs = newMessage.split(" ");
 		for (String arr : arrs) {
-			if(arr.charAt(0) == '@') {
-				User user = this.userService.findUserByName(arr.substring(1));
-				this.userService.haveNewAboutMe(user.getUserId());
+			if(arr.length() > 0) {
+				if(arr.charAt(0) == '@') {
+					User user = this.userService.findUserByName(arr.substring(1));
+					this.userService.haveNewAboutMe(user.getUserId());
+				}
 			}
 		}
 		

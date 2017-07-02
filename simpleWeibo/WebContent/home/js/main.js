@@ -7,7 +7,8 @@ require.config({
 		'ng-file-upload': '../../js/ng-file-upload.min',
 		'jquery':'../../js/jquery.min',
 		'bootstrap':'../../js/bootstrap.min',
-		'angular-sanitize':'../../js/angular-sanitize.min'
+		'angular-sanitize':'../../js/angular-sanitize.min',
+		'ImageCropper':'../../js/image-crop'
 	},
 	shim: {
 		'angular': {exports: "angular" },
@@ -16,7 +17,8 @@ require.config({
 		'ngload': ["angularAMD"],
 		'ng-file-upload': ['angular'],
 		'bootstrap':['jquery'],
-		'angular-sanitize':['angular']
+		'angular-sanitize':['angular'],
+		'ImageCropper':['angular']
 	},
 	
 	deps: ['app']

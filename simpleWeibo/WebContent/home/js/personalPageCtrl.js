@@ -8,6 +8,15 @@ angular.module('personalPage',[])
 		//定义newMessag
 		$scope.newMessage = "";
 		
+		$scope.testddd = ""
+		
+		//定义pictures
+		$scope.pictures = {};
+		$scope.keywords = [];
+		
+		//创建reader接口
+		$scope.reader = new FileReader();
+		
 		//通过$stateParams获取url参数 id   
 		$scope.userId = $stateParams.id;
 		
@@ -55,6 +64,29 @@ angular.module('personalPage',[])
 	        $("#crewmodal").modal('show');
 	    };
 	    
+	    //图片预览
+	    $scope.showPicture = function(files) {
+	    	$scope.guid = (new Date()).valueOf(); 
+	    	$scope.reader.readAsDataURL(files[0]); // FileReader的方法，把图片转成base64
+	    	$scope.reader.onload = function(ev) {
+	    		$scope.$apply(function(){
+	                $scope.pictures[$scope.guid] = {
+	                    imgSrc : ev.target.result,  // 接收base64
+	                }
+	                $scope.keywords.push($scope.guid);
+	            });
+	    	}
+		}
+	    
+	    //删除图片
+	    $scope.rmImg = function(key) {
+	    	var guidArr = [];
+	        for(var p in $scope.pictures){
+	            guidArr.push(p);
+	        }
+	        $scope.keywords.splice(key,1);
+	        delete $scope.pictures[guidArr[key]];
+	    }
 	    
 	    //隐藏模态框
 	    $scope.hide=function() {
@@ -63,54 +95,30 @@ angular.module('personalPage',[])
 /*==============================查看过@我的==============================*/
 	    $scope.cleanAboutMe = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/UserServlet"
-				$http.post(url,{
-									method:"cleanAboutMe", 
-									userId:$scope.userId, 
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					$scope.user.aboutMe = 0;
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,{method:"cleanAboutMe", userId:$scope.userId})
+			.success(function(data) {
+				$scope.user.aboutMe = 0;
+			})
+			.error(function(error){
+				alert(error);
+			});
 	    }
 /*================================点赞======================================*/	    
 		$scope.loveMessage = function(message) {
 			var url = "http://localhost:8080/simpleWeibo/servlet/MessageServlet"
-				$http.post(url,{	
-									method:"loveMessage", 
-									userId:$scope.userId ,
-									message:JSON.stringify(message),
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					if(data > 0) {
-						if(!message.hasOwnProperty("loveNum")) {
-							message["loveNum"] = "";
-						}
-						message.loveNum++;
+			$http.post(url,{method:"loveMessage", userId:$scope.userId, 
+							message:JSON.stringify(message)})
+			.success(function(data) {
+				if(data > 0) {
+					if(!message.hasOwnProperty("loveNum")) {
+						message["loveNum"] = "";
 					}
-				})
-				.error(function(error){
-					alert(error);
-				});
+					message.loveNum++;
+				}
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 
 /*===================================评论==============================*/
@@ -128,62 +136,38 @@ angular.module('personalPage',[])
 				$scope.dealComment(message.comment);
 			}
 			var url = "http://localhost:8080/simpleWeibo/servlet/CommentServlet"
-				$http.post(url,{	
-									method:"submitComment", 
-									userId:$scope.userId,
-									comment:message.comment,
-									messageId:message.messageId,
-									puserName:$scope.puserName
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					if(data == "true") {
-						$scope.reloadRoute();
-					} else {
-						alert("error");
-					}
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,{method:"submitComment", userId:$scope.userId,
+				comment:message.comment,messageId:message.messageId,
+				puserName:$scope.puserName})
+			.success(function(data) {
+				if(data == "true") {
+					$scope.reloadRoute();
+				} else {
+					alert("error");
+				}
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 		
 /*==========================================发表微博===================================*/		
 		$scope.createMessage = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/MessageServlet"
-				$http.post(url,{
-									newMessage:$scope.newMessage,
-									method:"createMessage", 
-									userId:$scope.userId, 
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					if(data == "true") {
-						$scope.newMessage = "";
-						$scope.reloadRoute();
-					} else {
-						alert("发表失败");
-					}
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,{newMessage:$scope.newMessage,method:"createMessage", 
+				userId:$scope.userId,imgs:JSON.stringify($scope.pictures),
+				keywords:$scope.keywords})
+			.success(function(data) {
+				if(data == "true") {
+					$scope.newMessage = "";
+					$scope.reloadRoute();
+				} else {
+					alert("发表失败");
+				}
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 		
 /*=====================================================@好友===================================*/		
@@ -207,7 +191,7 @@ angular.module('personalPage',[])
             var action = (checkbox.checked?'add':'remove');
             updateSelected(action,id,checkbox.name);
         }
- 1
+        
 	    $scope.isSelected = function(id){
 	        return $scope.selected.indexOf(id)>=0;
 	    }
@@ -225,55 +209,38 @@ angular.module('personalPage',[])
   
 		$scope.findFocusMessagesByUserId = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/MessageServlet"
-				$http.post(url,{	
-//									currentPage:1,
-//									pageSize:1,
-									method:"findFocusMessagesByUserId", 
-									userId:$scope.userId 
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					$scope.messages = data;
-					$scope.dealMessagesInit($scope.messages);
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,
+			{	
+//				currentPage:1,
+//				pageSize:1,
+				method:"findFocusMessagesByUserId", 
+				userId:$scope.userId 
+			})
+			.success(function(data) {
+				$scope.messages = data;
+				$scope.dealMessagesInit($scope.messages);
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 		
 		$scope.findAboutMeMessagesByUserId = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/MessageServlet"
-				$http.post(url,{	
-//									currentPage:1,
-//									pageSize:1,
-									userName:$scope.user.name,
-									method:"findAboutMeMessagesByUserId", 
-									userId:$scope.userId 
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					$scope.aboutMeMessages = data;
-					$scope.dealMessagesInit($scope.aboutMeMessages);
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,{	
+//				currentPage:1,
+//				pageSize:1,
+				userName:$scope.user.name,
+				method:"findAboutMeMessagesByUserId", 
+				userId:$scope.userId 
+			})
+			.success(function(data) {
+				$scope.aboutMeMessages = data;
+				$scope.dealMessagesInit($scope.aboutMeMessages);
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 /*====================================处理@好友标签================================*/		
 		$scope.dealMessagesInit = function(messages) {
@@ -291,75 +258,48 @@ angular.module('personalPage',[])
 		
 		$scope.findFansByUserId = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/UserServlet"
-				$http.post(url,{
-									currentPage:1,
-									pageSize:3,
-									method:"findFansByUserId", 
-									userId:$scope.userId, 
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					$scope.fans = data;
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,{
+				currentPage:1,
+				pageSize:3,
+				method:"findFansByUserId", 
+				userId:$scope.userId, 
+			})
+			.success(function(data) {
+				$scope.fans = data;
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 		
 		$scope.findFocusPeoplesByUserId = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/UserServlet"
-				$http.post(url,{	
-									currentPage:1,
-									pageSize:3,
-									method:"findFocusPeoplesByUserId", 
-									userId:$scope.userId, 
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					$scope.focusPeoples = data;
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,{	
+				currentPage:1,
+				pageSize:3,
+				method:"findFocusPeoplesByUserId", 
+				userId:$scope.userId, 
+			})
+			.success(function(data) {
+				$scope.focusPeoples = data;
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 		
 		$scope.findUserById = function() {
 			var url = "http://localhost:8080/simpleWeibo/servlet/UserServlet"
-				$http.post(url,{
-									method:"findUserById", 
-									userId:$scope.userId, 
-							   },{
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },    
-		    	transformRequest: function(obj) {    
-		    		var str = [];    
-		    		for (var p in obj) {    
-		    			str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));    
-		    		}    
-		    		return str.join("&");    
-		    	}
-			  })
-				.success(function(data) {
-					$scope.user = data;
-				})
-				.error(function(error){
-					alert(error);
-				});
+			$http.post(url,{
+				method:"findUserById", 
+				userId:$scope.userId, 
+			})
+			.success(function(data) {
+				$scope.user = data;
+			})
+			.error(function(error){
+				alert(error);
+			});
 		}
 		
 		$scope.init();
