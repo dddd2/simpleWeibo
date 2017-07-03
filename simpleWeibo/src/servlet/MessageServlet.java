@@ -66,20 +66,20 @@ public class MessageServlet extends HttpServlet {
 		} else if(method.equals("createMessage")) {
 			String newMessage = request.getParameter("newMessage");
 			String userId = request.getParameter("userId");
-			String imgs = request.getParameter("imgs");
-			String keywords = request.getParameter("keywords");
-			System.out.println(imgs);
+//			String imgs = request.getParameter("imgs");
+//			String keywords = request.getParameter("keywords");
+//			System.out.println(imgs);
 //			JSONObject imgsObj = JSONObject.parseObject(imgs);
-			JSONObject imgsObj = JSON.parseObject(imgs);
-			System.out.println(imgsObj);
-			System.out.println(keywords);
-			String[] keys = keywords.split(",");
-			for(String key : keys) {
-				String text = (String)((JSONObject)imgsObj.get(key)).get("imgSrc");
-				System.out.println(text);
-				
-				GenerateImage(text);
-			}
+//			JSONObject imgsObj = JSON.parseObject(imgs);
+//			System.out.println(imgsObj);
+//			System.out.println(keywords);
+//			String[] keys = keywords.split(",");
+//			for(String key : keys) {
+//				String text = (String)((JSONObject)imgsObj.get(key)).get("imgSrc");
+//				System.out.println(text);
+//				
+//				GenerateImage(text);
+//			}
 			Integer messageId = this.messageService.createMessage(newMessage, userId);
 			
 			out.print(messageId != 0);
@@ -160,7 +160,7 @@ public class MessageServlet extends HttpServlet {
                 }  
             }  
             // 生成jpeg图片  
-            String imgFilePath = "d://" + new Date().getTime() + ".jpg";  
+            String imgFilePath = "d://" + new Date().getTime() + ".jpeg";  
             OutputStream out = new FileOutputStream(imgFilePath);  
             out.write(b);  
             out.flush();  
