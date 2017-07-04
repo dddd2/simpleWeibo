@@ -1,0 +1,23 @@
+<h2 class='.label label-info title'>{{operatorStr}}微博信息</h2>
+<form class='form-horizontal form' name="xxform" role='form' novalidate>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">内容</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.name" 
+			ng-disabled="operator == 'edit'"/>
+<!-- 			除了名字都不加ng-disabled -->
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">时间</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.email"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<div class="col-lg-offset-2 col-lg-10">
+			<button class='btn btn-info' ng-click="toLsit()">返回</button>	
+			<button type="submit" ng-disabled="xxform.$invalid"	class='btn btn-info' ng-click="submit()">确定</button>	
+		</div>
+	</div>
+</form>

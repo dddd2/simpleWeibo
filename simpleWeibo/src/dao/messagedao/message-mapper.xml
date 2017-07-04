@@ -5,10 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dao.messagedao.IMessageDao">
 	<insert id="createMessage">
 		INSERT INTO 
-			message (text,date,userId,loveNum,commentNum,forwardNum) 
+			message (text,date,userId,loveNum,commentNum,forwardNum,imgs) 
 		VALUES 
 			(#{text}, #{date}, #{user.userId}, #{loveNum},
-			 #{commentNum},#{forwardNum})
+			 #{commentNum},#{forwardNum},#{imgs,jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="loveMessage">
@@ -56,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="loveNum" column="m_loveNum"/>
 		<result property="commentNum" column="m_commentNum"/>
 		<result property="forwardNum" column="m_forwardNum"/>
+		<result property="imgs" column="m_imgs"/>
 		<association property="user" javaType="entity.User">
 			<result property="userId" column="u_userId" />
 			<result property="name" column="u_userName"/>
@@ -75,17 +76,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findMessageById" parameterType="Integer" resultMap="message">
 		select 
-			m.messageId, m.text, m.date, 
-			u.userId, u.userName, u.touxiang
+			m.messageId as m_messageId, m.text as m_text, m.date as m_date, 
+			m.imgs as m_imgs,
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang
 		FROM message m
 		left join user u on u.userId = m.userId
 		where
-			m.userId = #{id}
+			m.messageId = #{id}
 	</select> 
 	
 	<select id="findAboutMeMessagesByUserId" parameterType="String" resultMap="message">
 		SELECT DISTINCT
-			m.text as m_text, m.date as m_date, m.messageId as m_messageId, 
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, m.imgs as m_imgs,
 			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
 			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
 			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 
@@ -107,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findMessagesByUserId" parameterType="Integer" resultMap="message">
 		SELECT 
-			m.messageId as m_messageId, m.text as m_text, m.date as m_date,
+			m.messageId as m_messageId, m.text as m_text, m.date as m_date, m.imgs as m_imgs, 
 			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang
 		FROM message m
 		left join user u on u.userId = m.userId
@@ -131,7 +133,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findFocusMessagesByUserId" parameterType="Integer" resultMap="message">
 		SELECT DISTINCT
-			m.text as m_text, m.date as m_date, m.messageId as m_messageId, 
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, m.imgs as m_imgs, 
 			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
 			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
 			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 

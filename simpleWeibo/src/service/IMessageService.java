@@ -39,7 +39,7 @@ public interface IMessageService {
 	 * @param userId
 	 * @return
 	 */
-	public Integer createMessage(String newMessage, String userId);
+	public Integer createMessage(String newMessage, String userId, String imgs, String keywords);
 	/***
 	 * 查找所关注的人发的微博
 	 * @param userId

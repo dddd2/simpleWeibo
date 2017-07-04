@@ -1,6 +1,7 @@
 angular.module('personalPage',[])
 	.controller('personalPageCtrl', ['$scope', '$state', '$stateParams', '$http', 'locals', '$window', 
-		function($scope, $state, $stateParams, $http, locals, $window) {
+				'$compile', 
+		function($scope, $state, $stateParams, $http, locals, $window, $compile) {
 		/**
 		 * 此页面localUser = user;
 		 */
@@ -77,6 +78,22 @@ angular.module('personalPage',[])
 	            });
 	    	}
 		}
+	    
+	    //显示表情table
+	    $scope.showBiaoqing = function() {
+	    	$("#p_biaoqing").css("visibility","visible");
+	    }
+	    
+	    //添加表情
+	    $scope.addBiaoqing = function($event) {
+	    	var compileFn = $compile("<img src='./images/biaoqing/1.gif'/>");
+	    	
+	    	var $dom = angular.copy($event.target);
+	    	
+	    	$("#p_textfield2").append($dom);
+	    	
+	    	$("#p_biaoqing").css("visibility","hidden");
+	    }
 	    
 	    //删除图片
 	    $scope.rmImg = function(key) {
@@ -219,6 +236,8 @@ angular.module('personalPage',[])
 			.success(function(data) {
 				$scope.messages = data;
 				$scope.dealMessagesInit($scope.messages);
+				$scope.dealMessagesPic($scope.messages);
+				$scope.dealMessagesBiaoqing($scope.messages);
 			})
 			.error(function(error){
 				alert(error);
@@ -237,6 +256,8 @@ angular.module('personalPage',[])
 			.success(function(data) {
 				$scope.aboutMeMessages = data;
 				$scope.dealMessagesInit($scope.aboutMeMessages);
+				$scope.dealMessagesPic($scope.aboutMeMessages);
+				$scope.dealMessagesBiaoqing($scope.aboutMeMessages);
 			})
 			.error(function(error){
 				alert(error);
@@ -253,6 +274,27 @@ angular.module('personalPage',[])
 					}
 					message.text += arr;
 				})
+			})
+		}
+		
+/*==================================处理图片======================================*/		
+		$scope.dealMessagesPic = function(messages) {
+			angular.forEach(messages, function(message){
+				if(message.imgs) {
+					var arrs = message.imgs.split("$$$");
+					message.imgs=[];
+					angular.forEach(arrs, function(arr){
+						arr = "data:image/jpg;base64," + arr;
+						message.imgs.push(arr);
+					})
+				}
+			})
+		} 
+		
+/*=================================处理表情======================================*/
+		$scope.dealMessagesBiaoqing = function(messages) {
+			angular.forEach(messages, function(message) {
+				message.text = message.text.replace(/imgng-/g, "img ng-");
 			})
 		}
 		

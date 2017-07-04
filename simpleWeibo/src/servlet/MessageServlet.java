@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
@@ -66,21 +68,10 @@ public class MessageServlet extends HttpServlet {
 		} else if(method.equals("createMessage")) {
 			String newMessage = request.getParameter("newMessage");
 			String userId = request.getParameter("userId");
-//			String imgs = request.getParameter("imgs");
-//			String keywords = request.getParameter("keywords");
-//			System.out.println(imgs);
-//			JSONObject imgsObj = JSONObject.parseObject(imgs);
-//			JSONObject imgsObj = JSON.parseObject(imgs);
-//			System.out.println(imgsObj);
-//			System.out.println(keywords);
-//			String[] keys = keywords.split(",");
-//			for(String key : keys) {
-//				String text = (String)((JSONObject)imgsObj.get(key)).get("imgSrc");
-//				System.out.println(text);
-//				
-//				GenerateImage(text);
-//			}
-			Integer messageId = this.messageService.createMessage(newMessage, userId);
+			String imgs = request.getParameter("imgs");
+			String keywords = request.getParameter("keywords");
+			
+			Integer messageId = this.messageService.createMessage(newMessage, userId, imgs, keywords);
 			
 			out.print(messageId != 0);
 		} else if(method.equals("findFocusMessagesByUserId")) {
@@ -139,35 +130,4 @@ public class MessageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		this.doGet(request, response);
 	}
-
-	  /** 
-     * @Title: GenerateImage 
-     * @Description: TODO(base64字符串转化成图片) 
-     * @param imgStr 
-     * @return 
-     */  
-    public static boolean GenerateImage(String imgStr) {  
-    	System.out.println(imgStr);
-        if (imgStr == null) // 图像数据为空  
-            return false;  
-        BASE64Decoder decoder = new BASE64Decoder();  
-        try {  
-            // Base64解码  
-            byte[] b = decoder.decodeBuffer(imgStr);  
-            for (int i = 0; i < b.length; ++i) {  
-                if (b[i] < 0) {// 调整异常数据  
-                    b[i] += 256;  
-                }  
-            }  
-            // 生成jpeg图片  
-            String imgFilePath = "d://" + new Date().getTime() + ".jpeg";  
-            OutputStream out = new FileOutputStream(imgFilePath);  
-            out.write(b);  
-            out.flush();  
-            out.close();  
-            return true;  
-        } catch (Exception e) {  
-            return false;  
-        }  
-    }  
 }

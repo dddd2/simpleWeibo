@@ -103,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findFansByUserId" resultMap="user">
 		SELECT 
-			u.userId, u.userName, u.touxiang
+			u.userId, u.userName, u.touxiang, u.remark
 		FROM
 			fans_focus f
 		LEFT JOIN `user` u on f.fansId = u.userId
@@ -116,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findFocusPeoplesByUserId" resultMap="user">
 		SELECT 
-			u.userId, u.userName, u.touxiang
+			u.userId, u.userName, u.touxiang, u.remark
 		FROM
 			fans_focus f
 		LEFT JOIN `user` u on f.focusPeopleId = u.userId

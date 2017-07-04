@@ -1,0 +1,21 @@
+<h2 class='.label label-info title'>用户列表</h2>
+<div class='addbutton form2'>
+	<button class='btn btn-info' ng-click="addEntity()">新增</button>
+</div>
+<table class='table table-bordered form' ng-if="entitys.length != 0">
+	<thead>
+		<tr>
+			<th class='textcenter'>姓名</th>
+			<th class='textcenter' style="width: 16%">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in users">
+			<td >{{user.name}}</td>
+			<td>
+				<button class='btn btn-info' ng-click="update(user.userId)">编辑</button>
+				<button class='btn btn-info' ng-click="deleteEntity(entity)">删除</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

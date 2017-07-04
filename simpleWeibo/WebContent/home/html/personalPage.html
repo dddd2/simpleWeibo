@@ -49,7 +49,10 @@
 						<div id="p_mainBannerTopIssueForm">
 							<!--id="p_mainBannerTopIssueFrame-->
 							<div id="p_mainBannerTopIssueFrame">
-								<textarea ng-model="$parent.newMessage" maxlength="200" required="required" name="textfield1" rows="4" class="p_Size"id="p_textfield2"style="overflow: hidden; border: 1px #0CF solid;"></textarea>
+								<div ng-model="$parent.newMessage" maxlength="200" 
+								required="required" name="textfield1" rows="4" class="p_Size"
+								id="p_textfield2"style="overflow: hidden; border: 1px #0CF solid;"
+								contenteditable="true"></div>
 							</div>
 
 							<!--                     <div id="p_mainBannerTopIssueInsert"> -->
@@ -62,14 +65,14 @@
 										file-model="images"  
 										onchange="angular.element(this).scope().showPicture(this.files)"/> 
 									<a class="p_a1"
-										id="p_mainBannerTopIssueInsert2"> 插入图片 </a> <a class="p_a1">
+										id="p_mainBannerTopIssueInsert2"> 插入图片 </a> <a class="p_a1" ng-click="showBiaoqing()">
 										<div id="p_mainBannerTopIssueInsert6">插入表情</div>
 									</a> <a class="p_a1" ng-click="show()">
 										<div id="p_mainBannerTopIssueInsert4">@好友</div>
 									</a>
 									<button type="submit" name="button1" id="p_button1"
 										style="background-color: #3295E6; border: none"
-										ng-disabled="xxform.$invalid" ng-click="createMessage()">
+										ng-click="createMessage()">
 										发表</button>
 								</div>
 								<div class="p_smImgs" >
@@ -86,74 +89,68 @@
 				<div id="p_biaoqing">
 					<table width="200" border="1" cellspacing="0" cellpadding="0">
 						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
 						</tr>
 					</table>
 
@@ -182,10 +179,10 @@
 								class="p_user_info_time">{{message.date|date:'yyyy-MM-dd
 								HH:mm:ss'}}</span>
 						</div>
-						<div class="p_message" ng-bind-html="message.text |trustHtml"></div>
-						<!-- <div class="p_message_imgs">
-			                <img alt="" src="../images/default.jpg" width="120" height="120" ng-if="!message.user.touxiang">
-		                </div> -->
+						<div class="p_message" ng-bind-html="message.text|trustHtml"></div>
+						<div class="p_message_imgs" ng-if="message.imgs">	
+			                <img alt="" ng-src="{{img}}" width="120" height="120" ng-repeat="img in message.imgs">
+		                </div>
 						<div class="p_function">
 							<a class="p_function_f">转发({{message.forwardNum}})</a> <a
 								class="p_function_f">回复({{message.commentNum}})</a> <a
@@ -209,7 +206,7 @@
 					</div>
 				</div>
 				<div ng-if="message.messageId" class="p_comment_box">
-					<textarea class="p_comment_textarea" rows="2" cols="81"
+					<textarea class="p_comment_textarea" style="resize: none;" rows="1.5" cols="75"
 						ng-model="message.comment"></textarea>
 					<div style="padding-bottom: 3px">
 						<!-- <a ng-click="show()">@@@</a> -->
