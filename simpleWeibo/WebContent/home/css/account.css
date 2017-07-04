@@ -16,37 +16,48 @@
 }
      /* banner部分的left */
     #a_banner .a_left{
-		width:564px;
+		width:765px;
 		border-right:solid 1px #9FF;
 		float:left;
 	}
 	     /* banner部分的具体内容 */
 	    #a_banner .a_n1{
-		    width:210px;
-			margin-top:8px;
-		    height:20px;
-			line-height:20px;
+		    width:300px;
+		    margin-top: 20px;
+		    height:25px;
+			line-height:25px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_n2{
-		    width:370px;
+		    width:500px;
+		    margin-top: 10px;
 		    height:25px;
 			line-height:25px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_n3{
-		    width:370px;
-		    height:20px;
+		    width:300px;
+		    margin-top: 20px;
+		    height:25px;
 			line-height:20px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_n4{
-		    width:210px;
-		    height:180px;
+		    width:500px;
+		    margin-top: -25px;
+		    height:50px;
+			border:1px #0CF solid;
+	    }
+	    #a_banner .a_n5{
+		    width:300px;
+		    margin-top: 5px;
+		    height:25px;
+			line-height:25px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_btn{
 		    width:55px;
+		    margin-top: -25px;
 		    height:30px;
 		    background-color:#0184C9;
 		    border:0px;
@@ -57,10 +68,9 @@
 	    }
 	/* banner部分的right */
 	#a_banner .a_right{
-		width:180px;
+		width:230px;
 		height:580px;
 		padding-left:10px;
 		padding-right:10px;
 		float:left;
-		background-color:#e9f4fa;
 	}
