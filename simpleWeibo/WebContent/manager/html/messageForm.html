@@ -1,19 +1,52 @@
 <h2 class='.label label-info title'>{{operatorStr}}微博信息</h2>
 <form class='form-horizontal form' name="xxform" role='form' novalidate>
 	<div class='form-group'>
+		<label class="col-lg-2 control-label">用户</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="message.user.name"
+			ng-disabled="operator == 'edit'"/>
+	<!-- 			除了名字都不加ng-disabled -->
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">ID查找</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="message.findMessageById"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
 		<label class="col-lg-2 control-label">内容</label>
 		<div class="col-lg-4">
-			<input class="form-control" type="text" ng-model="user.name" 
-			ng-disabled="operator == 'edit'"/>
+			<input class="form-control" type="text" ng-model="message.text" />
+			<!-- ng-disabled="operator == 'edit'" -->
 <!-- 			除了名字都不加ng-disabled -->
 		</div>                                                                                                               
 	</div>
 	<div class='form-group'>
 		<label class="col-lg-2 control-label">时间</label>
 		<div class="col-lg-4">
-			<input class="form-control" type="text" ng-model="user.email"/>
+			<input class="form-control" type="text" ng-model="message.date|date:'yyyy-MM-dd HH:mm:ss'"/>
 		</div>                                                                                                               
 	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">赞的数量</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="number" ng-model="message.loveNum"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">评论的数量</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="number" ng-model="message.commentNum"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">转发的数量</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="number" ng-model="message.forwordNum"/>
+		</div>                                                                                                               
+	</div>
+	
 	<div class='form-group'>
 		<div class="col-lg-offset-2 col-lg-10">
 			<button class='btn btn-info' ng-click="toLsit()">返回</button>	

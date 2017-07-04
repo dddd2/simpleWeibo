@@ -15,6 +15,44 @@
 		</div>                                                                                                               
 	</div>
 	<div class='form-group'>
+		<label class="col-lg-2 control-label">手机号</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.phone"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">性别</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.sex"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">年龄</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.age"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">粉丝数</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.fansNum"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">关注人数</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.focusPeopleNum"/>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">微博数</label>
+		<div class="col-lg-4">
+			<input class="form-control" type="text" ng-model="user.messageNum"/>
+		</div>                                                                                                               
+	</div>
+	
+	
+	<div class='form-group'>
 		<div class="col-lg-offset-2 col-lg-10">
 			<button class='btn btn-info' ng-click="toLsit()">返回</button>	
 			<button type="submit" ng-disabled="xxform.$invalid"	class='btn btn-info' ng-click="submit()">确定</button>	

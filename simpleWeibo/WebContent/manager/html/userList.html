@@ -6,12 +6,27 @@
 	<thead>
 		<tr>
 			<th class='textcenter'>姓名</th>
+			<th class='textcenter'>年龄</th>
+			<th class='textcenter'>性别</th>
+			<th class='textcenter'>邮箱</th>
+			<th class='textcenter'>电话</th>
+			<th class='textcenter'>粉丝人数</th>
+			<th class='textcenter'>关注人数</th>
+			<th class='textcenter'>微博数</th>
+			
 			<th class='textcenter' style="width: 16%">操作</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="user in users">
 			<td >{{user.name}}</td>
+			<td >{{user.age}}</td>
+			<td >{{user.sex}}</td>
+			<td >{{user.email}}</td>
+			<td >{{user.phone}}</td>
+			<td >{{user.fansNum}}</td>
+			<td >{{user.focusPeopleNum}}</td>
+			<td >{{user.messageNum}}</td>
 			<td>
 				<button class='btn btn-info' ng-click="update(user.userId)">编辑</button>
 				<button class='btn btn-info' ng-click="deleteEntity(entity)">删除</button>

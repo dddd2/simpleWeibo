@@ -99,7 +99,7 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 		.state('mainHome.list.messageList', angularAMD.route({
 			url : '/messageList',
 			views : {
-				'main' : angularAMD.route({
+				'main@mainHome' : angularAMD.route({
 					templateUrl : function(params) {
 									  return './html/messageList.html'
 								  },
@@ -108,10 +108,10 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 			}
 		}))
 		
-		.state('main.list.messageForm', angularAMD.route({
+		.state('mainHome.list.messageForm', angularAMD.route({
 			url : '/messageForm/:operator/:id',
 			views : {
-				'main' : angularAMD.route({
+				'main@mainHome' : angularAMD.route({
 					templateUrl : function(params) {
 									  return './html/messageForm.html'
 								  },
