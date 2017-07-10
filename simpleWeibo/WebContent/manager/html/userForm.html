@@ -3,21 +3,49 @@
 	<div class='form-group'>
 		<label class="col-lg-2 control-label">姓名</label>
 		<div class="col-lg-4">
-			<input class="form-control" type="text" ng-model="user.name" 
-			ng-disabled="operator == 'edit'"/>
-<!-- 			除了名字都不加ng-disabled -->
+			<p class="form-control-static">{{user.name}}</p>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">手机</label>
+		<div class="col-lg-4">
+			<p class="form-control-static">{{user.phone}}</p>
 		</div>                                                                                                               
 	</div>
 	<div class='form-group'>
 		<label class="col-lg-2 control-label">邮箱</label>
 		<div class="col-lg-4">
-			<input class="form-control" type="text" ng-model="user.email"/>
+			<p class="form-control-static">{{user.email}}</p>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">年龄</label>
+		<div class="col-lg-4">
+			<p class="form-control-static">{{user.age}}</p>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">微博数</label>
+		<div class="col-lg-4">
+			<p class="form-control-static">{{user.messageNum}}</p>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">粉丝数</label>
+		<div class="col-lg-4">
+			<p class="form-control-static">{{user.fansNum}}</p>
+		</div>                                                                                                               
+	</div>
+	<div class='form-group'>
+		<label class="col-lg-2 control-label">关注数</label>
+		<div class="col-lg-4">
+			<p class="form-control-static">{{user.focusPeopleNum}}</p>
 		</div>                                                                                                               
 	</div>
 	<div class='form-group'>
 		<div class="col-lg-offset-2 col-lg-10">
 			<button class='btn btn-info' ng-click="toLsit()">返回</button>	
-			<button type="submit" ng-disabled="xxform.$invalid"	class='btn btn-info' ng-click="submit()">确定</button>	
+<!-- 			<button type="submit" ng-disabled="xxform.$invalid"	class='btn btn-info' ng-click="submit()">确定</button>	 -->
 		</div>
 	</div>
 </form>

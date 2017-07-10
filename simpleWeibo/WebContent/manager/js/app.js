@@ -3,7 +3,13 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 		angular, angularAMD) {
 
 	var app = angular.module("app", [ "ui.router", "ImageCropper" ]);
-
+	
+	app.filter('trustHtml', function($sce) {
+		return function(input) {
+			return $sce.trustAsHtml(input);
+		}
+	});
+	
 	app.factory('locals', [ '$window', function($window) {
 		return { // 存储单个属性
 			set : function(key, value) {
@@ -59,11 +65,11 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 			views : {
 				"header@mainHome" : angularAMD.route({
 					templateUrl : './html/head.html',
-//					controller:'HeadController',
+					controller:'headController',
 				}),
 				"left@mainHome" : angularAMD.route({
 					templateUrl : './html/left.html',
-//					controller : "MenuController",
+					controller : "leftCtrl",
 //					controllerUrl:[ ]//必需是数组
 				}),
 				"main@mainHome":angularAMD.route({
@@ -99,7 +105,7 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 		.state('mainHome.list.messageList', angularAMD.route({
 			url : '/messageList',
 			views : {
-				'main' : angularAMD.route({
+				'main@mainHome' : angularAMD.route({
 					templateUrl : function(params) {
 									  return './html/messageList.html'
 								  },
@@ -108,10 +114,10 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 			}
 		}))
 		
-		.state('main.list.messageForm', angularAMD.route({
+		.state('mainHome.list.messageForm', angularAMD.route({
 			url : '/messageForm/:operator/:id',
 			views : {
-				'main' : angularAMD.route({
+				'main@mainHome' : angularAMD.route({
 					templateUrl : function(params) {
 									  return './html/messageForm.html'
 								  },

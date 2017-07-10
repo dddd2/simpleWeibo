@@ -63,4 +63,9 @@ public interface IMessageService {
 	
 	public void commentThisMessage(Integer messageId);
 	
+	public Integer findTotalNum(Integer userId);
+	
+	public Integer findTotalNumFocus(Integer userId);
+	
+	public Integer findAllTotalNum();
 }

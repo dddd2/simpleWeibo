@@ -17,9 +17,9 @@ public interface IUserService {
 	public void updateUser(User user);
 	/**
 	 * 删除用户
-	 * @param user
+	 * @param integer
 	 */
-	public void deleteUser(User user);
+	public void deleteUser(Integer integer);
 	/**
 	 * 根据id查找指定用户
 	 * @param id
@@ -70,4 +70,27 @@ public interface IUserService {
 	public void cleanAboutMe(Integer userId);
 	
 	public User findUserByName(String name);
+	/**
+	 * 关注
+	 * @param fansId
+	 * @param focusPeopleId
+	 */
+	public void focusOn(Integer fansId, Integer focusPeopleId);
+	/**
+	 * 取关
+	 * @param fansId
+	 * @param focusPeopleId
+	 */
+	public void takeOf(Integer fansId, Integer focusPeopleId);
+	/**
+	 * 查看fan是否关注了focuspeople
+	 * @param fansId
+	 * @param focusPeopleId
+	 * @return NULL==没有关注  Integer==关注了
+	 */
+	public Integer isFocus(Integer fansId, Integer focusPeopleId);
+	
+	public boolean changePassword(Integer userId, String password, String newPassword);
+	public Integer findTotalUsers();
+	public User manageAdmin(String phone, String password);
 }

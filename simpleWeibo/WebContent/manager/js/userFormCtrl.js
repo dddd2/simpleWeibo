@@ -6,8 +6,8 @@ angular.module('userForm',[])
 		$scope.operator = $stateParams.operator;//值只有add或者edit两种
 		$scope.user = {};
 		
-		if($scope.operator == 'edit') {
-			$scope.operatorStr = '编辑';
+		if($scope.operator == 'display') {
+			$scope.operatorStr = '查看';
 		} else if($scope.operator == 'add'){
 			$scope.operatorStr = '新增';
 		}
@@ -17,7 +17,7 @@ angular.module('userForm',[])
 		}
 		
 		$scope.init = function() {
-			if($scope.operator == 'edit') {
+			if($scope.operator == 'display') {
 				$scope.findUserById();
 			}
 		}

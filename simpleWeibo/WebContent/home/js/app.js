@@ -46,16 +46,19 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 	app.factory('locals', [ '$window', function($window) {
 		return { // 存储单个属性
 			set : function(key, value) {
-				$window.localStorage[key] = value;
+				$window.sessionStorage[key] = value;
 			}, // 读取单个属性
 			get : function(key, defaultValue) {
-				return $window.localStorage[key] || defaultValue;
+				return $window.sessionStorage[key] || defaultValue;
 			}, // 存储对象，以JSON格式存储
 			setObject : function(key, value) {
-				$window.localStorage[key] = JSON.stringify(value);
+				$window.sessionStorage[key] = JSON.stringify(value);
 			}, // 读取对象
 			getObject : function(key) {
-				return JSON.parse($window.localStorage[key] || '{}');
+				return JSON.parse($window.sessionStorage[key] || '{}');
+			},
+			clear : function(key) {
+				$window.sessionStorage.removeItem('key');
 			}
 
 		}
@@ -154,14 +157,14 @@ define([ "angular", "angularAMD", "angular-ui-router", "ng-file-upload",
 			}
 		}))
 
-		.state('test', angularAMD.route({
-			url : '/test',
+		.state('password', angularAMD.route({
+			url : '/password/:id',
 			views : {
 				'main' : angularAMD.route({
 					templateUrl : function(params) {
-						return './html/test.html'
+						return './html/password.html'
 					},
-					controller : 'testCtrl',
+					controller : 'passwordCtrl',
 				})
 			}
 		}))

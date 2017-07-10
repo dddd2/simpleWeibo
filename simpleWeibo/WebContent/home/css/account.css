@@ -17,7 +17,7 @@
      /* banner部分的left */
     #a_banner .a_left{
 		width:765px;
-		border-right:solid 1px #9FF;
+/* 		border-right:solid 1px #9FF; */
 		float:left;
 	}
 	     /* banner部分的具体内容 */
@@ -44,8 +44,7 @@
 	    }
 	    #a_banner .a_n4{
 		    width:500px;
-		    margin-top: -25px;
-		    height:50px;
+		    height:90px;
 			border:1px #0CF solid;
 	    }
 	    #a_banner .a_n5{
@@ -74,3 +73,21 @@
 		padding-right:10px;
 		float:left;
 	}
+.a_user_touxiang {
+    position: absolute;
+    top: 100px;
+    left: 800px;
+}
+
+.a_touxiang_result {
+	position: absolute;
+    top: 15px;
+}
+
+.a_picture_box {
+    opacity: 0;
+    width: 50px;
+    height: 13px;
+    position: absolute;
+    top: 170px;
+}

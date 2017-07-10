@@ -19,9 +19,9 @@ public interface IUserDao {
 	public void updateUser(User user);
 	/**
 	 * 删除用户
-	 * @param user
+	 * @param userId
 	 */
-	public void deleteUser(User user);
+	public void deleteUser(Integer userId);
 	/**
 	 * 根据id查找指定用户
 	 * @param id
@@ -63,10 +63,68 @@ public interface IUserDao {
 			@Param("userId")Integer userId,
 			@Param("currentPage")Integer currentPage,
 			@Param("pageSize")Integer pageSize);
-	
+	/**
+	 * 查找用户用姓名
+	 * @param name
+	 * @return
+	 */
 	public User findUserByName(String name);
-	
+	/**
+	 * 新的@我的
+	 * @param userId
+	 */
 	public void haveNewAboutMe(Integer userId);
-	
+	/**
+	 * 读过@我的
+	 * @param userId
+	 */
 	public void cleanAboutMe(Integer userId);
+	/**
+	 * 取关
+	 * @param fansId
+	 * @param focusPeopleId
+	 */
+	public void takeOf(
+			@Param("fansId")Integer fansId, 
+			@Param("focusPeopleId")Integer focusPeopleId);
+	/**
+	 * 关注
+	 * @param fansId
+	 * @param focusPeopleId
+	 */
+	public void focusOn(
+			@Param("fansId")Integer fansId, 
+			@Param("focusPeopleId")Integer focusPeopleId);
+	/**
+	 * 涨粉
+	 * @param userId
+	 */
+	public void increaseFans(Integer userId);
+	/**
+	 * 掉粉
+	 * @param userId
+	 */
+	public void reduceFans(Integer userId);
+	/**
+	 * 增加关注
+	 * @param userId
+	 */
+	public void increaseFocusPeople(Integer userId);
+	/**
+	 * 减少关注
+	 * @param userId
+	 */
+	public void reduceFocusPeople(Integer userId);
+	/**
+	 * 查看是否已经关注了此人
+	 * @param fansId
+	 * @param focusPeopleId
+	 * @return 没有 -- null  有 -- id;
+	 */
+	public Integer isFocus(
+			@Param("fansId")Integer fansId, 
+			@Param("focusPeopleId")Integer focusPeopleId);
+	
+	public User findUserByIdChange(Integer userId);
+	public Integer findTotalUsers();
 }

@@ -5,15 +5,15 @@ import java.util.LinkedHashSet;
 
 public class Message {
 	private Integer messageId;
-	private User user;
-	private String text;
-	private Date date;
+	private User user;// 发微博的人
+	private String text; //内容
+	private Date date;//时间
 	private String imgs;
 	private Message parentMessage;
 	private LinkedHashSet<Comment> comments;
-	private Integer loveNum;
-	private Integer commentNum;
-	private Integer forwardNum;
+	private Integer loveNum; //赞的数量
+	private Integer commentNum; //评论数
+	private Integer forwardNum; //转发数
 	
 	public Message() {
 		super();

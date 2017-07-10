@@ -4,12 +4,12 @@
     	<!-- top部分的LogoDIV -->
     	<div id="l_topLogo">
         	<!-- topLogo部分的icoDIV -->
-            <div id="l_topLogoIco"> <a href="index.html"><img src="images/logo_ipad.png" width="72" height="72" alt="" /></a>
+            <div id="l_topLogoIco"> <a ><img src="../images/WB.png" width="72" height="72" alt="" /></a>
           </div>
             <!-- topLogo部分的icoDIV结束 -->
             
             <!-- topLogo部分的wordDIV -->
-            <div id="l_topLogoWord"> <a href="index.html"><img src="images/LogoMaker.gif" width="128" height="60" alt="" /></a>
+            <div id="l_topLogoWord"> <a ><img src="../images/WB1.png" width="128" height="60" alt="" /></a>
           </div>
             <!-- topLogo部分的wordDIV -->
         </div>
@@ -18,7 +18,7 @@
         <!-- top部分的文字导航 -->
         <div id="l_topWordMenu">
         	<ul>
-            	<li>已有账号，<a href="login.html">请登录</a></li>
+            	<li><a ng-click="goManager()">管理员登录</a></li>
             </ul>
         </div>
         <!-- top部分的文字导航结束 -->
@@ -39,7 +39,7 @@
        </tr>
        <tr>
          <td class="l_le"></td>
-         <td class="l_ld">手机/邮箱</td>
+         <td class="l_ld">账号</td>
          <td class="l_if"><input ng-model="phone" name="userId" type="text" class="l_la" id="l_userId" /></td>
          <td></td>
        </tr>
@@ -52,7 +52,7 @@
        <tr>
          <td class="l_le"></td>
          <td class="l_ld"></td>
-         <td><a href="#">
+         <td><a >
            <input name="button" type="submit" class="l_lc" id="l_button" value="登  录" ng-click="login()"/>
          </a></td>
          <td></td>
@@ -70,7 +70,7 @@
             <div class="l_cs">
            		赶快来注册一个吧
             </div>
-            <div class="l_ds"><a href="register.html"><img src="images/anniu.gif" alt="立即注册" width="155" height="48" border="0" title="在这注册" /></a>
+            <div class="l_ds"><a ><img ng-click="register()" src="images/anniu.gif" alt="立即注册" width="155" height="48" border="0" title="在这注册" /></a>
             </div>
    	</div>
   </div>
@@ -80,20 +80,19 @@
     	<!-- footer网站链接部分 -->
     	<div id="l_footerLink">
         	<ul>
-            	<li><a href="#">灵步网介绍</a></li>
-                <li><a href="#">广告服务</a></li>
-                <li><a href="#">API</a></li>
-                <li><a href="#">诚征英才</a></li>
-                <li><a href="#">保护隐私权</a></li>
-                <li><a href="#">免责条款</a></li>
-                <li><a href="#">法律顾问</a></li>
-                <li><a href="#">意见反馈</a></li>
+                <li><a >广告服务</a></li>
+                <li><a >API</a></li>
+                <li><a >诚征英才</a></li>
+                <li><a >保护隐私权</a></li>
+                <li><a >免责条款</a></li>
+                <li><a >法律顾问</a></li>
+                <li><a >意见反馈</a></li>
             </ul>
         </div>
         <!-- footer网站链接部分结束 -->
         <!-- footer网站版权信息 -->
         <div id="l_footerCopy">
-        	Copyright&copy;2011-2012 灵步小组 版权所有
+        	Copyright&copy;2017-2018 simpleWeibo 版权所有
         </div>
         <!-- footer网站版权信息结束 -->
     </div>

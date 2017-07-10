@@ -6,14 +6,14 @@
 		<div id="p_topLogo">
 			<!-- topLogo部分的icoDIV -->
 			<div id="p_topLogoIco">
-				<a href="CustomerIndex.html"><img src="images/logo_ipad.png"
+				<a ><img src="../images/WB.png"
 					width="72" height="72" alt="" /></a>
 			</div>
 			<!-- topLogo部分的icoDIV结束 -->
 
 			<!-- topLogo部分的wordDIV -->
 			<div id="p_topLogoWord">
-				<a href="CustomerIndex.html"><img src="images/LogoMaker.gif"
+				<a ><img src="../images/WB1.png"
 					width="128" height="60" alt="" /></a>
 			</div>
 			<!-- topLogo部分的wordDIV -->
@@ -23,13 +23,11 @@
 		<!-- top部分的文字导航 -->
 		<div id="p_topWordMenu">
 			<ul>
-				<li><a href="CustomerIndex.html">首页</a></li>
-				<li><a href="MyWB.html">我的微博</a></li>
-				<li><a href="#">找人</a></li>
-				<li><a href="setting.html">设置</a></li>
-				<li><a href="#">手机</a></li>
-				<li><a href="#">帮助</a></li>
-				<li ng-if="localUser"><a href="index.html">退出</a></li>
+				<li><a ng-click="go('personalPage')">个人中心</a>
+				<li><a ng-click="go('mainHome')">我的微博</a></li>
+				<li><a ng-click="go('account')">账号设置</a></li>
+				<li><a ng-click="go('password')">修改密码</a></li>
+				<li ng-click="logout()"><a href="index.html">退出</a></li>
 			</ul>
 		</div>
 		<!-- top部分的文字导航结束 -->
@@ -64,11 +62,12 @@
 									<input class="p_picture_box" type="file" accept="image/jpg,image/jpeg,image/png"
 										file-model="images"  
 										onchange="angular.element(this).scope().showPicture(this.files)"/> 
-									<a class="p_a1"
-										id="p_mainBannerTopIssueInsert2"> 插入图片 </a> <a class="p_a1" ng-click="showBiaoqing()">
+									<a class="p_a1" style="cursor:pointer" 
+										id="p_mainBannerTopIssueInsert2"> 插入图片 </a> 
+									<a class="p_a1" ng-click="showBiaoqing()" style="cursor:pointer" >
 										<div id="p_mainBannerTopIssueInsert6">插入表情</div>
 									</a> <a class="p_a1" ng-click="show()">
-										<div id="p_mainBannerTopIssueInsert4">@好友</div>
+										<div id="p_mainBannerTopIssueInsert4" style="cursor:pointer">@好友</div>
 									</a>
 									<button type="submit" name="button1" id="p_button1"
 										style="background-color: #3295E6; border: none"
@@ -90,67 +89,67 @@
 					<table width="200" border="1" cellspacing="0" cellpadding="0">
 						<tr>
 							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/2.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/3.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/4.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/5.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/6.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/7.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/8.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/9.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/10.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/11.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/12.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/13.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/14.gif"/></td>
 						</tr>
 						<tr>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/15.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/16.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/17.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/18.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/19.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/20.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/21.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/22.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/23.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/24.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/25.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/26.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/27.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/28.gif"/></td>
 						</tr>
 						<tr>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/29.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/30.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/31.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/32.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/33.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/34.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/35.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/36.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/37.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/38.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/39.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/40.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/41.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/42.gif"/></td>
 						</tr>
 						<tr>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
-							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/1.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/43.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/44.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/45.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/46.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/47.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/48.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/49.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/50.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/51.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/52.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/53.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/54.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/55.gif"/></td>
+							<td><img ng-click="addBiaoqing($event)" src="./images/biaoqing/56.gif"/></td>
 						</tr>
 					</table>
 
@@ -171,8 +170,9 @@
 				<div class="p_stateShow" ng-if="message.messageId">
 					<div class="p_stateShowWord">
 						<div class="p_user_touxiang">
-							<img alt="" src="../images/default.jpg" height="50" width="50"
+							<img style="cursor:pointer" alt="" src="../images/default.jpg" height="50" width="50"
 								ng-if="!message.user.touxiang">
+							<img style="cursor:pointer" ng-src="{{message.user.touxiang}}" ng-if="message.user.touxiang" height="50" width="50" />
 						</div>
 						<div class="p_user_info">
 							<a class="p_user_info_name">{{message.user.name}}</a> <span
@@ -194,7 +194,8 @@
 				<div class="p_comments">
 					<div class="p_comment" ng-repeat="comment in message.comments">
 						<div class="p_comment_touxiang">
-							<img alt="" src="../images/default.jpg" height="25" width="25">
+							<img alt="" style="cursor:pointer" ng-if="!comment.user.touxiang" src="../images/default.jpg" height="30" width="30">
+							<img alt="" style="cursor:pointer" ng-if="comment.user.touxiang" ng-src="{{comment.user.touxiang}}" height="30" width="30">
 						</div>
 						<div class="p_comment_main">
 							<a class="p_comment_name">{{comment.user.name}}</a>: <span
@@ -222,8 +223,10 @@
 				<div class="p_stateShow" ng-if="message.messageId">
 					<div class="p_stateShowWord">
 						<div class="p_user_touxiang">
-							<img alt="" src="../images/default.jpg" height="50" width="50"
+							<img alt="" src="../images/default.jpg" style="cursor:pointer" height="50" width="50"
 								ng-if="!message.user.touxiang">
+							<img ng-src="{{message.user.touxiang}}" style="cursor:pointer" height="50" width="50"
+								ng-if="message.user.touxiang">	
 						</div>
 						<div class="p_user_info">
 							<a class="p_user_info_name">{{message.user.name}}</a> <span
@@ -242,7 +245,8 @@
 				<div class="p_comments">
 					<div class="p_comment" ng-repeat="comment in message.comments">
 						<div class="p_comment_touxiang">
-							<img alt="" src="../images/default.jpg" height="25" width="25">
+							<img alt="" style="cursor:pointer" ng-if="!comment.user.touxiang" src="../images/default.jpg" height="30" width="30">
+							<img alt="" style="cursor:pointer" ng-if="comment.user.touxiang" ng-src="{{comment.user.touxiang}}" height="30" width="30">
 						</div>
 						<div class="p_comment_main">
 							<a class="p_comment_name">{{comment.user.name}}</a>: <span
@@ -254,7 +258,7 @@
 					</div>
 				</div>
 				<div ng-if="message.messageId" class="p_comment_box">
-					<textarea class="p_comment_textarea" rows="2" cols="81"
+					<textarea class="p_comment_textarea" style="resize: none;" rows="1.5" cols="75"
 						ng-model="message.comment"></textarea>
 					<div style="padding-bottom: 3px">
 						<!-- <a ng-click="show()">@@@</a> -->
@@ -279,6 +283,9 @@
 								<div id="p_mainRightPostionFirstLineIcon">
 									<a> <img src="../images/default.jpg"
 										ng-if="!user.touxiang" alt="" width="48" height="48"
+										align="absmiddle" title="" border="0" />
+										<img ng-src="{{user.touxiang}}"
+										ng-if="user.touxiang" alt="" width="48" height="48"
 										align="absmiddle" title="" border="0" />
 									</a>
 								</div>
@@ -314,18 +321,18 @@
 						<div id="p_mainRightPostionSecondLine">
 							<!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
 							<div id="p_mainRightPositionSecondLineContent">
-								<a ng-click="changeToMainHome()" class="p_a1"> <font
+								<a ng-click="changeToMainHome()" style="cursor:pointer" class="p_a1"> <font
 									ng-class="{true:'isSelectLabel',false:'p_style3'}[mainHome]">首页</font>
 								</a><br />
 								<hr class="p_h1" />
-								<a ng-click="changeToAboutMe()" ng-if="mainHome" class="p_a1"><font
+								<a ng-click="changeToAboutMe()" style="cursor:pointer" ng-if="mainHome" class="p_a1"><font
 									class="p_style3"> @我的 <span class="p_aboutMe"
 										ng-if="user.aboutMe != 0"> +{{user.aboutMe}} </span>
-								</font></a> <a ng-click="changeToAboutMe()" ng-if="!mainHome" class="p_a1">
+								</font></a> <a ng-click="changeToAboutMe()" style="cursor:pointer" ng-if="!mainHome" class="p_a1">
 									<font class="isSelectLabel"> @我的 </font>
 								</a>
 								<!--  <hr class="p_h1">
-                                <a href="#" class="p_a1"><font class="p_style3">转发</font></a> -->
+                                <a  class="p_a1"><font class="p_style3">转发</font></a> -->
 							</div>
 							<!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
 						</div> <!-- 右侧mainRightPostionSecondLine DIV 结束 -->
@@ -336,13 +343,16 @@
 						<!-- 右侧mainRightPostionSixthLine DIV 开始 -->
 						<div id="p_mainRightPostionSixthLine">
 							<div id="p_mainRightPositionSixthLineContent">
-								<a href="#" onclick="" class="p_a1"><font class="p_style4">我关注的人</font>
+								<a ng-click="goUserList('focusPeople')" class="p_a1"><font class="p_style4">我关注的人</font>
 							</div>
 							<ul ng-repeat="focusPeople in focusPeoples|limitTo:3">
-								<a href="#" class="p_a1"><li><img
-										src="../images/default.jpg" height="50" width="50"
-										ng-if="!focusPeople.touxiang" border="0" /><br /> <font
-										class="p_style2">{{focusPeople.name}}</font></li></a>
+								<a class="p_a1"><li>
+									<img src="../images/default.jpg" height="48" width="48" style="cursor:pointer"
+										ng-if="!focusPeople.touxiang" border="0" ng-click="goUserHome(focusPeople.userId)"/>
+									<img ng-src="{{focusPeople.touxiang}}" height="48" width="48" style="cursor:pointer"
+									ng-if="focusPeople.touxiang" border="0" ng-click="goUserHome(focusPeople.userId)"/><br />
+									<font class="p_style2">{{focusPeople.name}}</font>
+								</li></a>
 							</ul>
 						</div> <!-- 右侧mainRightPostionSixthLine DIV 结束 -->
 					</td>
@@ -352,13 +362,16 @@
 						<!-- 右侧mainRightPostionSixthLine DIV 开始 -->
 						<div id="p_mainRightPostionSixthLine">
 							<div id="p_mainRightPositionSixthLineContent">
-								<a href="#" onclick="" class="p_a1"><font class="p_style4">关注我的人</font>
+								<a class="p_a1" ng-click="goUserList('fans')"><font class="p_style4">关注我的人</font></a>
 							</div>
 							<ul ng-repeat="fan in fans">
-								<a href="#" class="p_a1"><li><img
-										src="../images/default.jpg" height="50" width="50"
-										ng-if="!fan.touxiang" border="0" /><br /> <font
-										class="p_style2">{{fan.name}}</font></li></a>
+								<a  class="p_a1"><li>
+									<img src="../images/default.jpg" height="48" width="48" style="cursor:pointer"
+											ng-if="!fan.touxiang" border="0" ng-click="goUserHome(fan.userId)"/>
+									<img src="{{fan.touxiang}}" height="48" width="48" style="cursor:pointer"
+									ng-if="fan.touxiang" border="0" ng-click="goUserHome(fan.userId)"/><br /> 
+									<font class="p_style2">{{fan.name}}</font>
+								</li></a>
 							</ul>
 						</div> <!-- 右侧mainRightPostionSixthLine DIV 结束 -->
 					</td>
@@ -375,25 +388,24 @@
 		<!-- footer网站链接部分 -->
 		<div id="p_footerLink">
 			<ul>
-				<li><a href="#" class="p_a2">灵步网介绍</a></li>
-				<li><a href="#" class="p_a2">API</a></li>
-				<li><a href="#" class="p_a2">诚征英才</a></li>
-				<li><a href="#" class="p_a2">保护隐私权</a></li>
-				<li><a href="#" class="p_a2">免责条款</a></li>
-				<li><a href="#" class="p_a2">法律顾问</a></li>
-				<li><a href="#" class="p_a2">意见反馈</a></li>
+				<li><a  class="p_a2">API</a></li>
+				<li><a  class="p_a2">诚征英才</a></li>
+				<li><a  class="p_a2">保护隐私权</a></li>
+				<li><a  class="p_a2">免责条款</a></li>
+				<li><a  class="p_a2">法律顾问</a></li>
+				<li><a  class="p_a2">意见反馈</a></li>
 			</ul>
 		</div>
 		<!-- footer网站链接部分结束 -->
 		<!-- footer网站版权信息 -->
-		<div id="p_footerCopy">Copyright&copy;2011-2012 灵步小组 版权所有</div>
+		<div id="p_footerCopy">Copyright&copy;2017-2018 simpleWeibo 版权所有</div>
 		<!-- footer网站版权信息结束 -->
 	</div>
 	<!-- footer部分结束 -->
 
 	<!--  模态框   -->
 	<div class="modal fade bs-example-modal-sm" id="crewmodal"
-		role="dialog">
+		role="dialog" ng-if="mainHome">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">

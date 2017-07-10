@@ -80,10 +80,10 @@
 		}
 		/* 页面主体表格 */
 		#u_tb1{
-			width:565px;
-			height:447px;
-			background-color:#FFF;
-			float:left;
+		    width: 565px;
+		    height: auto;
+		    background-color: #FFF;
+		    float: left;
 			}
 		  /* 表壳左、右边的间距 */
 		  #u_tb1 .u_td1{
@@ -116,7 +116,7 @@
 				 }
 		/* banner右边的表格 */
 	   #u_tb2{
-			width:200px;
+			width:198px;
 			height:447px;
 			float:right;
 			background-color:#e9f4fa;
@@ -214,3 +214,47 @@
 		    margin:0px auto;
 		    text-align:center;
 	  }
+	  
+.u_main {
+	float: left;
+    width: 564px;
+    min-height: 487px;
+    background: #fff;
+}
+
+.u_main_top {
+	margin:0;
+	height:50px;
+	background:#f7f7f7
+}
+
+.u_main_tip {
+	margin:0;
+	padding-top:10px;
+	padding-left:10px;
+	position:relative
+}
+
+.u_main_users {
+	background:f3f3f3;
+	height:100px;
+	position:relative;
+}
+.u_main_user {
+	background:#f7f7f7;
+	border-bottom:2px solid #f7f7f7;
+}
+.u_main_user_face{
+	padding-top: 30px;
+    padding-left: 30px;
+}
+.u_main_user_info{
+    position: relative;
+    top: -40px;
+    left: 110px;
+}
+.u_main_user_fuc {
+    position: relative;
+    top: -80px;
+    left: 400px;
+}

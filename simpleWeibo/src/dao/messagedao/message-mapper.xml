@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="deleteMessage">
-		delete from message where id = #{messageId}
+		delete from message where messageId = #{messageId}
 	</delete>
 	
 	<resultMap type="entity.Message" id="message">
@@ -108,12 +108,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findMessagesByUserId" parameterType="Integer" resultMap="message">
-		SELECT 
-			m.messageId as m_messageId, m.text as m_text, m.date as m_date, m.imgs as m_imgs, 
-			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang
+		SELECT DISTINCT
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, m.imgs as m_imgs, 
+			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
+			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 
+			uu.userId as uu_userId, uu.userName as uu_userName, uu.touxiang as uu_touxiang
 		FROM message m
-		left join user u on u.userId = m.userId
-		where
+		LEFT JOIN `user` u on u.userId = m.userId
+		LEFT JOIN `comment` c on c.messageId = m.messageId
+		LEFT JOIN `user` uu on uu.userId = c.userId
+		WHERE
 			m.userId = #{userId}
 		ORDER BY m.date DESC
 		<if test="currentPage != null and pageSize != null">
@@ -129,6 +134,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			messageId = #{messageId}
 		AND userId = #{userId}
+	</select>
+	
+	<select id="findTotalNumFocus" resultType="Integer">
+		SELECT 
+			COUNT(DISTINCT m.messageId)
+		FROM
+			fans_focus f
+		LEFT JOIN `user` u on u.userId = f.focusPeopleId
+		LEFT JOIN message m on m.userId = u.userId
+		LEFT JOIN `comment` c on c.messageId = m.messageId
+		LEFT JOIN `user` uu on uu.userId = c.userId
+		WHERE
+			f.fansId = #{userId} or u.userId = #{userId}
+	</select>
+	
+	<select id="findTotalNum" resultType="Integer">
+		SELECT 
+			COUNT(DISTINCT m.messageId)
+		FROM message m
+		left join user u on u.userId = m.userId
+		where
+			m.userId = #{userId}
+	</select>
+	
+	<select id="findAllTotalNum" resultType="Integer">
+		SELECT 
+			COUNT(DISTINCT m.messageId)
+		FROM message m
+		left join user u on u.userId = m.userId
 	</select>
 	
 	<select id="findFocusMessagesByUserId" parameterType="Integer" resultMap="message">
@@ -154,10 +188,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select> 
 	
 	<select id="findAllMessages" resultMap="message">
-		select 
-			messageId, text, date, `user`.userId, userName, touxiang
-		FROM message
-		left join user on user.userId = message.userId
+		SELECT DISTINCT
+			m.text as m_text, m.date as m_date, m.messageId as m_messageId, m.imgs as m_imgs, 
+			m.loveNum as m_loveNum, m.commentNum as m_commentNum, m.forwardNum as m_forwardNum,  
+			u.userId as u_userId, u.userName as u_userName, u.touxiang as u_touxiang,
+			c.commentId as c_commentId, c.text as c_text, c.time as c_time, 
+			uu.userId as uu_userId, uu.userName as uu_userName, uu.touxiang as uu_touxiang
+		FROM
+			message m
+		LEFT JOIN `user` u on u.userId = m.userId
+		LEFT JOIN `comment` c on c.messageId = m.messageId
+		LEFT JOIN `user` uu on uu.userId = c.userId
+		ORDER BY
+			 m.date DESC, c.time ASC
 		<if test="currentPage != null and pageSize != null">
 			LIMIT #{currentPage}, #{pageSize}
 		</if>

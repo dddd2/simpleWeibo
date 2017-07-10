@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.userdao.IUserDao">
 	<insert id="insertUser">
-		insert into user (userName,age,sex,email,phone,remark,touxiang) 
+		insert into user (userName,age,sex,email,phone,remark,touxiang,password) 
 			values 
 			(#{name}, 
 			 #{age,jdbcType=NUMERIC},
@@ -12,7 +12,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 #{email,jdbcType=VARCHAR},
 			 #{phone,jdbcType=VARCHAR},
 			 #{remark,jdbcType=VARCHAR},
-			 #{touxiang,jdbcType=VARCHAR})
+			 #{touxiang,jdbcType=VARCHAR},
+			 #{password,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="focusOn">
+		INSERT INTO 
+			fans_focus (fansId, focusPeopleId)
+		VALUES
+			(#{fansId}, #{focusPeopleId})
 	</insert>
 	
 	<update id="haveNewAboutMe" parameterType="Integer">
@@ -28,20 +36,76 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="updateUser">
-		update user 
-			set 
-			userName = #{name}, 
-			age = #{age,jdbcType=NUMERIC},
-			sex = #{sex,jdbcType=VARCHAR}, 
-			email = #{email,jdbcType=VARCHAR}, 
-			phone = #{phone,jdbcType=VARCHAR}, 
-			remark = #{remark,jdbcType=VARCHAR}, 
-			touxiang = #{touxiang,jdbcType=VARCHAR} 
-			where userId = #{userId}
+		UPDATE `user`
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name != null">
+				userName = #{name},
+			</if>
+			<if test="age != null">	
+				age = #{age,jdbcType=NUMERIC},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},	
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},	
+			</if>
+			<if test="phone != null">	
+				phone = #{phone,jdbcType=VARCHAR}, 
+			</if>
+			<if test="remark != null">	
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="touxiang != null">	
+				touxiang = #{touxiang,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR}, 	
+			</if>
+		</trim>
+		WHERE userId = #{userId}
 	</update>
 	
+	<update id="increaseFans">
+		UPDATE `user`
+		SET fansNum = fansNum + 1
+		WHERE
+			userId = #{userId}
+	</update>
+	
+	<update id="increaseFocusPeople">
+		UPDATE `user`
+		SET focusPeopleNum = focusPeopleNum + 1
+		WHERE
+			userId = #{userId}
+	</update>
+	
+	<update id="reduceFans">
+		UPDATE `user`
+		SET fansNum = fansNum - 1
+		WHERE
+			userId = #{userId}
+	</update>
+	
+	<update id="reduceFocusPeople">
+		UPDATE `user`
+			SET focusPeopleNum = focusPeopleNum - 1
+			WHERE
+				userId = #{userId}
+	</update>
+	
+	<delete id="takeOf">
+		DELETE
+		FROM
+			fans_focus
+		WHERE
+			fansId = #{fansId}
+		AND 
+			focusPeopleId = #{focusPeopleId}
+	</delete>
+	
 	<delete id="deleteUser">
-		delete from user where id = #{userId}
+		delete from user where userId = #{userId}
 	</delete>
 	
 	<resultMap type="entity.User" id="user">
@@ -52,6 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="email" column="email"/>
 		<result property="phone" column="phone"/>
 		<result property="remark" column="remark"/>
+		<result property="type" column="type"/>
 		<result property="touxiang" column="touxiang"/>
 		<result property="messageNum" column="messageNum"/>
 		<result property="fansNum" column="fansNum"/>
@@ -69,8 +134,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`user` u
 		WHERE
 			u.userId = #{id}
-	</select> 
-	
+	</select>
+
+	<select id="findUserByIdChange" parameterType="Integer" resultMap="user">
+		SELECT
+			u.userId,u.userName,u.age,u.sex,u.email,u.password,
+			u.phone,u.remark,u.touxiang,u.messageNum,u.fansNum,
+			u.focusPeopleNum,u.aboutMe
+		FROM
+			`user` u
+		WHERE
+			u.userId = #{id}
+	</select>
+
 	<select id="findUserByName" parameterType="String" resultMap="user">
 		SELECT
 			u.userId,u.userName
@@ -84,7 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 			u.userId,u.userName,u.age,u.sex,u.email,u.password,
 			u.phone,u.remark,u.touxiang,u.messageNum,u.fansNum,
-			u.focusPeopleNum
+			u.focusPeopleNum,u.type
 		FROM
 			`user` u
 		where
@@ -127,13 +203,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<select id="findAllUsers" resultMap="userList">
+	<select id="findTotalUsers" resultType="Integer">
 		select 
-			* 
+			count(DISTINCT userId)
 		from 
 			`user`
+	</select>
+	
+	<select id="findAllUsers" resultMap="user">
+		select 
+			u.userId,u.userName,u.age,u.sex,u.email,
+			u.phone,u.remark,u.touxiang,u.messageNum,u.fansNum,
+			u.focusPeopleNum,u.aboutMe 
+		from 
+			`user` u
 		<if test="currentPage != null and pageSize != null">
 			LIMIT #{currentPage}, #{pageSize}
 		</if>
 	</select>
+	
+	<select id="isFocus" resultType="Integer">
+		SELECT
+			id
+		FROM
+			fans_focus
+		WHERE
+			fansId = #{fansId} AND focusPeopleId = #{focusPeopleId}
+	</select>
+	
 </mapper>

@@ -1,221 +1,221 @@
 ﻿<!-- 总容器 container开 始-->
-<div id="container">
+<div id="m_container">
     <!-- topDIV 开始 -->
-    <div id="top">
+    <div id="m_top">
       <!-- top部分的LogoDIV -->
-    	<div id="topLogo">
+    	<div id="m_topLogo">
         	<!-- topLogo部分的icoDIV -->
-            <div id="topLogoIco"> <a href="CustomerIndex.html"><img src="images/logo_ipad.png" width="72" height="72" alt="" /></a>
+            <div id="m_topLogoIco"> <a><img src="../images/WB.png" width="72" height="72" alt="" /></a>
           </div>
             <!-- topLogo部分的icoDIV结束 -->
             
             <!-- topLogo部分的wordDIV -->
-            <div id="topLogoWord"> <a href="CustomerIndex.html"><img src="images/LogoMaker.gif" width="128" height="60" alt="" /></a>
+            <div id="m_topLogoWord"> <a ><img src="../images/WB1.png" width="128" height="60" alt="" /></a>
           </div>
             <!-- topLogo部分的wordDIV -->
         </div>
         <!-- top部分的LogoDIV结束 -->
         
         <!-- top部分的文字导航 -->
-        <div id="topWordMenu">
+        <div id="m_topWordMenu">
         	<ul>
-            	<li><a href="CustomerIndex.html">首页</a></li>
-                <li><a href="MyWB.html">我的微博</a></li>
-                <li><a href="#">找人</a></li>
-                <li><a href="setting.html">设置</a></li>
-                <li><a href="#">手机</a></li>
-                <li><a href="#">帮助</a></li>
-                <li><a href="index.html">退出</a></li>
+            	<li><a ng-click="go('personalPage')">个人中心</a>
+				<li><a ng-click="go('mainHome')">我的微博</a></li>
+				<li><a ng-click="go('account')">账号设置</a></li>
+				<li><a ng-click="go('password')">修改密码</a></li>
+				<li ng-click="logout()"><a href="index.html">退出</a></li>
             </ul>
         </div>
         <!-- top部分的文字导航结束 -->
     </div>
     <!-- topDIv 结束-->
     <!-- 内容总容器 mainDIV 开 始-->
-<div id="main">
+<div id="m_main">
 		<!-- 左侧mainBannerDIV 开始 -->
-      	<div id="mainBanner">
+      	<div id="m_mainBanner">
             <!-- 左侧mainBannerTopDIV 开始 -->
-            <div id="mainBannerTop">
+            <div id="m_mainBannerTop">
                 <!-- 左侧mainBannerTopImgDIV 开始 -->
-                <div id="mainBannerTopImg">
+                <div id="m_mainBannerTopImg">
+                	<img alt="" src="../images/default.jpg" ng-if="!user.touxiang" height="97" width="95">
+                	<img alt="" ng-src="{{user.touxiang}}" ng-if="user.touxiang" height="97" width="95">
                 </div>
             	<!-- 左侧mainBannerTopImgDIV 结束 -->
                 <!-- 左侧mainBannerToWordDIV 开始 -->
-                <div id="mainBannerTopWord"><font color="#330000"><b>DarkDemon</b></font><br />
-                <a href="#">http://t.ifeng.com/DarkDemon</a> 
+                <div id="m_mainBannerTopWord">
+                	<font color="#330000"><b>{{user.name}}</b></font><br>
+                	<span class="m_user_remark">{{user.remark}}</span>
                 </div>
             	<!-- 左侧mainBannerTopWordDIV 结束 -->
             </div>
             <!-- 左侧mainBannerTopDIV 结束 -->
             <!-- 左侧mainBannerMenuDIV 开始 -->
-            <div id="mainBannerMenu">
+            <div id="m_mainBannerMenu">
                 <!-- 左侧mainBannerMenuTopDIV 开始 -->
-                <div id="mainBannerMenuTop">
+                <div id="m_mainBannerMenuTop" ng-if="who == '我'">
                     <!-- 左侧mainBannerMenuTopWord1DIV 开始 -->
-                    <div id="mainBannerMenuTopWord1"><b>我自己</b>
+                    <div id="m_mainBannerMenuTopWord1"><b>我自己</b>
                     </div>
                     <!-- 左侧mainBannerMenuTopWord1DIV 结束-->
                     <!-- 左侧mainBannerMenuTopWord2DIV 开始 -->
-                    <div id="mainBannerMenuTopWord2"><img src="images/mainBannerMenuTopWord2.gif" title="" alt="" /><a href="CustomerIndex.html">发微博</a></div>
+                    <div id="m_mainBannerMenuTopWord2"><img src="images/mainBannerMenuTopWord2.gif" title="" alt="" />
+                    <a ng-click="go('personalPage')">发微博</a></div>
                     <!-- 左侧mainBannerMenuTopWord2DIV 结束 -->
                 </div>
             	<!-- 左侧mainBannerMenuTopDIV 结束-->
             </div>
             <!-- 左侧mainBannerMenu DIV 结束-->
             <!--自己发微博的地方-->
-            <div id="mainBannerContent"> 
-                <!--给微博定位-->
-               <div id="mainBannerContent1">
-                    <!--给微博定位-->
-                  <div id="mainBannerContent2">
-                     <!--个人微博-->
-                     <div id="mainBannerContent2People">
-                       <!-- 第一个人微博 mainBannerContent2PeopleImg DIV 开始 -->
-                        <div id="mainBannerContent2PeopleImg">
-                          	<img src="images/mainBannerContent2People1Img.gif" width="54" height="54" alt="" title="" />
-                        </div>
-                        <!-- 第一个人微博 mainBannerContent2PeopleImg DIV 结束 -->
-                        <!-- 第一个人微博 mainBannerContent2peopleWord DIV 开始  -->
-                        <div id="mainBannerContent2PeopleWord">
-<img src="images/biao.gif" alt="" width="17" height="13" align="absmiddle" id="pic1" title="" /> <font class="f1"><a href="#" class="a1">DarkDemon</a></font><font class="f2"> 【真相】 记得小时候书本上总说中国用世界7%的耕地养活了22%的人口，可是它没有告诉我们，这22%的人口养了世界60%的公务员；这22%的人口的教育经费只占世界的3%；这22%的人口的财富97%集中在其中1%的人手里；这22%的人口中的90%吃着全世界最毒的食物，缴纳着最高的税，干着最脏最累的活??? </font><br />
-						<font class="f3">今天&nbsp;&nbsp;11:11<div id="textright"><a href="#" class="a2">查看</a>&nbsp;&nbsp;<a href="#" class="a2">回复(3</a>)&nbsp;&nbsp;<a href="#" class="a2">转发</a>&nbsp;&nbsp;<img src="images/star.gif" alt="" width="16" height="17" align="absmiddle" title="" /></div></font><br />
-                        <a href="#" class="a1"><font class="style2">爱转发</font></a>&nbsp;&nbsp;<font class="f3">和其他31人转发过</font><br />
-                            <!--微博回复栏-->
-                            <div id="mainBannerContent2PeopleWordBack">
-                                 <table width="400" border="0" cellpadding="0" cellspacing="0">
-                                      <tr>
-                                        <td><img src="images/huifu3.gif" width="25" height="25" align="absmiddle" /><a href="#" class="a1">@依然</a>：事实胜于雄辩~~~<span style="color:#ccc">今天 12:20</span>   <a href="#">回复</a></td>
-                                      </tr>
-                                      <tr>
-                                        <td><img src="images/huifu2.gif" width="25" height="25" align="absmiddle" /><a href="#" class="a1">@呆呆</a>：让那帮吃人饭不办人事的人去坐动车吧！！！<span style="color:#ccc">今天 12:10</span><a href="#">回复</a></td>
-                                      </tr>
-                                    </table>
-                            </div><br />
+               <div id="p_mainBannerContent" ng-repeat="message in messages">
+				<!--个人展示-->
+				<div class="p_stateShow" ng-if="message.messageId">
+				
+					<div class="p_stateShowWord">
+						<div class="p_user_touxiang">
+							<img ng-click="go1('mainHome',message.user.userId)" style="cursor:pointer" src="../images/default.jpg" height="50" width="50"
+								ng-if="!message.user.touxiang">
+							<img ng-click="go1('mainHome',message.user.userId)" style="cursor:pointer" ng-src="{{message.user.touxiang}}" height="50" width="50"
+							ng-if="message.user.touxiang">
 						</div>
-                        <!-- 第一个人微博 mainBannerContent2peopleWord DIV 结束  -->
-                        <!--第二个人的微博-->
-                    <div id="mainBannerContent2People">
-                        <!-- 第二个人微博 mainBannerContent2PeopleImg DIV 开始 -->
-                        <div id="mainBannerContent2PeopleImg">
-                          	<img src="images/mainBannerContent2People1Img.gif" width="54" height="54" alt="" title="" />
-                        </div>
-                        <!-- 第二个人微博 mainBannerContent2PeopleImg DIV 结束 -->
-                        <!-- 第二个人微博 mainBannerContent2PeopleWord DIV 开始 -->
-                        <div id="mainBannerContent2PeopleWord">
-                        <img src="images/biao.gif" alt="" width="17" height="13" align="absmiddle" id="pic" title="" /> <font class="f1"><a href="#" class="a1">DarkDemon</a></font><font class="f2">&nbsp;&nbsp;你我都是这“奇迹”国中的一员... 
-</font><br /><br />
-                        <img src="images/SCT.gif" width="34" height="166" alt="" title="" /><br /><br />
-						<font class="f3">07月30日&nbsp;&nbsp;12:56<div id="textright"><a href="#" class="a2">查看</a>&nbsp;&nbsp;<a href="#" class="a2">回复(4)</a>&nbsp;&nbsp;<a href="#" class="a2">转发</a>&nbsp;&nbsp;<img src="images/star.gif" alt="" width="16" height="17" align="absmiddle" title="" /></div></font><br />
-                        <a href="#" class="a1"><font class="style2">爱转发</font></a>&nbsp;&nbsp;<font class="f3">和其他26人转发过</font><br />
-                        <!--微博回复栏-->
-                            <div id="mainBannerContent2PeopleWordBack">
-                                 <table width="400" border="0" cellpadding="0" cellspacing="0">
-                                          <tr>
-                                            <td><img src="images/huifu1.gif" width="25" height="25" align="absmiddle" /><a href="#" class="a1">@灵步传奇</a>：社会啊~~~<a href="#"><span style="color:#ccc">08:0112:00</span>回复</a></td>
-                                          </tr>
-                                          <tr>
-                                            <td><img src="images/huifu4.gif" width="25" height="25" align="absmiddle" /><a href="#" class="a1">@DarkDemon</a>：恩啊，唉~~~~<a href="#"><span style="color:#ccc">07月31 12:00</span>回复</a></td>
-                                          </tr>
-                                          <tr>
-                                            <td><img src="images/huifu1.gif" width="25" height="25" align="absmiddle" /><a href="#" class="a1">@灵步传奇</a>：无颜以对啊..<a href="#">.<span style="color:#ccc">07月31 12:00</span>回复</a></td>
-                                          </tr>
-                                          <tr>
-                                            <td><img src="images/huifu2.gif" width="25" height="25" align="absmiddle" /><a href="#" class="a1">@呆呆</a>：我也无语啊！！<a href="#"><span style="color:#ccc">07月30 13:00</span>回复</a></td>
-                                          </tr>
-                                        </table>
-
-                            </div><br /><br />
+						<div class="p_user_info">
+							<a class="p_user_info_name">{{message.user.name}}</a> <span
+								class="p_user_info_time">{{message.date|date:'yyyy-MM-dd
+								HH:mm:ss'}}</span>
 						</div>
-                        <!-- 第二个人微博 mainBannerContent2peopleWord DIV 结束  -->
+						<div class="p_message" ng-bind-html="message.text|trustHtml"></div>
+						<div class="p_message_imgs" ng-if="message.imgs">	
+			                <img alt="" ng-src="{{img}}" width="120" height="120" ng-repeat="img in message.imgs track by $index">
+		                </div>
+						<div class="p_function">
+							<a class="p_function_f">转发({{message.forwardNum}})</a> <a
+								class="p_function_f">回复({{message.commentNum}})</a> <a
+								class="p_function_f" ng-click="loveMessage(message)">赞({{message.loveNum}})</a>
+						</div>
 					</div>
-                     </div>
-                     <!--个人微博-->
-                  </div>  
-                  <!--给微博定位结束-->
-               </div>
-                 <!--给微博定位结束-->
+				</div>
+				<!--个人展示结束-->
+				<div class="p_comments">
+					<div class="p_comment" ng-repeat="comment in message.comments">
+						<div class="p_comment_touxiang">
+							<img ng-click="go1('mainHome',comment.user.userId)" ng-if="!comment.user.touxiang" src="../images/default.jpg" height="30" width="30">
+							<img ng-click="go1('mainHome',comment.user.userId)" ng-src="{{comment.user.touxiang}}" ng-if="comment.user.touxiang" height="30" width="30">
+						</div>
+						<div class="p_comment_main">
+							<a class="p_comment_name">{{comment.user.name}}</a>: <span
+								class="p_comment_text">{{comment.text}}</span> <span
+								class="p_comment_time">{{comment.time|date:'yyyy-MM-dd
+								HH:mm:ss'}}</span> <a class="p_comment_func"
+								ng-click="commentTo(message, comment.user.name)">回复</a>
+						</div>
+					</div>
+				</div>
+				<div ng-if="message.messageId" class="p_comment_box">
+					<textarea class="p_comment_textarea" style="resize: none;" rows="1.5" cols="75"
+						ng-model="message.comment"></textarea>
+					<div style="padding-bottom: 3px">
+						<!-- <a ng-click="show()">@@@</a> -->
+						<button id="p_button10"
+							style="background-color: #3295E6; border: none"
+							ng-click="submitComment(message)">回复</button>
+					</div>
+				</div>
+			</div>
             </div>
              <!--自己发微博的地方结束-->
         </div>
         <!-- 左侧mainBannerDIV 结束 -->                       
         <!-- 右侧mainRight DIV开始 -->
-        <div id="mainRight">
-            <div id="mainRight1">
+        <div id="m_mainRight">
+            <div id="m_mainRight1">
                <!-- 右侧mainRightPostionFirstLine DIV 开始 -->
-                <div id="mainRightPostionFirstLine">
+                <div id="m_mainRightPostionFirstLine">
                     <!-- 右侧mainRightPostionFirstLineIcon DIV 开始 -->
-                    <div id="mainRightPostionFirstLineIcon">
-                    <a href="#"><img src="images/MainRightFirstLineTitle.gif" alt="" width="48" height="48" align="absmiddle" title="" border="0" /></a>
+                    <div id="m_mainRightPostionFirstLineIcon">
+                    <a >
+                    	<img src="../images/default.jpg" ng-if="!user.touxiang" alt="" width="48" height="48" align="absmiddle" title="" border="0" />
+                    	<img ng-src="{{user.touxiang}}" width="48" height="48" ng-if="user.touxiang">
+                    </a>
+                    
                     </div>
                     <!-- 右侧mainRightPostionFirstLineIcon DIV 结束 -->
                     <!-- 右侧mainRightPostionFirstLineWord1 DIV 开始 -->
-                    <div id="mainRightPostionFirstLineWord1">                 
-                    &nbsp;<font color="#005DC3" ><b><a href="MyWB.html" class="a1">DarkDemon</a></b></font><br />
-                    &nbsp;天津&nbsp;&nbsp;河西区
+                    <div id="m_mainRightPostionFirstLineWord1">                 
+                    &nbsp;<font color="#005DC3" ><b><a class="m_a1">{{user.name}}</a></b></font><br />
+                    	<span ng-if="who == '他'">
+							<a ng-if="!isFocus" ng-click="focusOn()" class="m_focus">关注 +</a>   
+							<a ng-if="isFocus" ng-click="takeOf()" class="m_focus">取消关注 </a>                  	
+                    	</span>
                     </div>
                     <!-- 右侧mainRightPostionFirstLineWord1 DIV 结束 -->
                     <!-- 右侧mainRightPostionFirstLineWord2 DIV 开始 -->
-                    <div id="mainRightPostionFirstLineWord2">
-                    <ul id="ul1">
-                    <li><a href="MyWB.html" class="a1"><font class="style1">2</font><br /><font class="style2">微博</font></a></li>
-                    <li><a href="friend.html" class="a1"><font class="style1">12</font><br /><font class="style2">关注</font></a></li>
-                    <li><a href="focusonyou.html" class="a1"><font class="style1">23</font><br /><font class="style2">粉丝</font></a></li>
+                    <div id="m_mainRightPostionFirstLineWord2">
+                    <ul id="m_ul1">
+                    <li><a class="m_a1">
+                    	<font class="m_style1">{{user.messageNum}}</font><br />
+                    	<font class="m_style2">微博</font>
+                    </a></li>
+                    <li><a class="m_a1">
+                    	<font class="m_style1">{{user.focusPeopleNum}}</font><br />
+                    	<font class="m_style2">关注</font>
+                    </a></li>
+                    <li><a class="m_a1">
+                    	<font class="m_style1">{{user.fansNum}}</font><br />
+                    	<font class="m_style2">粉丝</font>
+                    </a></li>
                     </ul>
                     </div>
                 <!-- 右侧mainRightPostionFirstLineWord2 DIV 结束 -->                    
                 </div>
-                <!-- 右侧mainRightPostionFirstLine DIV 结束 -->
-                <div id="mainRightPostionFifthLine">
-                    <div id="mainRightPositionFifthLineContent">
-                    <a href="#" onclick="" class="a1"><font class="style4">我关注的话题</font>
-                    <img src="images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a>
-                    </div>
-              </div>
                 <!-- 右侧mainRightPostionSixthLine DIV 开始 -->
-              <div id="mainRightPostionSixthLine">
-                    <div id="mainRightPositionSixthLineContent">
-                    <a href="#" onclick="" class="a1"><font class="style4">我关注的</font>
-                    <img src="images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a>
+              <div id="m_mainRightPostionSixthLine">
+                    <div id="m_mainRightPositionSixthLineContent">
+                    <a ng-click="goUserList('focusPeople')" class="m_a1" style="cursor:pointer">
+                    	<font class="m_style4">{{who}}关注的人</font>
+                    </a>
                     </div>
-                    <ul>
-                    <a href="#" class="a1"><li><img src="images/WBXM.gif" border="0" /><br /><font class="style2">微博小秘</font></li></a>
-                    <a href="#" class="a1"><li><img src="images/AXXR.gif" border="0" /><br /><font class="style2">&nbsp;&nbsp;转&nbsp;&nbsp;发</font></li></a>
-                    <a href="#" class="a1"><li><img src="images/LBXR.gif" border="0" /><br /><font class="style2">微博新人</font></li></a>
+                    <ul ng-repeat = "focusPeople in focusPeoples">
+	                    <a class="m_a1"><li>
+	                    	<img src="../images/default.jpg" style="cursor:pointer" ng-click="goUserHome(focusPeople.userId)" width="48" height="48" ng-if="!focusPeople.touxiang" border="0" />
+	                    	<img ng-src="{{focusPeople.touxiang}}" style="cursor:pointer" ng-click="goUserHome(focusPeople.userId)" width="48" height="48" ng-if="focusPeople.touxiang"/><br />
+	                    	<font class="m_style2">{{focusPeople.name}}</font>
+	                    </li></a>
                     </ul>
                 </div>
                  <!-- 右侧mainRightPostionSeventhLine DIV 开始 -->
-                <div id="mainRightPostionSeventhLine">
-                    <div id="mainRightPositionSevenLineContent">
-                    灵步微博的成长，离不开你们。<br />
-                    <font class="style2"><a href="#" class="a1">有意见要提（点击） </a><br /><br />
-                    <a href="#" class="a1" onclick="set()">不良信息举报中心</a></font> 
-                    </div>
+               <div id="m_mainRightPostionSeventhLine">
+                    <div id="m_mainRightPositionSeventhLineContent" style="cursor:pointer">
+                    	<a class="m_a1" ng-click="goUserList('focusPeople')" ><font class="m_style4">关注{{who}}的人</font></a>
+                  	</div>
+                    <ul ng-repeat="fan in fans">
+	                    <a class="m_a1"><li>
+	                    	<img src="../images/default.jpg" style="cursor:pointer" ng-click="goUserHome(fan.userId)" ng-if="!fan.touxiang" width="48" height="48" border="0" />
+	                    	<img ng-src="{{fan.touxiang}}" style="cursor:pointer" ng-click="goUserHome(fan.userId)" ng-if="fan.touxiang" width="48" height="48" border="0" /><br />
+	                    	<font class="m_style2">{{fan.name}}</font>
+	                    </li></a>
+                    </ul>
                 </div>
-                <!-- 右侧mainRightPostionSixthLine DIV 结束 -->
           </div>
         </div>         
   </div>
   <!-- 内容总容器 mainDIV 结束-->
   <!-- footer部分 -->
-  <div id="footer">
+  <div id="m_footer">
    	  <!-- footer网站链接部分 -->
-   	  <div id="footerLink">      
+   	  <div id="m_footerLink">      
           <ul>
-           	  <li><a href="#" class="a2">灵步网介绍</a></li>
-              <li><a href="#" class="a2">广告服务</a></li>
-              <li><a href="#" class="a2">API</a></li>
-              <li><a href="#" class="a2">诚征英才</a></li>
-              <li><a href="#" class="a2">保护隐私权</a></li>
-              <li><a href="#" class="a2">免责条款</a></li>
-              <li><a href="#" class="a2">法律顾问</a></li>
-              <li><a href="#" class="a2">意见反馈</a></li>
+              <li><a  class="m_a2">广告服务</a></li>
+              <li><a  class="m_a2">API</a></li>
+              <li><a  class="m_a2">诚征英才</a></li>
+              <li><a  class="m_a2">保护隐私权</a></li>
+              <li><a  class="m_a2">免责条款</a></li>
+              <li><a  class="m_a2">法律顾问</a></li>
+              <li><a  class="m_a2">意见反馈</a></li>
           </ul>
       </div>
       <!-- footer网站链接部分结束 -->
       <!-- footer网站版权信息 -->
-      <div id="footerCopy">
-       	  Copyright&copy;2011-2012 灵步小组 版权所有
+      <div id="m_footerCopy">
+       	  Copyright&copy;2017-2018 simpleWeibo 版权所有
       </div>
       <!-- footer网站版权信息结束 -->
   </div>

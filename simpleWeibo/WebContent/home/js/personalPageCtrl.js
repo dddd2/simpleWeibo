@@ -45,6 +45,22 @@ angular.module('personalPage',[])
 			$scope.cleanAboutMe();
 		}
 		
+		$scope.goUserList = function(type) {
+			$state.go("userList",{type:type,id:$scope.localUser.userId});
+		}
+		
+		$scope.goUserHome = function(id) {
+			$state.go('mainHome',{id:id});
+		}
+		
+		$scope.logout = function() {
+			locals.clear("localUser");
+			$state.go("login");
+		}
+		
+		$scope.go = function(key) {
+			$state.go(key, {id:$scope.localUser.userId});
+		}
 		//初始化方法
 		$scope.init = function () {
 			$scope.findUserById();
@@ -64,6 +80,11 @@ angular.module('personalPage',[])
 		$scope.show=function(){
 	        $("#crewmodal").modal('show');
 	    };
+	    
+	    //隐藏模态框
+	    $scope.hide=function() {
+	    	$("#crewmodal").modal('hide');
+	    }
 	    
 	    //图片预览
 	    $scope.showPicture = function(files) {
@@ -103,11 +124,6 @@ angular.module('personalPage',[])
 	        }
 	        $scope.keywords.splice(key,1);
 	        delete $scope.pictures[guidArr[key]];
-	    }
-	    
-	    //隐藏模态框
-	    $scope.hide=function() {
-	    	$("#crewmodal").modal('hide');
 	    }
 /*==============================查看过@我的==============================*/
 	    $scope.cleanAboutMe = function() {
@@ -238,6 +254,7 @@ angular.module('personalPage',[])
 				$scope.dealMessagesInit($scope.messages);
 				$scope.dealMessagesPic($scope.messages);
 				$scope.dealMessagesBiaoqing($scope.messages);
+				$scope.parseTouxiangForMessageList($scope.messages);
 			})
 			.error(function(error){
 				alert(error);
@@ -258,6 +275,7 @@ angular.module('personalPage',[])
 				$scope.dealMessagesInit($scope.aboutMeMessages);
 				$scope.dealMessagesPic($scope.aboutMeMessages);
 				$scope.dealMessagesBiaoqing($scope.aboutMeMessages);
+				$scope.parseTouxiangForMessageList($scope.aboutMeMessages);
 			})
 			.error(function(error){
 				alert(error);
@@ -266,14 +284,16 @@ angular.module('personalPage',[])
 /*====================================处理@好友标签================================*/		
 		$scope.dealMessagesInit = function(messages) {
 			angular.forEach(messages, function(message){
-				var arrs = message.text.split(" ");
-				message.text = "";
-				angular.forEach(arrs, function(arr){
-					if(arr.charAt(0) == "@") {
-						arr = '<a>' + arr +'</a>';
-					}
-					message.text += arr;
-				})
+				if(message.text) {
+					var arrs = message.text.split(" ");
+					message.text = "";
+					angular.forEach(arrs, function(arr){
+						if(arr.charAt(0) == "@") {
+							arr = '<a>' + arr +'</a>';
+						}
+						message.text += arr;
+					})
+				}
 			})
 		}
 		
@@ -290,11 +310,41 @@ angular.module('personalPage',[])
 				}
 			})
 		} 
+/*==================================头像=======================================*/
+		$scope.parseTouxiangForList = function(users) {
+			angular.forEach(users, function(user) {
+				if(user.touxiang) {
+					user.touxiang = "data:image/jpg;base64," + user.touxiang;
+				}
+			})
+		} 
 		
+		$scope.parseTouxiang = function(user) {
+			if(user.touxiang) {
+				user.touxiang = "data:image/jpg;base64," + user.touxiang;
+			}
+		} 
+		
+		$scope.parseTouxiangForMessageList = function(messages) {
+			angular.forEach(messages, function(message) {
+				if(message.user.touxiang) {
+					message.user.touxiang = "data:image/jpg;base64," + message.user.touxiang;
+				}
+				if(message.comments.length > 0) {
+					angular.forEach(message.comments, function(comment){
+						if(comment.user.touxiang) {
+							comment.user.touxiang = "data:image/jpg;base64," + comment.user.touxiang;
+						}
+					})
+				}
+			})
+		}
 /*=================================处理表情======================================*/
 		$scope.dealMessagesBiaoqing = function(messages) {
 			angular.forEach(messages, function(message) {
-				message.text = message.text.replace(/imgng-/g, "img ng-");
+				if(message.text) {
+					message.text = message.text.replace(/imgng-/g, "img ng-");
+				}
 			})
 		}
 		
@@ -308,6 +358,7 @@ angular.module('personalPage',[])
 			})
 			.success(function(data) {
 				$scope.fans = data;
+				$scope.parseTouxiangForList($scope.fans);
 			})
 			.error(function(error){
 				alert(error);
@@ -324,6 +375,7 @@ angular.module('personalPage',[])
 			})
 			.success(function(data) {
 				$scope.focusPeoples = data;
+				$scope.parseTouxiangForList($scope.focusPeoples);
 			})
 			.error(function(error){
 				alert(error);
@@ -338,6 +390,7 @@ angular.module('personalPage',[])
 			})
 			.success(function(data) {
 				$scope.user = data;
+				$scope.parseTouxiang($scope.user);
 			})
 			.error(function(error){
 				alert(error);

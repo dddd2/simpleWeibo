@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 /* 总容器 container */
-#container{
+#m_container{
 	border:0px;
 	padding:0px;	
 	width:765px;
@@ -10,36 +10,36 @@
 }
 
 	/* 上面topDIV */
-#top{
+#m_top{
 	width:765px;
 	height:80px;
 	position:relative;
 }
 	/* top部分的LogoDIV */
-	#topLogo{
+	#m_topLogo{
 		width:200px;
 		height:80px;	
 	}
 		/* topLogo部分的icoDIV */
-		#topLogoIco{
+		#m_topLogoIco{
 			width:72px;
 			height:72px;
 			margin-top:4px;
 			float:left;
 		}
 		/* topLogo部分的wordDIV */
-		#topLogoWord{
+		#m_topLogoWord{
 			width:128px;
 			height:60px;
 			float:left;
 			margin-top:12px;
 		}
 			/* topLogo下的img */
-			#topLogo img{
+			#m_topLogo img{
 				border:none;
 			}
 	/* top部分的文字导航 */
-	#topWordMenu{
+	#m_topWordMenu{
 		width:330px;
 		height:30px;
 		position:absolute;
@@ -47,54 +47,54 @@
 		left:430px;
 	}
 		/* top部分的ul */
-		#topWordMenu ul{
+		#m_topWordMenu ul{
 			margin:0px;
 			padding:0px;
 			list-style:none;
 		}
 			/* top部分的li */
-			#topWordMenu ul li{
+			#m_topWordMenu ul li{
 				display:inline;
 				/*float:left;*/
 				margin:0px 8px;
 			}
 			/* top部分的文字链接 */
-			#topWordMenu a:link{
+			#m_topWordMenu a:link{
 				text-decoration:none;
 			}
-			#topWordMenu a:visited{
+			#m_topWordMenu a:visited{
 				text-decoration:none;
 			}
-			#topWordMenu a:hover{
+			#m_topWordMenu a:hover{
 				color:#FFF;
 				text-decoration:none;
 			}
 
 	/* 内容总容器 mainDIV */
-	#main{
+	#m_main{
 		border:0px;
 		padding:0px;
 		margin:0px;
 		width:765px;
-		height:843px;
+		height:auto;
 		position:relative;
-		background-color:#CCC;
+		background:#E9F4FA;
+
 	}
 		/* 左侧mainBannerDIV */
-		#mainBanner{
+		#m_mainBanner{
 			border:0px;
 			padding:0px;
 			margin:0px;
-			height:842px;
+			min-height:842px;
 			width:562px;
-			float:left;
-			position:absolute;
+			position:relative;
 			left:1px;
 			top:1px;
 			background-color:#FFF;
 		}
 		/*mainBannerTop Banner的首部*/
-		#mainBannerTop{
+		#m_mainBannerTop{
 			width:562px;
 			height:123px;
 			padding:0px;
@@ -102,7 +102,7 @@
 			position:relative;
 			}
 		/*mainBannerTopImg 头像*/	
-		#mainBannerTopImg{
+		#m_mainBannerTopImg{
 			width:95px;
 			height:97px;
 			position:absolute;
@@ -111,18 +111,18 @@
 			background-image:url(../images/people1.gif);
 			}
 		/*mainBannerTopWord 文字*/	
-		#mainBannerTopWord{
-			width:200px;
-			height:37px;
-			margin:0px;
-			padding:0px;
-			position:absolute;
-			left:130px;
-			top:52px;
-			line-height:18px;
+		#m_mainBannerTopWord{
+			    width: 200px;
+			    height: 37px;
+			    margin: 0px;
+			    padding: 0px;
+			    position: absolute;
+			    left: 150px;
+			    top: 22px;
+			    line-height: 18px;
 			}	
 			/*mainBannerMenu提示框*/
-			#mainBannerMenu{
+			#m_mainBannerMenu{
 				width:562px;
 				height:58px;
 				padding:0px;
@@ -130,7 +130,7 @@
 				position:relative;
 				}
 				/*确定字的位置*/
-				#mainBannerMenuTop{
+				#m_mainBannerMenuTop{
 					width:520px;
 					height:38px;
 					padding:0px;
@@ -143,7 +143,7 @@
 					background-color:#e4f5fd;
 					}
 					/*第一个文字*/
-				  #mainBannerMenuTopWord1{
+				  #m_mainBannerMenuTopWord1{
 	                 width:60px;
 	                 height:17px;
 	                 padding:0px;
@@ -154,7 +154,7 @@
 	                 font-size:16px;
 					 }	
 		            /*第二个文字*/
-				   #mainBannerMenuTopWord2{
+				   #m_mainBannerMenuTopWord2{
 	                  width:58px;
 	                  height:18px;
 	                  padding:0px;
@@ -165,7 +165,7 @@
 	                  font-size:13px;
 					   }
 				/*自己的微波块*/	   
-				#mainBannerContent{
+				#m_mainBannerContent{
 					padding:0px;
 					margin:0px;
 					position:relative;
@@ -173,81 +173,81 @@
 					height:auto;
 					}
 				 /*给微博定位*/
-				 #mainBannerContent1{
+				 #m_mainBannerContent1{
 					 width:522px;
 						height:auto;
 						padding:0px;
 						margin:0px;
-						position:absolute;
+						position:relative;
 						left:20px;
 						top:0px;
 				}
 				 /*给微博定位*/
-				 #mainBannerContent2{
+				 #m_mainBannerContent2{
 					 width:522px;
 			         height:auto;
 			         padding:0px;
 			         margin:0px;
 				     position:relative;
 					 }
-font.f1{
+font.m_f1{
 	font-size:14px;
 	color:#005DC3;
 	font-weight:700;
 	text-decoration:none;
 }
-font.f2{
+font.m_f2{
 	font-size:14px;
 	color:#000;
 }
-font.f3{
+font.m_f3{
 	font-size:12px;
 	color:#999999;
 }
 /* 微博个人小图像 mainBannerContent2People1Img DIV */
-#mainBannerContent2PeopleImg{
+#m_mainBannerContent2PeopleImg{
 width:54px;
 height:54px;
 margin-top:8px;
 margin-left:opx;
 float:left;
 }
-#pic{
+#m_pic{
 	margin-left:0px;
 	margin-top:0px;
 }
 /* 个人的微博容器 DIV */
-#mainBannerContent2People{
+#m_mainBannerContent2People{
 	 width:522px;
 	 height:auto;
 	 padding:0px;
 	 margin:0px 0px 2px 0px;
 	 border-bottom:dashed 1px #DDDDDD;
 }
-#textright{
+#m_textright{
 	float:right;
 	width:auto;
 	height:auto;
 }
 /* 第一个人微博 mainBannerContent2PeopleWord DIV  */
-#mainBannerContent2PeopleWord{
+#m_mainBannerContent2PeopleWord{
 	margin-left:64px;
 	margin-top:8px;
 	padding-top:8px;
 	width:458px;
 	height:auto;
 }
-font.f4{
+font.m_f4{
 	color:#F00;
 	font-size:14px;	
 }	
 /*查看回复的类*/
-a .a2:link{
+a .m_a2:link{
 	text-decoration:none;
 	color:#999999;
 	}
      /*微博回复栏 */
-     #mainBannerContent2PeopleWordBack{
+     #m_mainBannerContent2PeopleWordBack{
 		 width:395px;
 		 height:auto;
 		 margin-left:45px;
@@ -256,18 +256,17 @@ a .a2:link{
 		 }
 
 	    /* 右侧mainRightDiv */
-		#mainRight{
+		#m_mainRight{
 			padding:0px;
 			margin:0px;
 			border:0px;
 			width:200px;
 			height:417px;
 			position:absolute;
-			top:1px;
-			left:564px;
-			background-color:#A6D3E3;
+		    top: 81px;
+			left: 856px;
 		}	
-		#mainRight1{
+		#m_mainRight1{
 			border:0px;
 			padding:0px;
 			margin:0px;
@@ -276,7 +275,7 @@ a .a2:link{
 			position:relative;
 			}
 			/* 右侧内部第一行容器 mainRightPostionFirstLine DIV */ 
-			#mainRightPostionFirstLine{
+			#m_mainRightPostionFirstLine{
 	width:200px;
 	padding:0px;
 	margin:0px;
@@ -289,7 +288,7 @@ a .a2:link{
 	border-bottom:1px solid #A6D3E3;	
 			}
 				/* 右侧第一行图标 mainRightFirstLineIcon DIV*/
-				#mainRightPostionFirstLineIcon{
+				#m_mainRightPostionFirstLineIcon{
 					width:48px;
 					padding:0px;
 					margin-top:10px;
@@ -299,7 +298,7 @@ a .a2:link{
 					float:left;
 				}
 				/* 右侧第一行标题 mainRightFirstLineWord1 DIV*/
-				#mainRightPostionFirstLineWord1{
+				#m_mainRightPostionFirstLineWord1{
 					width:120px;
 					height:40px;
 					margin-left:75px;
@@ -308,7 +307,7 @@ a .a2:link{
 					padding:0px;	
 				}
 				/* 右侧第一行标题 mainRightFirstLineWord2 DIV*/
-				#mainRightPostionFirstLineWord2{
+				#m_mainRightPostionFirstLineWord2{
 					width:180px;
 					height:40px;
 					margin-left:0px;
@@ -317,7 +316,7 @@ a .a2:link{
 					padding:0px;						
 				}				
 				/*  mainRightFirstLineWord2 ul格式 */
-				#mainRightPostionFirstLineWord2 ul{
+				#m_mainRightPostionFirstLineWord2 ul{
 					height:40px;
 					width:180px;
 					list-style:none;
@@ -325,12 +324,12 @@ a .a2:link{
 					padding:0px;
 				}
 				/*  mainRightFirstLineWord2 li格式 */
-				#mainRightPostionFirstLineWord2 ul li{	
+				#m_mainRightPostionFirstLineWord2 ul li{	
 					margin:0px 15px;
 					float:left;
 				}					
 			/* 右侧内部第五行容器 mainRightPostionFifthLine DIV */ 
-			#mainRightPostionFifthLine{
+			#m_mainRightPostionFifthLine{
 				width:200px;
 				padding:0px;
 				margin:0px;
@@ -342,77 +341,83 @@ a .a2:link{
 				top:118px;
 				border-bottom:1px solid #A6D3E3;	
 			}
-				#mainRightPositionFifthLineContent{
+				#m_mainRightPositionFifthLineContent{
 					margin-top:10px;
 					margin-left:15px;
 					
 				}
 			/* 右侧内部第六行容器 mainRightPostionSixthLine DIV */ 
-			#mainRightPostionSixthLine{
+			#m_mainRightPostionSixthLine{
 	width:200px;
 	padding:0px;
 	margin:0px;
 	border:0px;
 	position:absolute;
 	left:0px;
-	top:163px;
+	top:120px;
 	height:130px;
 	background-color:#E9F4FA;
 	border-bottom:1px solid #A6D3E3;
 			}
-				#mainRightPositionSixthLineContent{
+				#m_mainRightPositionSixthLineContent{
 					margin-top:10px;
 					margin-left:15px;
 				}
-				#mainRightPostionSixthLine ul{
+				#m_mainRightPostionSixthLine ul{
 					list-style:none;
 					padding:0px;
 					margin:10px 0px 0px 10px;
 				}
-				#mainRightPostionSixthLine ul li{
+				#m_mainRightPostionSixthLine ul li{
 					float:left;
 					margin:0px 5px;
 				}
 			/* 右侧内部第七行容器 mainRightPostionSeventhLine DIV */ 
 				
-			#mainRightPostionSeventhLine{
-				width:200px;
-				padding:0px;
-				margin:0px;
-				border:0px;
-				position:absolute;
-				left:0px;
-				top:294px;
-				height:548px;
-				background-color:#E9F4FA;
+			#m_mainRightPostionSeventhLine{
+	width:200px;
+	padding:0px;
+	margin:0px;
+	border:0px;
+	position:absolute;
+	left:0px;
+	top:253px;
+	height:130px;
+	background-color:#E9F4FA;
+	border-bottom:1px solid #A6D3E3;
 			}
-				#mainRightPositionSevenLineContent{
-					padding:0px;
-					border:0px;
-					height:auto;
-					width:170px;
+				#m_mainRightPositionSeventhLineContent{
 					margin-top:10px;
 					margin-left:15px;
 				}
-.a1{
+				#m_mainRightPostionSeventhLine ul{
+					list-style:none;
+					padding:0px;
+					margin:10px 0px 0px 10px;
+				}
+				#m_mainRightPostionSeventhLine ul li{
+					float:left;
+					margin:0px 5px;
+				}
+.m_a1{
 	text-decoration:none;
 }
 /*  Word字体格式1 */
-font.style1{
+font.m_style1{
 	font-weight:700;
 	color:#555555;
 	font-size:16px;
 }
 /*  Word字体格式2 */
-font.style2{
+font.m_style2{
 	color:#005DC3;
 }
 /*  Word字体格式3 */
-font.style4{
+font.m_style4{
 	color:#000;
 	font-size:14px;
 }
-hr.h1{
+hr.m_h1{
 	border-top:1px dashed #79BDD1; 
 	height:1px; 
 	border-bottom-style:none;
@@ -420,14 +425,14 @@ hr.h1{
 
 
 /* footer部分*/
-	#footer{
+	#m_footer{
 		width:765px;
 		height:50px;
 		margin:0px auto;
 		background-color:#C1E6F5;
 	}
 	/* footer链接部分*/
-	#footerLink{
+	#m_footerLink{
 		width:600px;
 		height:30px;
 		margin:0px auto;
@@ -436,18 +441,18 @@ hr.h1{
 		color:#444444;
 	}
 		/* footer部分的链接 */
-		#footerLink ul{
+		#m_footerLink ul{
 			list-style:none;
 			padding:0px;
 			margin:0px;
 		}
-		#footerLink li{
+		#m_footerLink li{
 			/*float:left;*/
 			display:inline;
 			margin:0px 10px;
 		}
 	/* footer部分的版权信息 */
-	#footerCopy{
+	#m_footerCopy{
 		width:250px;
 		height:20px;
 		color:#444444;
@@ -455,7 +460,26 @@ hr.h1{
 		margin:0px auto;
 		text-align:center;
 	}
-.a2{
+.m_a2{
 	color:#444444;
 	text-decoration:none;
+}
+
+.m_focus{
+	display: block;
+    width: 54px;
+    height: 25px;
+    padding: 0 !important;
+    line-height: 25px;
+    color: #fff;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+    background: #fa7d3c;
+    background: -webkit-linear-gradient(top, #fa7d3c 0%,#f55f10 100%);
+    background: linear-gradient(top bottom, #fa7d3c 0%,#f55f10 100%);
+    text-align: center;
+}
+
+.m_user_remark {
+	display: inline-block;
+    margin-top: 15px;
 }

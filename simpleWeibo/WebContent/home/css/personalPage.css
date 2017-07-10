@@ -150,6 +150,9 @@
 					background-color: #FFFFFF;
 					visibility:hidden;
 			  }
+			  #p_biaoqing td{
+			  		cursor:pointer;
+			  }
 			/*id=mainBannerTopIssue 发布框*/
 			#p_mainBannerTopIssue{
 				height:191px;
@@ -453,6 +456,7 @@
 				#p_mainRightPostionFirstLineIcon{
 					width:48px;
 					padding:0px;
+					padding-top:10px;
 					margin-left:15px;
 					border:0px;
 					height:48px;

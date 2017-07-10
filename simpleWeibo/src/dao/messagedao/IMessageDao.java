@@ -99,4 +99,19 @@ public interface IMessageDao {
 	public Integer isLoved(
 			@Param("userId")Integer userId,
 			@Param("messageId")Integer messageId);
+	/**
+	 * 查找个人所有微博的数量
+	 * @return
+	 */
+	public Integer findTotalNum(Integer userId);
+	/**
+	 * 查找动态所有微博数量
+	 * 
+	 */
+	public Integer findTotalNumFocus(Integer userId);
+	/**
+	 * 查找所有微博的数量
+	 * @return
+	 */
+	public Integer findAllTotalNum();
 }

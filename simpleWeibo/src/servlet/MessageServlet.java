@@ -1,12 +1,10 @@
 package servlet;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
-
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 
 import entity.Message;
-import net.sf.json.JSONArray;
 import service.IMessageService;
 import service.Impl.MessageServiceImpl;
-import sun.misc.BASE64Decoder;
 
 /**
  * Servlet implementation class MessageServlet
@@ -51,21 +44,7 @@ public class MessageServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String method = request.getParameter("method");
 		
-		if(method.equals("findAllMessages")) {
-			String currentPage = request.getParameter("currentPage");
-			String pageSize = request.getParameter("pageSize");
-			
-			List<Message> list = this.messageService.findAllMessages(
-					Integer.valueOf(currentPage),
-					Integer.valueOf(pageSize));
-	
-			for (Message message : list) {
-				System.out.println(message);
-			}
-			JSONArray resultList = JSONArray.fromObject(list);
-			
-			out.print(resultList);
-		} else if(method.equals("createMessage")) {
+		if(method.equals("createMessage")) {
 			String newMessage = request.getParameter("newMessage");
 			String userId = request.getParameter("userId");
 			String imgs = request.getParameter("imgs");
@@ -114,6 +93,54 @@ public class MessageServlet extends HttpServlet {
 				list = this.messageService.findAboutMeMessagesByUserId(
 						Integer.valueOf(userId), userName,
 						Integer.valueOf(currentPage),
+						Integer.valueOf(pageSize));
+			}
+			
+			out.print(JSON.toJSON(list));
+		} else if(method.equals("findAllMessages")) {
+			String currentPage = request.getParameter("currentPage");
+			String pageSize = request.getParameter("pageSize");
+			
+			List<Message> list = null;
+			
+			if(currentPage == null && pageSize == null) {
+				list = this.messageService.findAllMessages(null, null);
+			} else {
+				list = this.messageService.findAllMessages(
+						Integer.valueOf(currentPage), 
+						Integer.valueOf(pageSize));
+			}
+			
+			Integer total = this.messageService.findAllTotalNum();
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("total", total);
+			map.put("data", list);
+			out.print(JSON.toJSON(map));
+		} else if(method.equals("findMessageByMessageId")) {
+			String messageId = request.getParameter("messageId");
+			
+			Message message = 
+					this.messageService.findMessageById(Integer.valueOf(messageId));
+			
+			out.print(JSON.toJSON(message));
+		} else if(method.equals("deleteMessage")) {
+			String messageId = request.getParameter("messageId");
+			
+			this.messageService.deleteMessage(Integer.valueOf(messageId));
+		} else if(method.equals("findMessagesByUserId")) {
+			String currentPage = request.getParameter("currentPage");
+			String pageSize = request.getParameter("pageSize");
+			String userId = request.getParameter("userId");
+			
+			List<Message> list = null;
+			if(currentPage == null && pageSize == null) {
+				list = this.messageService.findMessagesByUserId(
+						Integer.valueOf(userId), null, null);
+			} else {
+				list = this.messageService.findMessagesByUserId(
+						Integer.valueOf(userId), 
+						Integer.valueOf(currentPage), 
 						Integer.valueOf(pageSize));
 			}
 			

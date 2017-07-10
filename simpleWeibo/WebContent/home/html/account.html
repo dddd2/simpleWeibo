@@ -1,16 +1,16 @@
-<form id="a_form1" name="form1" method="post" action="">
+<form id="a_form1">
 <!-- container部分DIV -->
 <div id="a_container">
   <div id="p_top">
     <!-- top部分的LogoDIV -->
     	<div id="p_topLogo">
         	<!-- topLogo部分的icoDIV -->
-            <div id="p_topLogoIco"> <a href="CustomerIndex.html"><img src="images/logo_ipad.png" width="72" height="72" alt="" /></a>
+            <div id="p_topLogoIco"> <a ><img src="../images/WB.png" width="72" height="72" alt="" /></a>
           </div>
             <!-- topLogo部分的icoDIV结束 -->
             
             <!-- topLogo部分的wordDIV -->
-            <div id="p_topLogoWord"> <a href="CustomerIndex.html"><img src="images/LogoMaker.gif" width="128" height="60" alt="" /></a>
+            <div id="p_topLogoWord"> <a ><img src="../images/WB1.png" width="128" height="60" alt="" /></a>
           </div>
             <!-- topLogo部分的wordDIV -->
         </div>
@@ -19,107 +19,164 @@
         <!-- top部分的文字导航 -->
         <div id="p_topWordMenu">
         	<ul>
-            	<li><a href="CustomerIndex.html">首页</a></li>
-                <li><a href="MyWB.html">我的微博</a></li>
-                <li><a href="#">找人</a></li>
-                <li><a href="setting.html">设置</a></li>
-                <li><a href="#">手机</a></li>
-                <li><a href="#">帮助</a></li>
-                <li><a href="index.html">退出</a></li>
+            	<li><a ng-click="go('personalPage')">个人中心</a>
+				<li><a ng-click="go('mainHome')">我的微博</a></li>
+				<li><a ng-click="go('account')">账号设置</a></li>
+				<li><a ng-click="go('password')">修改密码</a></li>
+				<li ng-click="logout()"><a href="index.html">退出</a></li>
             </ul>
         </div>
         <!-- top部分的文字导航结束 -->
     </div>
     <!-- topDIv 结束-->
     <!-- banner部分DIV -->
-    <div id="a_banner">
-        <!-- banner部分的leftDIV -->
-        <div class="a_left" id="a_left">
-            <table width="564" border="0" cellpadding="0" cellspacing="0" class="a_left">
-                <!-- 昵称 -->
+  <div id="a_banner">
+      <!-- banner部分的leftDIV -->
+      <div class="a_left" id="a_left">
+          <table width="564" border="0" cellpadding="0" cellspacing="0" class="a_left">
+              <!-- 昵称 -->
                 <tr>
                     <td width="120" height="50" align="right"><strong>昵称</strong></td>
                     <td width="20" height="50">&nbsp;</td>
                     <td width="325" height="50"><label>
-                         <input name="textfield" type="text" class="a_n1" id="a_textfield" >
+                         <input name="textfield" ng-model="user.name" type="text" class="a_n1" id="a_textfield" >
 <br />
                               您的昵称将显示在您的主页中</label></td>
                 </tr>
-                <!-- 个性域名 -->
         
-                <!-- 邮箱 -->
+                <!-- 手机 -->
                 <tr>
                     <td width="120" height="50" align="right"><strong>手机号</strong></td>
                     <td width="20" height="50">&nbsp;</td>
                     <td width="325" height="50"><label>
-                         <input name="textfield3" type="text" class="a_n3" id="a_textfield3" />
+                         <input name="textfield3" ng-model="user.phone" type="text" class="a_n3" id="a_textfield3" />
 <br />
                               方便你与他人的联系</label></td>
                 </tr>
                 
-                <!-- 个人信息 -->
-                <tr>
-                    <td width="120" height="50"  align="right"><strong>年龄</strong></td>
+               <tr>
+                    <td width="120" height="50" align="right"><strong>邮箱</strong></td>
                     <td width="20" height="50">&nbsp;</td>
                     <td width="325" height="50"><label>
-                        <input name="textfield4" type="text" class="a_n5" id="a_textfield4" />
-                         </label></td>
-                </tr>
-                 <tr>
-                    <td width="120" height="50" align="right"><strong>性别</strong></td>
-                    <td width="20" height="50">&nbsp;</td>
-                    <td width="325" height="50"><label>
-                    <input name="choice" type="radio"  />男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="choice" type="radio"/>女
-                      <!--  <input name="textfield4" type="text" class="a_n5" id="a_textfield4" /> -->
-						</label></td>
-                </tr>
-                <!-- 个人简介 -->
-                        <tr>
-                    <td width="120" height="50" align="right" style="padding-bottom:10px"><strong>个性签名</strong></td>
-                    <td width="20" height="50">&nbsp;</td>
-                    <td width="325" height="50"><label>
-                         <input name="textfield2" type="text" class="a_n2" id="a_textfield2" >
+                         <input name="textfield3" ng-model="user.email" type="text" class="a_n3" id="a_textfield3" />
 <br />
-                              您的个性签名是你的面板</label></td>
+                              方便你与他人的联系</label></td>
                 </tr>
-                <tr>
-                    <td width="120" height="80"  align="right" style="padding-bottom:35px" ><strong>个人简介</strong></td>
-                    <td width="20" height="130">&nbsp;</td>
-                    <td width="425" height="130">
-                            <label>
-                                  <textarea name="textfield5" class="a_n4" id="a_textfield5"></textarea>
-                            </label>
-                       </div></td>
-                </tr>
-                <!-- 隐私 -->
-               <!--  <tr>
-                    <td width="120" height="29" align="right"><strong>隐私</strong></td>
-                    <td width="20" height="29">&nbsp;</td>
-                    <td width="425" height="29"><label>
-                       <input name="sec" type="radio" id="a_radio" value="sec" checked="checked" />
-                        所有人可见
-                       <input type="radio" name="sec" id="a_radio2" value="sec" />
-                        关注我的人可见
-                             </label></td>
-                </tr> -->
-                <!-- 保存按钮 -->
-                <tr>
-                    <td width="120" height="44" align="right">&nbsp;</td>
-                    <td width="20" height="44">&nbsp;</td>
-                    <td width="425" height="44"><label>
-                         <input name="button" type="submit" class="a_btn" id="a_button" value="保存" />
-                            </label></td>
-                </tr>
-            </table>
-        </div>
-        <!-- banner_left部分DIV结束 -->
-        <!-- banner_right部分DIV -->
-  	   <!-- <div class="a_right" id="a_right">
-            <img src="images/wowo.png" height="180" width="230" alt="">
-        </div> -->
-        <!-- banner_right部分DIV结束 -->
-    </div>
-    <!-- banner部分DIV结束 -->
+                <!-- 个人信息 -->
+              <tr>
+                  <td width="120" height="50"  align="right"><strong>年龄</strong></td>
+                  <td width="20" height="50">&nbsp;</td>
+                  <td width="325" height="50"><label>
+                      <input name="textfield4" ng-model="user.age" type="number" class="a_n5" id="a_textfield4" />
+                       </label></td>
+              </tr>
+              <tr>
+                  <td width="120" height="80"  align="right" style="padding-bottom:35px" ><strong>个人简介</strong></td>
+                  <td width="20" height="130">&nbsp;</td>
+                  <td width="425" height="130">
+                          <label>
+                                <textarea name="textfield5" ng-model="user.remark" style="resize: none;" class="a_n4" id="a_textfield5"></textarea>
+                          </label>
+                     </div></td>
+              </tr>
+              <!-- 隐私 -->
+             <!--  <tr>
+                  <td width="120" height="29" align="right"><strong>隐私</strong></td>
+                  <td width="20" height="29">&nbsp;</td>
+                  <td width="425" height="29"><label>
+                     <input name="sec" type="radio" id="a_radio" value="sec" checked="checked" />
+                      所有人可见
+                     <input type="radio" name="sec" id="a_radio2" value="sec" />
+                      关注我的人可见
+                           </label></td>
+              </tr> -->
+              <!-- 保存按钮 -->
+              <tr>
+                  <td width="120" height="44" align="right">&nbsp;</td>
+                  <td width="20" height="44">&nbsp;</td>
+                  <td width="425" height="44"><label>
+                       <input name="button" ng-click="submit()" type="submit" class="a_btn" id="a_button" value="保存" />
+                          </label></td>
+              </tr>
+              <div class="a_user_touxiang">
+              	<img src="../images/default.jpg" ng-if="!user.touxiang" style="cursor:pointer" ng-click="show()" width="150" height="150">
+              	<img ng-src="{{user.touxiang}}" style="cursor:pointer" ng-click="show()" ng-if="user.touxiang" width="150" height="150" /><br>
+              	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改头像
+              </div>
+          </table>
+      </div>
+      <!-- banner_left部分DIV结束 -->
+      <!-- banner_right部分DIV -->
+	   <!-- <div class="a_right" id="a_right">
+          <img src="images/wowo.png" height="180" width="230" alt="">
+      </div> -->
+      <!-- banner_right部分DIV结束 -->
+  </div>
+  <!-- banner部分DIV结束 -->
+  <div id="p_footer">
+		<!-- footer网站链接部分 -->
+		<div id="p_footerLink">
+			<ul>
+				<li><a  class="p_a2">API</a></li>
+				<li><a  class="p_a2">诚征英才</a></li>
+				<li><a  class="p_a2">保护隐私权</a></li>
+				<li><a  class="p_a2">免责条款</a></li>
+				<li><a  class="p_a2">法律顾问</a></li>
+				<li><a  class="p_a2">意见反馈</a></li>
+			</ul>
+		</div>
+		<!-- footer网站链接部分结束 -->
+		<!-- footer网站版权信息 -->
+		<div id="p_footerCopy">Copyright&copy;2017-2018 simpleWeibo 版权所有</div>
+		<!-- footer网站版权信息结束 -->
+	</div>  
 </div>
+<!--  模态框   -->
+	<div class="modal fade bs-example-modal-lg" id="crewmodal"
+		role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">请选择头像</h4>
+				</div>
+				<div class="modal-body">
+					
+					 <image-crop			 
+						 data-height="150"
+						 data-width="150"
+						 data-shape="square"
+						 data-step="imageCropStep"
+						 src="imgSrc"
+						 data-result="result"
+						 data-result-blob="resultBlob"
+						 crop="initCrop"
+						 padding="250"
+						 max-size="1024"
+			  		 ></image-crop>
+			  		 <div class="a_touxiang_result">
+			  		 	<img ng-src="{{result}}"/>
+			  		 	<img ng-src="{{user.touxiang}}" height="150" width="150" ng-if="!result">
+<!-- 			  		 	<div style="height:150px;width:150px" ng-if="!result"></div> -->
+						<a class="p_a1" style="cursor: pointer;
+											    position: absolute;
+											    top: 167px;" 
+							id="p_mainBannerTopIssueInsert2"> 插入图片 </a>
+			  		 	<input class="a_picture_box" type="file" accept="image/jpg,image/jpeg,image/png"
+										file-model="images"  style="cursor:pointer;"
+										onchange="angular.element(this).scope().fileChanged(event)"/> 
+			  		 </div>
+					<button ng-click="clear()">Cancel</button>
+				   	<button ng-click="initCrop = true">Crop</button>	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+						ng-click="changeTouxiang()">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
 <!-- container部分DI结束V -->
 </form>

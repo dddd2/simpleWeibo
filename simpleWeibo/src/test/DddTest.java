@@ -1,5 +1,6 @@
 package test;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import dao.userdao.IUserDao;
 import entity.Comment;
 import entity.Message;
 import entity.User;
+import util.ImageUtils;
 import util.MyBatisUtil;
 
 public class DddTest {
@@ -132,5 +134,21 @@ public class DddTest {
 		for (User user : list) {
 			System.out.println(user);
 		}
+	}
+	
+	@Test
+	public void test13() {
+		File file = new File("D:/2017-07-03/1499064688694.jpg");
+		System.out.println(ImageUtils.img2Base64(file));
+	}
+	
+	@Test
+	public void test14() {
+		System.out.println(new User().getName().charAt(0));
+	}
+	@Test
+	public void test15() {
+		System.out.println(dao.findUserById(11));
+		System.out.println(dao.findUserById(10));
 	}
 }

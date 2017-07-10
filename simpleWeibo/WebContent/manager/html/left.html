@@ -2,14 +2,15 @@
 	<ul class='nav nav-pills nav-stacked' >
 		<li class="active"><a style="font-size: 18px">功能模块</a></li>
 	</ul>
-	<ul class='nav nav-pills nav-stacked' ng-repeat="type in types">
-		<li ng-click="toList(type.clazz)">
-			<a style="text-align: center; color: #fff;font-size: 14px;font-weight: bold;">{{type.name}}</a>
+	<ul class='nav nav-pills nav-stacked'>
+		<li ng-click="go('userList')">
+			<a style="text-align: center; color: #fff;font-size: 14px;font-weight: bold;">用户管理</a>
 		</li>
-	</ul>
-	<ul class='nav nav-pills nav-stacked' >
-		<li ng-click="toInit()">
-			<a style="text-align: center; color: #fff;font-size: 14px;font-weight: bold;">新增实体</a>
+		<li ng-click="go('messageList')">
+			<a style="text-align: center; color: #fff;font-size: 14px;font-weight: bold;">微博管理</a>
 		</li>
+<!-- 		<li ng-click="toList(type.clazz)"> -->
+<!-- 			<a style="text-align: center; color: #fff;font-size: 14px;font-weight: bold;">{{type.name}}</a> -->
+<!-- 		</li> -->
 	</ul>
 </body>

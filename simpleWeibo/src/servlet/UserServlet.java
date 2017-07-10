@@ -2,7 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,31 +63,109 @@ public class UserServlet extends HttpServlet {
 			String currentPage = request.getParameter("currentPage");
 			String pageSize = request.getParameter("pageSize");
 			String userId = request.getParameter("userId");
-			
-			List<User> list = this.userService.findFansByUserId(
-						Integer.valueOf(userId), 
-						Integer.valueOf(currentPage), 
-						Integer.valueOf(pageSize));
-			
+			List<User> list;
+			if(currentPage == null && pageSize == null) {
+				list = this.userService.findFansByUserId(
+						Integer.valueOf(userId), null, null);
+			} else {
+				list = this.userService.findFansByUserId(
+							Integer.valueOf(userId), 
+							Integer.valueOf(currentPage), 
+							Integer.valueOf(pageSize));
+			}
 			out.print(JSON.toJSON(list));
 		} else if(method.equals("findFocusPeoplesByUserId")) {
 			String currentPage = request.getParameter("currentPage");
 			String pageSize = request.getParameter("pageSize");
 			String userId = request.getParameter("userId");
-			
-			List<User> list = this.userService.findFocusPeoplesByUserId(
-						Integer.valueOf(userId), 
-						Integer.valueOf(currentPage), 
-						Integer.valueOf(pageSize));
-			
+			List<User> list;
+			if(currentPage == null && pageSize == null) {
+				list = this.userService.findFocusPeoplesByUserId(
+						Integer.valueOf(userId), null, null);
+			} else {
+				list = this.userService.findFocusPeoplesByUserId(
+							Integer.valueOf(userId), 
+							Integer.valueOf(currentPage), 
+							Integer.valueOf(pageSize));
+			}
 			out.print(JSON.toJSON(list));
 		} else if(method.equals("cleanAboutMe")) {
 			String userId = request.getParameter("userId");
 			
 			this.userService.cleanAboutMe(Integer.valueOf(userId));
 			
+		} else if(method.equals("isFocus")) {
+			String fansId = request.getParameter("fansId");
+			String focusPeopleId = request.getParameter("focusPeopleId");
+			
+			Integer result = this.userService.isFocus(
+					Integer.valueOf(fansId), 
+					Integer.valueOf(focusPeopleId));
+			
+			out.print(result != null);
+		} else if(method.equals("focusOn")) {
+			String fansId = request.getParameter("fansId");
+			String focusPeopleId = request.getParameter("focusPeopleId");
+			
+			this.userService.focusOn(
+					Integer.valueOf(fansId), 
+					Integer.valueOf(focusPeopleId));
+		} else if(method.equals("takeOf")) {
+			String fansId = request.getParameter("fansId");
+			String focusPeopleId = request.getParameter("focusPeopleId");
+			
+			this.userService.takeOf(
+					Integer.valueOf(fansId), 
+					Integer.valueOf(focusPeopleId));
+		} else if(method.equals("changePassword")) {
+			String userId = request.getParameter("userId");
+			String password = request.getParameter("password");
+			String newPassword = request.getParameter("newPassword");
+			
+			boolean result = this.userService.changePassword(
+					Integer.valueOf(userId),password,newPassword);
+			
+			out.print(result);
+		} else if(method.equals("updateUser")) {
+			String userStr = request.getParameter("user");
+			
+			User user = JSON.parseObject(userStr, User.class);
+			
+			this.userService.updateUser(user);
+		} else if(method.equals("findAllUsers")) {
+			String currentPage = request.getParameter("currentPage");
+			String pageSize = request.getParameter("pageSize");
+			
+			List<User> list = this.userService.findUsers(
+					Integer.valueOf(currentPage), 
+					Integer.valueOf(pageSize));
+			
+			Integer total = this.userService.findTotalUsers();
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("total", total);
+			map.put("data", list);
+			
+			out.print(JSON.toJSON(map));
+					
+		} else if(method.equals("managerAdmin")) {
+			String phone = request.getParameter("phone");
+			String password = request.getParameter("password");
+			
+			User user = this.userService.manageAdmin(phone, password);
+			
+			out.print(JSON.toJSON(user));
+		} else if(method.equals("deleteUser")) {
+			String userId = request.getParameter("userId");
+			
+			this.userService.deleteUser(Integer.valueOf(userId));
+		} else if(method.equals("creatUser")) {
+			String userStr = request.getParameter("user");
+			
+			User user = JSON.parseObject(userStr, User.class);
+			this.userService.createUser(user);
 		}
-		
+		 
 		out.close();
 	}
 
